@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:rover_agenda/main.dart';
+
+import 'calendar.dart';
+import 'extracurriculars.dart';
 
 class NavDrawer extends StatelessWidget {
   @override
@@ -21,37 +25,79 @@ class NavDrawer extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.book_outlined),
             title: Text('Schedule'),
-            onTap: () => {},
+            onTap: () => {
+              Navigator.of(context).pop(),
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => MyHomePage(title: "Home")),
+              ),
+            },
           ),
           ListTile(
             leading: Icon(Icons.fastfood_outlined),
             title: Text('Lunch Menu'),
-            onTap: () => {Navigator.of(context).pop()},
+            onTap: () => {
+              Navigator.of(context).pop(),
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => MyHomePage(title: "Home")),
+              ),
+            },
           ),
           ListTile(
             leading: Icon(Icons.people_alt_outlined),
             title: Text('Teachers'),
-            onTap: () => {Navigator.of(context).pop()},
+            onTap: () => {
+              Navigator.of(context).pop(),
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => MyHomePage(title: "Home")),
+              ),
+            },
           ),
           ListTile(
             leading: Icon(Icons.widgets_outlined),
             title: Text('Extracurriculars'),
-            onTap: () => {Navigator.of(context).pop()},
+            onTap: () => {
+              Navigator.of(context).pop(),
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Extracurriculars()),
+              ),
+            },
           ),
           ListTile(
             leading: Icon(Icons.calendar_today_sharp),
             title: Text('School Calendar'),
-            onTap: () => {Navigator.of(context).pop()},
+            onTap: () => {
+              Navigator.of(context).pop(),
+              Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => Calendar()),
+              ),
+            },
           ),
           ListTile(
             leading: Icon(Icons.settings_outlined),
             title: Text('Settings'),
-            onTap: () => {Navigator.of(context).pop()},
+            onTap: () => {
+              Navigator.of(context).pop(),
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => MyHomePage(title: "Home")),
+              ),
+            },
           ),
           ListTile(
             leading: Icon(Icons.exit_to_app),
             title: Text('Logout'),
-            onTap: () => {Navigator.of(context).pop()},
+            onTap: () => {
+              Navigator.of(context).pop(),
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => MyHomePage(title: "Home")),
+              ),
+            },
           ),
         ],
       ),

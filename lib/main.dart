@@ -82,6 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
             color: Colors.amber[100],
             child: Row(
               children: [
+
                 Expanded(
                   flex: 7,
                   child: Container(
