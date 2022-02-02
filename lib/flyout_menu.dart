@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rover_agenda/main.dart';
+import 'package:rover_agenda/animation_sample.dart';
+import 'package:rover_agenda/schedule.dart';
 
 import 'calendar.dart';
 import 'extracurriculars.dart';
@@ -29,7 +31,7 @@ class NavDrawer extends StatelessWidget {
               Navigator.of(context).pop(),
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => MyHomePage(title: "Home")),
+                MaterialPageRoute(builder: (context) => Schedule()),
               ),
             },
           ),
@@ -40,7 +42,7 @@ class NavDrawer extends StatelessWidget {
               Navigator.of(context).pop(),
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => MyHomePage(title: "Home")),
+                MaterialPageRoute(builder: (context) => OpenContainerTransformDemo()),
               ),
             },
           ),
