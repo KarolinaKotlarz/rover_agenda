@@ -13,7 +13,6 @@ class ScheduleFormPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('School Calendar'),
       ),
-      drawer: NavDrawer(),
       body: ScheduleForm()
     );
   }
