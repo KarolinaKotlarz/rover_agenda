@@ -23,6 +23,7 @@ class Schedule extends StatelessWidget {
             startHour: 7,
             endHour: 15,
           ),
+          dataSource: _getCalendarDataSource(),
         ),
       ),
       floatingActionButton: FloatingActionButton(
@@ -36,6 +37,35 @@ class Schedule extends StatelessWidget {
         child: Icon(Icons.edit_outlined),
       ),
     );
+  }
+}
+
+_AppointmentDataSource _getCalendarDataSource() {
+  List<Appointment> appointments = <Appointment>[];
+
+  DateTime exceptionDate = DateTime(2019, 12, 20);
+  appointments.add(Appointment(
+      startTime: DateTime(2022, 1, 16, 7, 20),
+      endTime: DateTime(2022, 1, 16, 8, 38),
+      subject: 'Block 1\nMath\nMrs. Smith\nE111',
+      color: Colors.lightBlue,
+      recurrenceRule: 'FREQ=DAILY;COUNT=90'
+      ));
+
+  appointments.add(Appointment(
+      startTime: DateTime(2022, 1, 16, 8, 38),
+      endTime: DateTime(2022, 1, 16, 9, 34),
+      subject: 'Block 1\nMath\nMrs. Smith\nE111',
+      color: Colors.lightBlue,
+      recurrenceRule: 'FREQ=DAILY;INTERVAL=2;UNTIL=20220606'
+  ));
+
+  return _AppointmentDataSource(appointments);
+}
+
+class _AppointmentDataSource extends CalendarDataSource {
+  _AppointmentDataSource(List<Appointment> source) {
+    appointments = source;
   }
 }
 
