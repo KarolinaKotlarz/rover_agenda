@@ -30,7 +30,6 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key? key, required this.title}) : super(key: key);
 
@@ -83,41 +82,41 @@ class _MyHomePageState extends State<MyHomePage> {
           Container(
             color: Colors.amber[100],
             child: Row(
-              children: [
+                children: [
 
-                Expanded(
-                  flex: 7,
-                  child: Container(
-                    //color: Colors.blue,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Teacher Name",
-                        ),
-                        Text(
-                          "teachername@email.com",
-                        ),
-                      ],
+                  Expanded(
+                    flex: 7,
+                    child: Container(
+                      //color: Colors.blue,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Teacher Name",
+                          ),
+                          Text(
+                            "teachername@email.com",
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-                Expanded(
-                  flex: 3,
-                  child: Container(
-                    margin: EdgeInsets.all(16.0),
-                    child: IconButton(
-                      onPressed: () {},
-                      icon: Icon(Icons.email_outlined),
-                      iconSize: 30,
-                    ),
-                    decoration: BoxDecoration(
-                      color: Colors.red,
-                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                  Expanded(
+                    flex: 3,
+                    child: Container(
+                      margin: EdgeInsets.all(16.0),
+                      child: IconButton(
+                        onPressed: () {},
+                        icon: Icon(Icons.email_outlined),
+                        iconSize: 30,
+                      ),
+                      decoration: BoxDecoration(
+                        color: Colors.red,
+                        borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                      ),
                     ),
                   ),
-                ),
-              ]
+                ]
             ),
           ),
         ],

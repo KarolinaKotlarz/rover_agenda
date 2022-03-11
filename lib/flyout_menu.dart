@@ -4,6 +4,7 @@ import 'package:rover_agenda/animation_sample.dart';
 import 'package:rover_agenda/schedule.dart';
 
 import 'calendar.dart';
+import 'teacher_list.dart';
 import 'extracurriculars.dart';
 
 class NavDrawer extends StatelessWidget {
@@ -53,7 +54,7 @@ class NavDrawer extends StatelessWidget {
               Navigator.of(context).pop(),
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => MyHomePage(title: "Home")),
+                MaterialPageRoute(builder: (context) => TeacherList()),
               ),
             },
           ),
