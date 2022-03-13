@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:rover_agenda/lunch_menu.dart';
 import 'package:rover_agenda/main.dart';
 import 'package:rover_agenda/animation_sample.dart';
 import 'package:rover_agenda/schedule.dart';
 
 import 'calendar.dart';
+import 'extracurricular_list.dart';
 import 'teacher_list.dart';
 import 'extracurriculars.dart';
 
@@ -43,7 +45,7 @@ class NavDrawer extends StatelessWidget {
               Navigator.of(context).pop(),
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => OpenContainerTransformDemo()),
+                MaterialPageRoute(builder: (context) => LunchMenu()),
               ),
             },
           ),
@@ -65,7 +67,7 @@ class NavDrawer extends StatelessWidget {
               Navigator.of(context).pop(),
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => Extracurriculars()),
+                MaterialPageRoute(builder: (context) => ExtracurricularsList()),
               ),
             },
           ),
@@ -93,7 +95,7 @@ class NavDrawer extends StatelessWidget {
           ),
           ListTile(
             leading: Icon(Icons.exit_to_app),
-            title: Text('Logout'),
+            title: Text('Log Out'),
             onTap: () => {
               Navigator.of(context).pop(),
               Navigator.push(

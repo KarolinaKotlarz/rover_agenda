@@ -70,7 +70,6 @@ class TeacherList extends StatelessWidget {
           ),
         ],
       ),
-
     );
   }
 }
