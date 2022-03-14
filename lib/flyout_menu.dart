@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rover_agenda/log_in.dart';
 import 'package:rover_agenda/lunch_menu.dart';
 import 'package:rover_agenda/main.dart';
 import 'package:rover_agenda/animation_sample.dart';
@@ -76,7 +77,7 @@ class NavDrawer extends StatelessWidget {
             title: Text('School Calendar'),
             onTap: () => {
               Navigator.of(context).pop(),
-              Navigator.push(
+              Navigator.pushReplacement(
               context,
               MaterialPageRoute(builder: (context) => Calendar()),
               ),
@@ -98,9 +99,9 @@ class NavDrawer extends StatelessWidget {
             title: Text('Log Out'),
             onTap: () => {
               Navigator.of(context).pop(),
-              Navigator.push(
+              Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => MyHomePage(title: "Home")),
+                MaterialPageRoute(builder: (context) => LoginScreen()),
               ),
             },
           ),

@@ -6,6 +6,8 @@ import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:rover_agenda/flyout_menu.dart';
 import 'globals.dart';
+import 'package:rover_agenda/email_form.dart';
+
 
 class ExtracurricularsList extends StatefulWidget {
   const ExtracurricularsList({Key? key}) : super(key: key);
@@ -69,7 +71,10 @@ class _DetailsPage extends StatelessWidget {
           IconButton(
             icon: const Icon(Icons.email_outlined),
             onPressed: () {
-
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => EmailFormPage(teacher: extracurricular.teacher)),
+              );
             },
           ),
         ],

@@ -7,7 +7,6 @@ List<Appointment> lunches = _getLunchDataSource();
 
 List<Teacher> teachers = _getTeachers();
 List<Extracurricular> extracurriculars = _getExtracurriculars();
-
 List<Appointment> _lunches = <Appointment>[];
 
 List<Appointment> _getLunchDataSource() {
