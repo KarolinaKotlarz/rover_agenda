@@ -4,8 +4,7 @@ import 'package:rover_agenda/schedule.dart';
 import 'globals.dart' as globals;
 
 const users = const {
-  'dribbble@gmail.com': '12345',
-  'hunter@gmail.com': 'hunter',
+  'test@gmail.com': 'test',
 };
 
 class LoginScreen extends StatelessWidget {
@@ -15,7 +14,7 @@ class LoginScreen extends StatelessWidget {
     debugPrint('Name: ${data.name}, Password: ${data.password}');
     return Future.delayed(loginTime).then((_) {
       if (!users.containsKey(data.name)) {
-        return 'User not exists';
+        return 'User does not exist';
       }
       if (users[data.name] != data.password) {
         return 'Password does not match';
@@ -35,7 +34,7 @@ class LoginScreen extends StatelessWidget {
     debugPrint('Name: $name');
     return Future.delayed(loginTime).then((_) {
       if (!users.containsKey(name)) {
-        return 'User not exists';
+        return 'User does not exist';
       }
       return 'null';
     });

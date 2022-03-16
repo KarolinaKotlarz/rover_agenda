@@ -4,6 +4,7 @@ import 'package:rover_agenda/lunch_menu.dart';
 import 'package:rover_agenda/main.dart';
 import 'package:rover_agenda/animation_sample.dart';
 import 'package:rover_agenda/schedule.dart';
+import 'package:rover_agenda/settings.dart';
 
 import 'calendar.dart';
 import 'extracurricular_list.dart';
@@ -90,7 +91,7 @@ class NavDrawer extends StatelessWidget {
               Navigator.of(context).pop(),
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => MyHomePage(title: "Home")),
+                MaterialPageRoute(builder: (context) => SettingsPage()),
               ),
             },
           ),
