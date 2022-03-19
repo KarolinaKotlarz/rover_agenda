@@ -34,7 +34,7 @@ class NavDrawer extends StatelessWidget {
             title: Text('Schedule'),
             onTap: () => {
               Navigator.of(context).pop(),
-              Navigator.push(
+              Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(builder: (context) => Schedule()),
               ),
@@ -45,7 +45,7 @@ class NavDrawer extends StatelessWidget {
             title: Text('Lunch Menu'),
             onTap: () => {
               Navigator.of(context).pop(),
-              Navigator.push(
+              Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(builder: (context) => LunchMenu()),
               ),
@@ -56,7 +56,7 @@ class NavDrawer extends StatelessWidget {
             title: Text('Teachers'),
             onTap: () => {
               Navigator.of(context).pop(),
-              Navigator.push(
+              Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(builder: (context) => TeacherList()),
               ),
@@ -67,7 +67,7 @@ class NavDrawer extends StatelessWidget {
             title: Text('Extracurriculars'),
             onTap: () => {
               Navigator.of(context).pop(),
-              Navigator.push(
+              Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(builder: (context) => ExtracurricularsList()),
               ),
@@ -89,7 +89,7 @@ class NavDrawer extends StatelessWidget {
             title: Text('Settings'),
             onTap: () => {
               Navigator.of(context).pop(),
-              Navigator.push(
+              Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(builder: (context) => SettingsPage()),
               ),
