@@ -5,6 +5,8 @@ import 'package:rover_agenda/main.dart';
 import 'package:rover_agenda/animation_sample.dart';
 import 'package:rover_agenda/schedule.dart';
 import 'package:rover_agenda/settings.dart';
+import 'package:rover_agenda/syncfusion/lib2/samples/calendar/getting_started.dart';
+import 'package:rover_agenda/syncfusion/lib2/samples/calendar/recurrence.dart';
 
 import 'calendar.dart';
 import 'extracurricular_list.dart';
@@ -37,6 +39,17 @@ class NavDrawer extends StatelessWidget {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(builder: (context) => Schedule()),
+              ),
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.book_outlined),
+            title: Text('Debug'),
+            onTap: () => {
+              Navigator.of(context).pop(),
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => RecurrenceCalendar(Key(''))),
               ),
             },
           ),
