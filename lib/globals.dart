@@ -9,6 +9,11 @@ List<Teacher> teachers = _getTeachers();
 List<Extracurricular> extracurriculars = _getExtracurriculars();
 List<Appointment> _lunches = <Appointment>[];
 
+DateTime semesterOneStart = DateTime(2021, 8, 30);
+DateTime semesterOneEnd = DateTime(2022, 1, 21);
+DateTime semesterTwoStart = DateTime(2022, 1, 24);
+DateTime semesterTwoEnd = DateTime(2022, 6, 6);
+
 List<Appointment> _getLunchDataSource() {
 
   _lunches.add(Appointment(
