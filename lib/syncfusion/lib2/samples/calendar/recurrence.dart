@@ -427,7 +427,7 @@ class RecurrenceCalendarState extends SampleViewState {
     final Appointment blockOne = Appointment(
         startTime: b1StartTime,
         endTime: b1EndTime,
-        color: _colorCollection[random.nextInt(8)],
+        color: _colorCollection[0],
         subject: 'Block One',
         recurrenceRule: SfCalendar.generateRRule(
             b1Recurrence, b1StartTime, b1EndTime));
@@ -448,7 +448,7 @@ class RecurrenceCalendarState extends SampleViewState {
     final Appointment blockTwo = Appointment(
         startTime: b2StartTime,
         endTime: b2EndTime,
-        color: _colorCollection[random.nextInt(8)],
+        color: _colorCollection[1],
         subject: 'Block Two',
         recurrenceRule: SfCalendar.generateRRule(
             b2Recurrence, b2StartTime, b2EndTime));
@@ -469,7 +469,7 @@ class RecurrenceCalendarState extends SampleViewState {
     final Appointment blockThree = Appointment(
         startTime: b3StartTime,
         endTime: b3EndTime,
-        color: _colorCollection[random.nextInt(8)],
+        color: _colorCollection[2],
         subject: 'Block Two',
         recurrenceRule: SfCalendar.generateRRule(
             b3Recurrence, b3StartTime, b3EndTime));
@@ -490,7 +490,7 @@ class RecurrenceCalendarState extends SampleViewState {
     final Appointment blockFour = Appointment(
         startTime: b4StartTime,
         endTime: b4EndTime,
-        color: _colorCollection[random.nextInt(8)],
+        color: _colorCollection[3],
         subject: 'Block Two',
         recurrenceRule: SfCalendar.generateRRule(
             b4Recurrence, b4StartTime, b4EndTime));
@@ -511,7 +511,7 @@ class RecurrenceCalendarState extends SampleViewState {
     final Appointment blockFive = Appointment(
         startTime: b5StartTime,
         endTime: b5EndTime,
-        color: _colorCollection[random.nextInt(8)],
+        color: _colorCollection[4],
         subject: 'Block Two',
         recurrenceRule: SfCalendar.generateRRule(
             b5Recurrence, b5StartTime, b5EndTime));
