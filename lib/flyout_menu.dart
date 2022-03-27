@@ -38,17 +38,6 @@ class NavDrawer extends StatelessWidget {
               Navigator.of(context).pop(),
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => Schedule()),
-              ),
-            },
-          ),
-          ListTile(
-            leading: Icon(Icons.book_outlined),
-            title: Text('Debug'),
-            onTap: () => {
-              Navigator.of(context).pop(),
-              Navigator.pushReplacement(
-                context,
                 MaterialPageRoute(builder: (context) => RecurrenceCalendar(Key(''))),
               ),
             },

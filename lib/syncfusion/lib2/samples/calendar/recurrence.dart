@@ -45,7 +45,7 @@ class RecurrenceCalendarState extends SampleViewState {
   final TimeSlotViewSettings _timeSlotViewSettings = TimeSlotViewSettings(
     timeInterval: Duration(minutes: 30), timeFormat: 'h:mm',
     startHour: 7,
-    endHour: 15,
+    endHour: 22,
   );
 
   /// Represents the controller

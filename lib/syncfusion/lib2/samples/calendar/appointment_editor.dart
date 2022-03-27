@@ -6107,33 +6107,7 @@ class _AppointmentEditorState extends State<AppointmentEditor> {
                                     textAlign: TextAlign.right,
                                   ),
                                 )),
-                    ])),
-            ListTile(
-              contentPadding: const EdgeInsets.fromLTRB(5, 2, 5, 2),
-              leading: Icon(
-                Icons.public,
-                color: defaultColor,
-              ),
-              title: Text(widget.timeZoneCollection[_selectedTimeZoneIndex]),
-              onTap: () {
-                showDialog<Widget>(
-                  context: context,
-                  barrierDismissible: true,
-                  builder: (BuildContext context) {
-                    return _CalendarTimeZonePicker(
-                      widget.model.backgroundColor,
-                      widget.timeZoneCollection,
-                      _selectedTimeZoneIndex,
-                      widget.model,
-                      onChanged: (_PickerChangedDetails details) {
-                        _selectedTimeZoneIndex = details.index;
-                      },
-                    );
-                  },
-                ).then((dynamic value) => setState(() {
-                      /// update the time zone changes
-                    }));
-              },
+                    ])
             ),
             ListTile(
               contentPadding: const EdgeInsets.fromLTRB(5, 2, 5, 2),
