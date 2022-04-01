@@ -8,6 +8,7 @@ List<Appointment> lunches = _getLunchDataSource();
 List<Teacher> teachers = _getTeachers();
 List<Extracurricular> extracurriculars = _getExtracurriculars();
 List<Appointment> _lunches = <Appointment>[];
+List<FAQ> FAQs = _getFAQs();
 
 DateTime semesterOneStart = DateTime(2021, 8, 30);
 DateTime semesterOneEnd = DateTime(2022, 1, 21);
@@ -90,6 +91,19 @@ List<Appointment> _getLunchDataSource() {
   return _lunches;
 }
 
+List<FAQ> _getFAQs() {
+  List<FAQ> f = <FAQ>[];
+
+  f.add(FAQ(question: 'How do I modify my schedule?', answer: 'You can make changes to pre-existing classes by tapping on the block, or add a new class by tapping on one of the empty timeslots. From there, you will be able to edit the class’s title, color, timeframe, repetitions, and description. Hit the checkmark in the top right corner to save your changes.'));
+  f.add(FAQ(question: 'How can I delete a class?', answer: 'You can delete a class by going into the editing menu of your desired class and clicking on the blue trash can button. You will be prompted to delete either just the single instance of the class or all recurring classes.'));
+  f.add(FAQ(question: 'How can I email my teachers/advisors?', answer: 'You can contact your teachers/advisors by clicking on the red email button to the right of your desired teacher’s name. The app will redirect you to your mailing app, which will automatically open a draft to your teacher’s email.'));
+  f.add(FAQ(question: 'How can I modify my account?', answer: 'You can make changes to your account by clicking on the settings button and going to the ‘Account’ section of the page. There, you can edit your profile and change your password.'));
+  f.add(FAQ(question: 'I forgot my password. What do I do?', answer: 'You can reset your password through the ‘Forgot Password?’ button on the login page. You will be prompted to enter your account email address, and you will receive a password recovery email shortly.'));
+  f.add(FAQ(question: 'How can I report bugs?', answer: 'You can report bugs through the bug reporting feature. Navigate to settings and click on “Report a Bug” in the bottom section.'));
+
+  return f;
+}
+
 List<Teacher> _getTeachers() {
   List<Teacher> t = <Teacher>[];
 
@@ -108,6 +122,16 @@ List<Extracurricular> _getExtracurriculars() {
   e.add(Extracurricular(name: "FBLA", room: "J121", teacher: _teacher1, meetingDays: "Tuesdays", description: "Future Business Leaders of America"));
 
   return e;
+}
+
+class FAQ {
+  FAQ ({
+    required this.question,
+    required this.answer,
+  });
+
+  String question;
+  String answer;
 }
 
 class Teacher {

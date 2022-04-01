@@ -19,18 +19,18 @@ class _FAQsState extends State<FAQs> {
       appBar: AppBar(
         title: const Text('Frequently Asked Questions'),
       ),
-      body: Column(
+      body: ListView(
       children: <Widget>[
+        for(var faq in globals.FAQs)
         ExpansionTile(
-          title: const Text('ExpansionTile 2'),
+          title: Text(faq.question),
           trailing: Icon(
             _customTileExpanded
                 ? Icons.horizontal_rule_outlined
                 : Icons.add,
           ),
-          children: const <Widget>[
-            ListTile(title: Text(''), subtitle: Text(globals.loremIpsumParagraph)),
-
+          children: <Widget>[
+            ListTile(title: Text(faq.answer), subtitle: Text('')),
           ],
           onExpansionChanged: (bool expanded) {
             setState(() => _customTileExpanded = expanded);
