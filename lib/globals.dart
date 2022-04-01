@@ -14,6 +14,37 @@ DateTime semesterOneEnd = DateTime(2022, 1, 21);
 DateTime semesterTwoStart = DateTime(2022, 1, 24);
 DateTime semesterTwoEnd = DateTime(2022, 6, 6);
 
+const String loremIpsumParagraph =
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod '
+    'tempor incididunt ut labore et dolore magna aliqua. Vulputate dignissim '
+    'suspendisse in est. Ut ornare lectus sit amet. Eget nunc lobortis mattis '
+    'aliquam faucibus purus in. Hendrerit gravida rutrum quisque non tellus '
+    'orci ac auctor. Mattis aliquam faucibus purus in massa. Tellus rutrum '
+    'tellus pellentesque eu tincidunt tortor. Nunc eget lorem dolor sed. Nulla '
+    'at volutpat diam ut venenatis tellus in metus. Tellus cras adipiscing enim '
+    'eu turpis. Pretium fusce id velit ut tortor. Adipiscing enim eu turpis '
+    'egestas pretium. Quis varius quam quisque id. Blandit aliquam etiam erat '
+    'velit scelerisque. In nisl nisi scelerisque eu. Semper risus in hendrerit '
+    'gravida rutrum quisque. Suspendisse in est ante in nibh mauris cursus '
+    'mattis molestie. Adipiscing elit duis tristique sollicitudin nibh sit '
+    'amet commodo nulla. Pretium viverra suspendisse potenti nullam ac tortor '
+    'vitae.\n'
+    '\n'
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod '
+    'tempor incididunt ut labore et dolore magna aliqua. Vulputate dignissim '
+    'suspendisse in est. Ut ornare lectus sit amet. Eget nunc lobortis mattis '
+    'aliquam faucibus purus in. Hendrerit gravida rutrum quisque non tellus '
+    'orci ac auctor. Mattis aliquam faucibus purus in massa. Tellus rutrum '
+    'tellus pellentesque eu tincidunt tortor. Nunc eget lorem dolor sed. Nulla '
+    'at volutpat diam ut venenatis tellus in metus. Tellus cras adipiscing enim '
+    'eu turpis. Pretium fusce id velit ut tortor. Adipiscing enim eu turpis '
+    'egestas pretium. Quis varius quam quisque id. Blandit aliquam etiam erat '
+    'velit scelerisque. In nisl nisi scelerisque eu. Semper risus in hendrerit '
+    'gravida rutrum quisque. Suspendisse in est ante in nibh mauris cursus '
+    'mattis molestie. Adipiscing elit duis tristique sollicitudin nibh sit '
+    'amet commodo nulla. Pretium viverra suspendisse potenti nullam ac tortor '
+    'vitae';
+
 List<Appointment> _getLunchDataSource() {
 
   _lunches.add(Appointment(
@@ -27,9 +58,33 @@ List<Appointment> _getLunchDataSource() {
   _lunches.add(Appointment(
       startTime: DateTime(2022, 1, 16, 1),
       endTime: DateTime(2022, 1, 16, 2),
+      subject: 'Quesadilla',
+      color: Colors.blueGrey,
+      recurrenceRule: 'FREQ=DAILY;UNTIL=20220606'
+  ));
+
+  _lunches.add(Appointment(
+      startTime: DateTime(2022, 1, 16, 2),
+      endTime: DateTime(2022, 1, 16, 3),
       subject: 'Salad',
       color: Colors.lightGreenAccent,
-      recurrenceRule: 'FREQ=DAILY;INTERVAL=2;UNTIL=20220606'
+      recurrenceRule: 'FREQ=DAILY;UNTIL=20220606'
+  ));
+
+  _lunches.add(Appointment(
+      startTime: DateTime(2022, 1, 16, 3),
+      endTime: DateTime(2022, 1, 16, 4),
+      subject: 'Tacos',
+      color: Colors.pinkAccent,
+      recurrenceRule: 'FREQ=DAILY;UNTIL=20220606'
+  ));
+
+  _lunches.add(Appointment(
+      startTime: DateTime(2022, 1, 16, 4),
+      endTime: DateTime(2022, 1, 16, 5),
+      subject: 'Hamburger',
+      color: Colors.yellowAccent,
+      recurrenceRule: 'FREQ=DAILY;UNTIL=20220606'
   ));
 
   return _lunches;
