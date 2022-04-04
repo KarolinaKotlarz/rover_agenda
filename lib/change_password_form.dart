@@ -5,60 +5,80 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 import 'flyout_menu.dart';
 
-class EmailFormPage extends StatefulWidget {
-  const EmailFormPage({Key? key, required this.teacher}) : super(key: key);
+class PasswordFormPage extends StatefulWidget {
+  const PasswordFormPage({Key? key}) : super(key: key);
   static String routeName = "/extracurriculars";
-  final Teacher teacher;
 
   @override
   State<StatefulWidget> createState() {
-    return EmailFormState();
+    return PasswordFormState();
   }
 }
 
-class EmailFormState extends State<EmailFormPage> {
+class PasswordFormState extends State<PasswordFormPage> {
   final _formKey = GlobalKey<FormState>();
+  final controllerOld = TextEditingController();
+  final controllerNew = TextEditingController();
+  final controllerRetype = TextEditingController();
+  String? passwordText;
 
-  final controllerSubject = TextEditingController();
-  final controllerBody = TextEditingController();
-
-  Widget _buildSubjectField() {
+  Widget _buildOldPasswordField() {
     return TextFormField(
         decoration: const InputDecoration(
           border: OutlineInputBorder(),
-          labelText: 'Subject',
+          labelText: 'Old Password',
         ),
         // The validator receives the text that the user has entered.
         validator: (value) {
           if (value == null || value.isEmpty) {
-            return 'Please enter the subject of the email';
+            return 'Please enter your old password';
           }
           return null;
         },
-        controller: controllerSubject,
+        controller: controllerOld,
         onSaved: (value) {
-          controllerSubject.text = value!;
+          controllerOld.text = value!;
         });
   }
 
-  Widget _buildBodyField() {
+  Widget _buildPasswordField() {
     return TextFormField(
-        maxLines: 8,
         decoration: const InputDecoration(
           border: OutlineInputBorder(),
-          labelText: 'Body',
-          alignLabelWithHint: true,
+          labelText: 'New Password',
+        ),
+        // The validator receives the text that the user has entered.
+        validator: (value) {
+          passwordText = value;
+          if (value == null || value.isEmpty) {
+            return 'Please enter a new password';
+          }
+          return null;
+        },
+        controller: controllerNew,
+        onSaved: (value) {
+          controllerNew.text = value!;
+        });
+  }
+
+  Widget _buildRetypeField() {
+    return TextFormField(
+        decoration: const InputDecoration(
+          border: OutlineInputBorder(),
+          labelText: 'Retype New Password',
         ),
         // The validator receives the text that the user has entered.
         validator: (value) {
           if (value == null || value.isEmpty) {
-            return 'Please enter the subject of the email';
+            return 'Please retype your new password';
+          } else if (value != passwordText) {
+            return 'Passwords do not match';
           }
           return null;
         },
-        controller: controllerBody,
+        controller: controllerRetype,
         onSaved: (value) {
-          controllerBody.text = value!;
+          controllerRetype.text = value!;
         });
   }
 
@@ -66,10 +86,7 @@ class EmailFormState extends State<EmailFormPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Compose Email to ' +
-              widget.teacher.firstName +
-              ' ' +
-              widget.teacher.lastName),
+          title: Text('Change Password'),
         ),
         body: SingleChildScrollView(
             child: Container(
@@ -79,34 +96,27 @@ class EmailFormState extends State<EmailFormPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('To: ' + widget.teacher.email),
-                Text('From: You'),
+                _buildOldPasswordField(),
                 Padding(padding: const EdgeInsets.all(8.0)),
-                _buildSubjectField(),
+                _buildPasswordField(),
                 Padding(padding: const EdgeInsets.all(8.0)),
-                _buildBodyField(),
+                _buildRetypeField(),
                 Padding(padding: const EdgeInsets.all(8.0)),
                 Row(
                   children: [
                     Align(
-                      alignment: Alignment.topLeft,
+                      alignment: Alignment.topRight,
                       child: ElevatedButton(
                         onPressed: () {
-                          // Validate returns true if the form is valid, or false otherwise.
                           if (_formKey.currentState!.validate()) {
-                            _launchEmail(
-                                emailTo: widget.teacher.email,
-                                subject: controllerSubject.text,
-                                body: controllerBody.text);
-
                             Navigator.pop(context);
                           }
                         },
                         child: Row(
                           children: [
-                            Icon(Icons.send, size: 15),
+                            Icon(Icons.check, size: 15),
                             Text(
-                              ' Send',
+                              ' Confirm Password',
                               textAlign: TextAlign.right,
                             )
                           ],
@@ -137,12 +147,5 @@ class EmailFormState extends State<EmailFormPage> {
             ),
           ),
         )));
-  }
-
-  Future _launchEmail(
-      {required emailTo, required String subject, required String body}) async {
-    final url =
-        'mailto:$emailTo?subject=${Uri.encodeFull(subject)}&body=${Uri.encodeFull(body)}';
-    await launch(url);
   }
 }

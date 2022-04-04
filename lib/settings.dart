@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:rover_agenda/faq_page.dart';
 import 'package:rover_agenda/privacy_policy.dart';
 
+import 'change_password_form.dart';
 import 'flyout_menu.dart';
 
 class SettingsPage extends StatelessWidget {
@@ -30,7 +31,10 @@ class SettingsPage extends StatelessWidget {
                 title: 'Change Password',
                 leading: Icon(Icons.lock_outline_sharp),
                 onPressed: (BuildContext context) {
-
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => PasswordFormPage()),
+                  );
                 },
               ),
             ],
