@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_login/flutter_login.dart';
 import 'package:rover_agenda/schedule.dart';
+import 'package:rover_agenda/syncfusion/lib2/samples/calendar/recurrence.dart';
 import 'globals.dart' as globals;
 
 const users = const {
@@ -49,7 +50,7 @@ class LoginScreen extends StatelessWidget {
       onSignup: _signupUser,
       onSubmitAnimationCompleted: () {
         Navigator.of(context).pushReplacement(MaterialPageRoute(
-          builder: (context) => Schedule(),
+          builder: (context) => RecurrenceCalendar(Key('')),
         ));
       },
       onRecoverPassword: _recoverPassword,
