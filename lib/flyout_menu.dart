@@ -33,7 +33,7 @@ class NavDrawer extends StatelessWidget {
               Navigator.of(context).pop(),
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => RecurrenceCalendar(Key(''))),
+                MaterialPageRoute(builder: (context) => SchedulePage(Key(''))),
               ),
             },
           ),

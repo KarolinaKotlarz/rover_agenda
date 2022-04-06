@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_login/flutter_login.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rover_agenda/schedule/calendar/recurrence.dart';
 
 const users = const {
@@ -46,14 +47,47 @@ class Login extends StatelessWidget {
       logo: AssetImage('images/rover_agenda_icon.png'),
       onLogin: _authUser,
       onSignup: _signupUser,
+      loginProviders: <LoginProvider>[
+        LoginProvider(
+        icon: FontAwesomeIcons.google,
+          label: 'Google',
+          callback: () async {
+            debugPrint('start google sign in');
+            await Future.delayed(loginTime);
+            debugPrint('stop google sign in');
+            return null;
+          },
+        ),
+        LoginProvider(
+          icon: FontAwesomeIcons.facebookF,
+          label: 'Facebook',
+          callback: () async {
+            debugPrint('start facebook sign in');
+            await Future.delayed(loginTime);
+            debugPrint('stop facebook sign in');
+            return null;
+          },
+        ),
+        LoginProvider(
+          icon: FontAwesomeIcons.c,
+          label: 'LinkedIn',
+          callback: () async {
+            debugPrint('start linkedin sign in');
+            await Future.delayed(loginTime);
+            debugPrint('stop linkedin sign in');
+            return null;
+          },
+        ),
+      ],
       onSubmitAnimationCompleted: () {
         Navigator.of(context).pushReplacement(MaterialPageRoute(
-          builder: (context) => RecurrenceCalendar(Key('')),
+          builder: (context) => SchedulePage(Key('')),
         ));
       },
       onRecoverPassword: _recoverPassword,
       messages: LoginMessages(
-
+        recoverPasswordDescription:
+        'We will send you an email with a link to recover your password to this email.',
       ),
     );
   }

@@ -17,9 +17,9 @@ import '../../../../globals.dart' as globals;
 
 
 /// Widget class of recurrence calendar
-class RecurrenceCalendar extends SampleView {
+class SchedulePage extends SampleView {
   /// Creates recurrence calendar
-  const RecurrenceCalendar(Key key) : super(key: key);
+  const SchedulePage(Key key) : super(key: key);
 
   @override
   RecurrenceCalendarState createState() => RecurrenceCalendarState();

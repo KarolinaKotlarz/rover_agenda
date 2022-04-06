@@ -11,7 +11,7 @@ Map<String, Function> getSampleWidget() {
   return <String, Function>{
     // Calendar Samples
     'getting_started_calendar': (Key key) => GettingStartedCalendar(key),
-    'recurrence_calendar': (Key key) => RecurrenceCalendar(key),
+    'recurrence_calendar': (Key key) => SchedulePage(key),
     'appointment_editor_calendar': (Key key) => CalendarAppointmentEditor(key),
   };
 }
