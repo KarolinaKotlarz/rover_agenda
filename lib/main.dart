@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:animations/animations.dart';
-import 'package:rover_agenda/log_in.dart';
-import 'package:rover_agenda/schedule.dart';
-import 'package:rover_agenda/syncfusion/lib2/samples/calendar/recurrence.dart';
-import 'flyout_menu.dart';
+import 'package:rover_agenda/schedule/calendar/recurrence.dart';
 
 void main() {
   runApp(MyApp());
