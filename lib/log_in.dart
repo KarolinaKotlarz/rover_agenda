@@ -42,19 +42,19 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FlutterLogin(
-      title: 'Rover Agenda',
-      logo: AssetImage('images/rover_agenda_icon.png'),
-      onLogin: _authUser,
-      onSignup: _signupUser,
-      onSubmitAnimationCompleted: () {
-        Navigator.of(context).pushReplacement(MaterialPageRoute(
-          builder: (context) => Schedule(),
-        ));
-      },
-      onRecoverPassword: _recoverPassword,
-      messages: LoginMessages(
-
+    return Container(
+      child: FlutterLogin(
+        title: 'Rover Agenda',
+        logo: AssetImage('images/rover_agenda_login_icon.png'),
+        onLogin: _authUser,
+        onSignup: _signupUser,
+        onSubmitAnimationCompleted: () {
+          Navigator.of(context).pushReplacement(MaterialPageRoute(
+            builder: (context) => Schedule(),
+          ));
+        },
+        onRecoverPassword: _recoverPassword,
+        messages: LoginMessages(),
       ),
     );
   }

@@ -52,7 +52,7 @@ List<Appointment> _getLunchDataSource() {
       startTime: DateTime(2022, 1, 16, 0),
       endTime: DateTime(2022, 1, 16, 1),
       subject: 'Pizza',
-      color: Colors.lightBlue,
+      color: Colors.deepPurple,
       recurrenceRule: 'FREQ=DAILY;COUNT=90'
   ));
 
@@ -60,7 +60,7 @@ List<Appointment> _getLunchDataSource() {
       startTime: DateTime(2022, 1, 16, 1),
       endTime: DateTime(2022, 1, 16, 2),
       subject: 'Quesadilla',
-      color: Colors.blueGrey,
+      color: Colors.purple,
       recurrenceRule: 'FREQ=DAILY;UNTIL=20220606'
   ));
 
@@ -68,7 +68,7 @@ List<Appointment> _getLunchDataSource() {
       startTime: DateTime(2022, 1, 16, 2),
       endTime: DateTime(2022, 1, 16, 3),
       subject: 'Salad',
-      color: Colors.lightGreenAccent,
+      color: Colors.green,
       recurrenceRule: 'FREQ=DAILY;UNTIL=20220606'
   ));
 
@@ -76,7 +76,7 @@ List<Appointment> _getLunchDataSource() {
       startTime: DateTime(2022, 1, 16, 3),
       endTime: DateTime(2022, 1, 16, 4),
       subject: 'Tacos',
-      color: Colors.pinkAccent,
+      color: Colors.deepOrange,
       recurrenceRule: 'FREQ=DAILY;UNTIL=20220606'
   ));
 
@@ -84,7 +84,7 @@ List<Appointment> _getLunchDataSource() {
       startTime: DateTime(2022, 1, 16, 4),
       endTime: DateTime(2022, 1, 16, 5),
       subject: 'Hamburger',
-      color: Colors.yellowAccent,
+      color: Colors.red,
       recurrenceRule: 'FREQ=DAILY;UNTIL=20220606'
   ));
 
