@@ -69,7 +69,7 @@ class Login extends StatelessWidget {
           },
         ),
         LoginProvider(
-          icon: FontAwesomeIcons.c,
+          icon: FontAwesomeIcons.linkedin,
           label: 'LinkedIn',
           callback: () async {
             debugPrint('start linkedin sign in');
