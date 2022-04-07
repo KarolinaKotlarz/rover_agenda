@@ -1,17 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:rover_agenda/log_in.dart';
-import 'package:rover_agenda/lunch_menu.dart';
-import 'package:rover_agenda/main.dart';
-import 'package:rover_agenda/animation_sample.dart';
-import 'package:rover_agenda/schedule.dart';
-import 'package:rover_agenda/settings.dart';
-import 'package:rover_agenda/syncfusion/lib2/samples/calendar/getting_started.dart';
-import 'package:rover_agenda/syncfusion/lib2/samples/calendar/recurrence.dart';
+import 'package:rover_agenda/log_in/log_in_page.dart';
+import 'package:rover_agenda/lunch_menu/lunch_menu_page.dart';
+import 'package:rover_agenda/settings/settings_page.dart';
+import 'package:rover_agenda/schedule/calendar/recurrence.dart';
 
-import 'calendar.dart';
-import 'extracurricular_list.dart';
-import 'teacher_list.dart';
-import 'extracurriculars.dart';
+import 'school_calendar/school_calendar.dart';
+import 'extracurriculars/extracurriculars_page.dart';
+import 'teachers/teacher_list_page.dart';
 
 class NavDrawer extends StatelessWidget {
   @override
@@ -38,7 +33,7 @@ class NavDrawer extends StatelessWidget {
               Navigator.of(context).pop(),
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => RecurrenceCalendar(Key(''))),
+                MaterialPageRoute(builder: (context) => SchedulePage(Key(''))),
               ),
             },
           ),
@@ -71,7 +66,7 @@ class NavDrawer extends StatelessWidget {
               Navigator.of(context).pop(),
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => ExtracurricularsList()),
+                MaterialPageRoute(builder: (context) => Extracurriculars()),
               ),
             },
           ),
@@ -82,7 +77,7 @@ class NavDrawer extends StatelessWidget {
               Navigator.of(context).pop(),
               Navigator.pushReplacement(
               context,
-              MaterialPageRoute(builder: (context) => Calendar()),
+              MaterialPageRoute(builder: (context) => SchoolCalendar()),
               ),
             },
           ),
@@ -104,7 +99,7 @@ class NavDrawer extends StatelessWidget {
               Navigator.of(context).pop(),
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => LoginScreen()),
+                MaterialPageRoute(builder: (context) => Login()),
               ),
             },
           ),
