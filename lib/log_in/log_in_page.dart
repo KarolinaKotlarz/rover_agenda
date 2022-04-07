@@ -44,7 +44,7 @@ class Login extends StatelessWidget {
   Widget build(BuildContext context) {
     return FlutterLogin(
       title: 'Rover Agenda',
-      logo: AssetImage('images/rover_agenda_icon.png'),
+      logo: AssetImage('assets/rover_agenda_icon.png'),
       onLogin: _authUser,
       onSignup: _signupUser,
       loginProviders: <LoginProvider>[
@@ -69,7 +69,7 @@ class Login extends StatelessWidget {
           },
         ),
         LoginProvider(
-          icon: FontAwesomeIcons.c,
+          icon: FontAwesomeIcons.linkedin,
           label: 'LinkedIn',
           callback: () async {
             debugPrint('start linkedin sign in');

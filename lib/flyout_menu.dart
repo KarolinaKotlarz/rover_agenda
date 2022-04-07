@@ -24,7 +24,7 @@ class NavDrawer extends StatelessWidget {
                 color: Colors.red,
                 image: DecorationImage(
                     fit: BoxFit.fitWidth,
-                    image: AssetImage('images/rover_agenda_icon.png'))),
+                    image: AssetImage('assets/rover_agenda_icon.png'))),
           ),
           ListTile(
             leading: Icon(Icons.book_outlined),
