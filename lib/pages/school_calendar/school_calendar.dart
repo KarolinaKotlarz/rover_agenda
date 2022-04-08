@@ -8,7 +8,6 @@ class SchoolCalendar extends StatelessWidget {
   const SchoolCalendar({Key? key}) : super(key: key);
   static String routeName = "/extracurriculars";
 
-  @override
   void initState() {
     Instabug.start('76ed198e8e1d4438e3ff5b8b152d6e60', [InvocationEvent.shake]);
   }
@@ -19,20 +18,20 @@ class SchoolCalendar extends StatelessWidget {
       appBar: AppBar(
         title: const Text('School Calendar'),
       ),
-      drawer: NavDrawer(),
+      drawer: const FlyoutMenu(),
       body: SfCalendar(
         showDatePickerButton: true,
         view: CalendarView.month,
         showNavigationArrow: true,
         allowViewNavigation: true,
         showCurrentTimeIndicator: true,
-        allowedViews: <CalendarView>
+        allowedViews: const <CalendarView>
         [
           CalendarView.day,
           CalendarView.week,
           CalendarView.month,
         ],
-        monthViewSettings: MonthViewSettings(
+        monthViewSettings: const MonthViewSettings(
           appointmentDisplayMode: MonthAppointmentDisplayMode.appointment,
           showAgenda: true,
         ),
