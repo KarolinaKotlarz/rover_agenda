@@ -8,6 +8,8 @@ const users = {
 };
 
 class Login extends StatelessWidget {
+  const Login({Key? key}) : super(key: key);
+
   Duration get loginTime => const Duration(milliseconds: 2250);
 
   Future<String?> _authUser(LoginData data) {
@@ -44,7 +46,7 @@ class Login extends StatelessWidget {
   Widget build(BuildContext context) {
     return FlutterLogin(
       title: 'Rover Agenda',
-      logo: const AssetImage('images/rover_agenda_icon.png'),
+      logo: const AssetImage('img/rover_agenda_icon.png'),
       onLogin: _authUser,
       onSignup: _signupUser,
       loginProviders: <LoginProvider>[
@@ -81,7 +83,7 @@ class Login extends StatelessWidget {
       ],
       onSubmitAnimationCompleted: () {
         Navigator.of(context).pushReplacement(MaterialPageRoute(
-          builder: (context) => const SchedulePage(const Key('')),
+          builder: (context) => const SchedulePage(Key('')),
         ));
       },
       onRecoverPassword: _recoverPassword,

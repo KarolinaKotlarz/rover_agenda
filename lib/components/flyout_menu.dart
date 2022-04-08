@@ -28,7 +28,7 @@ class FlyoutMenu extends StatelessWidget {
                 color: Colors.red,
                 image: DecorationImage(
                     fit: BoxFit.fitWidth,
-                    image: AssetImage('images/rover_agenda_icon.png'))),
+                    image: AssetImage('img/rover_agenda_icon.png'))),
           ),
           ListTile(
             leading: const Icon(Icons.book_outlined),
@@ -92,7 +92,7 @@ class FlyoutMenu extends StatelessWidget {
               Navigator.of(context).pop(),
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => SettingsPage()),
+                MaterialPageRoute(builder: (context) => const SettingsPage()),
               ),
             },
           ),
@@ -111,7 +111,7 @@ class FlyoutMenu extends StatelessWidget {
               Navigator.of(context).pop(),
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => Login()),
+                MaterialPageRoute(builder: (context) => const Login()),
               ),
             },
           ),
