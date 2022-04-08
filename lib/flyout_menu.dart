@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rover_agenda/log_in/log_in_page.dart';
+import 'package:rover_agenda/login/login_page.dart';
 import 'package:rover_agenda/lunch_menu/lunch_menu_page.dart';
 import 'package:rover_agenda/settings/settings_page.dart';
 import 'package:rover_agenda/schedule/calendar/recurrence.dart';

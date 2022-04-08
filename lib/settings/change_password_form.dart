@@ -26,7 +26,7 @@ class PasswordFormState extends State<PasswordFormPage> {
         // The validator receives the text that the user has entered.
         validator: (value) {
           if (value == null || value.isEmpty) {
-            return 'Please enter your old password';
+            return 'Please enter your old password.';
           }
           return null;
         },
@@ -46,7 +46,7 @@ class PasswordFormState extends State<PasswordFormPage> {
         validator: (value) {
           passwordText = value;
           if (value == null || value.isEmpty) {
-            return 'Please enter a new password';
+            return 'Please enter a new password.';
           }
           return null;
         },
@@ -60,14 +60,14 @@ class PasswordFormState extends State<PasswordFormPage> {
     return TextFormField(
         decoration: const InputDecoration(
           border: OutlineInputBorder(),
-          labelText: 'Retype New Password',
+          labelText: 'Confirm New Password',
         ),
         // The validator receives the text that the user has entered.
         validator: (value) {
           if (value == null || value.isEmpty) {
-            return 'Please retype your new password';
+            return 'Please confirm your new password.';
           } else if (value != passwordText) {
-            return 'Passwords do not match';
+            return 'Passwords do not match.';
           }
           return null;
         },
