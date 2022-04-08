@@ -409,7 +409,7 @@ class RecurrenceCalendarState extends SampleViewState {
     final List<Appointment> appointments = <Appointment>[];
     final Random random = Random();
 
-    //Recurrence Appointment 1
+    // Data seed for the schedule
     final DateTime semester2start = globals.semesterTwoStart;
     final DateTime end = globals.semesterTwoStart;
 
@@ -470,7 +470,7 @@ class RecurrenceCalendarState extends SampleViewState {
         startTime: b3StartTime,
         endTime: b3EndTime,
         color: _colorCollection[2],
-        subject: 'Block Two',
+        subject: 'Block Three',
         recurrenceRule: SfCalendar.generateRRule(
             b3Recurrence, b3StartTime, b3EndTime));
 
@@ -491,7 +491,7 @@ class RecurrenceCalendarState extends SampleViewState {
         startTime: b4StartTime,
         endTime: b4EndTime,
         color: _colorCollection[3],
-        subject: 'Block Two',
+        subject: 'Block Four',
         recurrenceRule: SfCalendar.generateRRule(
             b4Recurrence, b4StartTime, b4EndTime));
 
@@ -512,7 +512,7 @@ class RecurrenceCalendarState extends SampleViewState {
         startTime: b5StartTime,
         endTime: b5EndTime,
         color: _colorCollection[4],
-        subject: 'Block Two',
+        subject: 'Block Five',
         recurrenceRule: SfCalendar.generateRRule(
             b5Recurrence, b5StartTime, b5EndTime));
 

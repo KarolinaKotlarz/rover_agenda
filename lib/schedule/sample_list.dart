@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 
 import 'package:rover_agenda/schedule/calendar/appointment_editor.dart';
 import 'package:rover_agenda/schedule/calendar/getting_started.dart';
-import 'package:rover_agenda/schedule/calendar/recurrence.dart';
+import 'package:rover_agenda/schedule/calendar/schedule_page.dart';
 
 
 /// Contains the output widget of sample
