@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:rover_agenda/components/flyout_menu.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
-import '../flyout_menu.dart';
-import '../globals.dart' as globals;
+import '../../globals.dart' as globals;
 
 class LunchMenu extends StatelessWidget {
   const LunchMenu({Key? key}) : super(key: key);
@@ -13,13 +13,13 @@ class LunchMenu extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Lunch Menu'),
       ),
-      drawer: NavDrawer(),
+      drawer: const FlyoutMenu(),
       body: SfCalendar(
         showDatePickerButton: true,
         view: CalendarView.day,
         showNavigationArrow: true,
         showCurrentTimeIndicator: false,
-        timeSlotViewSettings: TimeSlotViewSettings(
+        timeSlotViewSettings: const TimeSlotViewSettings(
           timeRulerSize: 0,
           endHour: 10,
           timeIntervalHeight: -1,
