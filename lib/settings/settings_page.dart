@@ -15,7 +15,7 @@ class SettingsPage extends StatelessWidget {
 
   @override
   void initState() {
-    Instabug.start('76ed198e8e1d4438e3ff5b8b152d6e60', [InvocationEvent.shake]);
+    Instabug.start('76ed198e8e1d4438e3ff5b8b152d6e60', [InvocationEvent.shake, InvocationEvent.none]);
 }
   @override
   Widget build(BuildContext context) {
@@ -73,7 +73,7 @@ class SettingsPage extends StatelessWidget {
                 leading: Icon(Icons.error_outline_sharp),
                 onPressed: (BuildContext context) {
                   debugPrint('instabug launch clicked');
-                  //Instabug.start('76ed198e8e1d4438e3ff5b8b152d6e60', [InvocationEvent.floatingButton]);
+                  BugReporting.show(ReportType.bug, [InvocationOption.commentFieldRequired] );
                   },
               ),
               SettingsTile(
