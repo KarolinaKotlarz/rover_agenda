@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:instabug_flutter/Instabug.dart';
 import 'log_in/log_in_page.dart';
 
 void main() {

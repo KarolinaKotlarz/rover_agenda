@@ -1,8 +1,11 @@
 import 'package:animations/animations.dart';
 import 'package:flutter_settings_ui/flutter_settings_ui.dart';
 import 'package:flutter/material.dart';
+import 'package:instabug_flutter/BugReporting.dart';
+import 'package:instabug_flutter/Instabug.dart';
 import 'package:rover_agenda/settings/faq_page.dart';
 import 'package:rover_agenda/settings/privacy_policy_page.dart';
+
 
 import 'change_password_form.dart';
 import '../flyout_menu.dart';
@@ -64,7 +67,8 @@ class SettingsPage extends StatelessWidget {
                 title: 'Report a Bug',
                 leading: Icon(Icons.error_outline_sharp),
                 onPressed: (BuildContext context) {
-
+                  debugPrint('instabug launch clicked');
+                  BugReporting.show(ReportType.bug, InvocationOption.values);
                 },
               ),
               SettingsTile(
