@@ -2,6 +2,7 @@
     package="roveragenda.me.rover_agenda">
    <application
         android:label="rover_agenda"
+        android:name=".MyApplication"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

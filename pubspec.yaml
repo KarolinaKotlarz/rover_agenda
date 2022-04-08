@@ -36,6 +36,7 @@ dependencies:
   flutter_settings_ui: ^2.0.1
   desktop_window: ^0.4.0
   font_awesome_flutter: ^9.1.0
+  instabug_flutter: ^10.13.0
 
 dev_dependencies:
   flutter_test:

@@ -1,6 +1,7 @@
-import 'package:animations/animations.dart';
 import 'package:flutter_settings_ui/flutter_settings_ui.dart';
 import 'package:flutter/material.dart';
+import 'package:instabug_flutter/BugReporting.dart';
+import 'package:instabug_flutter/Instabug.dart';
 import 'package:rover_agenda/settings/faq_page.dart';
 import 'package:rover_agenda/settings/privacy_policy_page.dart';
 
@@ -8,6 +9,11 @@ import 'change_password_form.dart';
 import '../flyout_menu.dart';
 
 class SettingsPage extends StatelessWidget {
+
+  @override
+  void initState() {
+    Instabug.start('76ed198e8e1d4438e3ff5b8b152d6e60', [InvocationEvent.shake, InvocationEvent.none]);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,24 +45,6 @@ class SettingsPage extends StatelessWidget {
               ),
             ],
           ),
-          // SettingsSection(
-          //   title: 'NOTIFICATIONS',
-          //   tiles: [
-          //     SettingsTile.switchTile(
-          //       title: 'Push Notifications',
-          //       leading: Icon(Icons.person_outline_sharp),
-          //       switchValue: v,
-          //       onToggle: (bool value) {},
-          //     ),
-          //     SettingsTile.switchTile(
-          //       title: 'Email Notifications',
-          //       leading: Icon(Icons.person_outline_sharp),
-          //       switchValue: v,
-          //       onToggle: (bool value) {
-          //       },
-          //     ),
-          //   ],
-          // ),
           SettingsSection(
             title: 'SUPPORT',
             tiles: [
@@ -64,17 +52,14 @@ class SettingsPage extends StatelessWidget {
                 title: 'Report a Bug',
                 leading: Icon(Icons.error_outline_sharp),
                 onPressed: (BuildContext context) {
-
-                },
+                  BugReporting.show(ReportType.bug, [InvocationOption.commentFieldRequired] );
+                  },
               ),
               SettingsTile(
-                title: 'Privacy Policy',
-                leading: Icon(Icons.people_outline_sharp),
+                title: 'Feedback',
+                leading: Icon(Icons.feedback_outlined),
                 onPressed: (BuildContext context) {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => PrivacyPolicy()),
-                  );
+                  BugReporting.show(ReportType.feedback, [InvocationOption.commentFieldRequired] );
                 },
               ),
               SettingsTile(
@@ -87,93 +72,27 @@ class SettingsPage extends StatelessWidget {
                   );
                 },
               ),
+              SettingsTile(
+                title: 'Ask a Question',
+                leading: Icon(Icons.question_mark_outlined),
+                onPressed: (BuildContext context) {
+                  BugReporting.show(ReportType.question, [InvocationOption.commentFieldRequired] );
+                },
+              ),
+              SettingsTile(
+                title: 'Privacy Policy',
+                leading: Icon(Icons.people_outline_sharp),
+                onPressed: (BuildContext context) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => PrivacyPolicy()),
+                  );
+                },
+              ),
             ],
           ),
         ],
       )
-    );
-  }
-}
-
-Widget _privacy()
-{
-  return OpenContainer<bool>(
-    transitionType: ContainerTransitionType.fade,
-    openBuilder: (BuildContext _, VoidCallback openContainer) {
-      return _DetailsPage();
-    },
-    tappable: false,
-    closedShape: const RoundedRectangleBorder(),
-    closedElevation: 0.0,
-    closedBuilder: (BuildContext _, VoidCallback openContainer) {
-      return SettingsTile(
-        title: 'Report a Bug',
-        leading: Icon(Icons.error_outline_sharp),
-        onPressed: (BuildContext context) {
-
-        },
-      );
-    },
-  );
-}
-
-class _DetailsPage extends StatelessWidget {
-  const _DetailsPage({this.includeMarkAsDoneButton = false});
-
-  final bool includeMarkAsDoneButton;
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Details page'),
-        actions: <Widget>[
-          if (includeMarkAsDoneButton)
-            IconButton(
-              icon: const Icon(Icons.done),
-              onPressed: () => Navigator.pop(context, true),
-              tooltip: 'Mark as done',
-            )
-        ],
-      ),
-      body: ListView(
-        children: <Widget>[
-          Container(
-            color: Colors.black38,
-            height: 250,
-            child: Padding(
-              padding: const EdgeInsets.all(70.0),
-              child: Image.asset(
-                'assets/placeholder_image.png',
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Text(
-                  'Title',
-                  style: Theme.of(context).textTheme.headline5!.copyWith(
-                    color: Colors.black54,
-                    fontSize: 30.0,
-                  ),
-                ),
-                const SizedBox(height: 10),
-                Text(
-                  "_loremIpsumParagraph",
-                  style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                    color: Colors.black54,
-                    height: 1.5,
-                    fontSize: 16.0,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
     );
   }
 }

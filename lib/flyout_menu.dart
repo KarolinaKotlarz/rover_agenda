@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:instabug_flutter/BugReporting.dart';
 import 'package:rover_agenda/log_in/log_in_page.dart';
 import 'package:rover_agenda/lunch_menu/lunch_menu_page.dart';
 import 'package:rover_agenda/settings/settings_page.dart';
@@ -90,6 +91,14 @@ class NavDrawer extends StatelessWidget {
                 context,
                 MaterialPageRoute(builder: (context) => SettingsPage()),
               ),
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.bug_report_outlined),
+            title: Text('Report a Bug'),
+            onTap: () => {
+              Navigator.of(context).pop(),
+              BugReporting.show(ReportType.bug, [InvocationOption.commentFieldRequired] )
             },
           ),
           ListTile(
