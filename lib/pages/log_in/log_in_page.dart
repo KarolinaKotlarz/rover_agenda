@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_login/flutter_login.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:rover_agenda/schedule/calendar/schedule_page.dart';
+import 'package:rover_agenda/pages/schedule/calendar/schedule_page.dart';
 
 const users = const {
   'test@gmail.com': 'test',

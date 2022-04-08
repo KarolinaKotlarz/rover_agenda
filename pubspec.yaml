@@ -39,6 +39,8 @@ dependencies:
   flutter_settings_ui:
   syncfusion_flutter_calendar:
   desktop_window:
+  font_awesome_flutter:
+  flutter_login:
 
 dev_dependencies:
   flutter_test:
