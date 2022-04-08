@@ -1,6 +1,6 @@
 # rover_agenda
 
-An app to make Easton students' lives easier.
+A new Flutter project.
 
 ## Getting Started
 
