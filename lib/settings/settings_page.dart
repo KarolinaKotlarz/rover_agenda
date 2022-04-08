@@ -1,4 +1,5 @@
 import 'package:animations/animations.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_settings_ui/flutter_settings_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:instabug_flutter/BugReporting.dart';
@@ -12,6 +13,10 @@ import '../flyout_menu.dart';
 
 class SettingsPage extends StatelessWidget {
 
+  @override
+  void initState() {
+    Instabug.start('76ed198e8e1d4438e3ff5b8b152d6e60', [InvocationEvent.shake]);
+}
   @override
   Widget build(BuildContext context) {
     var v = true;
@@ -68,8 +73,8 @@ class SettingsPage extends StatelessWidget {
                 leading: Icon(Icons.error_outline_sharp),
                 onPressed: (BuildContext context) {
                   debugPrint('instabug launch clicked');
-                  BugReporting.show(ReportType.bug, InvocationOption.values);
-                },
+                  //Instabug.start('76ed198e8e1d4438e3ff5b8b152d6e60', [InvocationEvent.floatingButton]);
+                  },
               ),
               SettingsTile(
                 title: 'Privacy Policy',
