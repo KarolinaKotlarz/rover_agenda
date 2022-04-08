@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:rover_agenda/teachers/email_form_page.dart';
-import '../flyout_menu.dart';
+import 'package:rover_agenda/pages/teachers/email_form_page.dart';
+import '../../components/flyout_menu.dart';
 import '../globals.dart' as globals;
 
 class TeacherList extends StatelessWidget {
@@ -13,13 +13,13 @@ class TeacherList extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Teacher List'),
       ),
-      drawer: NavDrawer(),
+      drawer: const FlyoutMenu(),
       body: ListView(
         children: <Widget>[
           for(var teacher in globals.teachers)
           Container(
             color: Colors.grey[200],
-            margin: EdgeInsets.only(top: 10.0),
+            margin: const EdgeInsets.only(top: 10.0),
             child: Row(
                 children:
                 [
@@ -27,7 +27,7 @@ class TeacherList extends StatelessWidget {
                     flex: 7,
                     child: Container(
                       //color: Colors.blue,
-                      margin: EdgeInsets.only(left: 10.0, right: 10),
+                      margin: const EdgeInsets.only(left: 10.0, right: 10),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -45,7 +45,7 @@ class TeacherList extends StatelessWidget {
                   Expanded(
                     flex: 3,
                     child: Container(
-                      margin: EdgeInsets.all(16.0),
+                      margin: const EdgeInsets.all(16.0),
                       child: IconButton(
                         onPressed: () {
                           Navigator.push(
@@ -53,12 +53,12 @@ class TeacherList extends StatelessWidget {
                             MaterialPageRoute(builder: (context) => EmailFormPage(teacher: teacher)),
                           );
                         },
-                        icon: Icon(Icons.email_outlined, color: Colors.white,),
+                        icon: const Icon(Icons.email_outlined, color: Colors.white,),
                         iconSize: 30,
                       ),
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         color: Colors.red,
-                        borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                        borderRadius: const BorderRadius.all(const Radius.circular(10.0)),
                       ),
                     ),
                   ),
