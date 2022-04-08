@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../globals.dart' as globals;
+import '../../globals.dart' as globals;
 
 class FAQs extends StatefulWidget {
   const FAQs({Key? key}) : super(key: key);
@@ -29,7 +29,7 @@ class _FAQsState extends State<FAQs> {
                 : Icons.add,
           ),
           children: <Widget>[
-            ListTile(title: Text(faq.answer), subtitle: Text('')),
+            ListTile(title: Text(faq.answer), subtitle: const Text('')),
           ],
           onExpansionChanged: (bool expanded) {
             setState(() => _customTileExpanded = expanded);
