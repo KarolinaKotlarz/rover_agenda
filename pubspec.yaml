@@ -37,6 +37,7 @@ dependencies:
   instabug_flutter:
   url_launcher:
   flutter_settings_ui:
+  syncfusion_flutter_calendar:
 
 dev_dependencies:
   flutter_test:
