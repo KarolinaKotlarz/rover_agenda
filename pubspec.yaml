@@ -38,6 +38,7 @@ dependencies:
   url_launcher:
   flutter_settings_ui:
   syncfusion_flutter_calendar:
+  desktop_window:
 
 dev_dependencies:
   flutter_test:
