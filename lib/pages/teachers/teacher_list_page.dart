@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rover_agenda/pages/teachers/email_form_page.dart';
 import '../../components/flyout_menu.dart';
-import '../../globals.dart' as globals;
+import '../../globals/globals.dart' as globals;
 
 class TeacherList extends StatelessWidget {
   const TeacherList({Key? key}) : super(key: key);

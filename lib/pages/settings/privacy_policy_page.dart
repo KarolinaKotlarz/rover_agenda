@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../components/flyout_menu.dart';
-import '../../globals.dart' as globals;
+import '../../globals/globals.dart' as globals;
 
 
 class PrivacyPolicy extends StatelessWidget {
