@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../flyout_menu.dart';
-import '../globals.dart' as globals;
+import '../../components/flyout_menu.dart';
+import '../../globals.dart' as globals;
 
 
 class PrivacyPolicy extends StatelessWidget {
@@ -14,8 +14,8 @@ class PrivacyPolicy extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Privacy Policy'),
       ),
-      body: Center(
-        child: Text("Our Privacy Policy"),
+      body: const Center(
+        child: const Text("Our Privacy Policy"),
       ),
     );
   }
