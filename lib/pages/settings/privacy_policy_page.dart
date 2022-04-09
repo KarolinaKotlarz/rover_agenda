@@ -30,7 +30,7 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
           child: Padding(
               padding: const EdgeInsets.all(25),
               child: FutureBuilder<String>(
-                future: getFileData('assets/documents/privacy_policy.documents'),
+                future: getFileData('assets/documents/privacy_policy.txt'),
                 builder:
                     (BuildContext context, AsyncSnapshot<String> snapshot) {
                   if (snapshot.hasData) {
