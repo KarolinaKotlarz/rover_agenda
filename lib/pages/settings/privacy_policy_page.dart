@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'dart:async';
 
+
 import '../../components/flyout_menu.dart';
 import '../../globals/globals.dart' as globals;
 
@@ -22,26 +23,26 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Privacy Policy'),
-      ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(25),
-          child: FutureBuilder<String>(
-            future: getFileData('assets/placeholder.txt'),
-            builder:
-            (BuildContext context, AsyncSnapshot<String> snapshot) {
-              if (snapshot.hasData) {
-                final theText = snapshot.data;
-                return Text(theText!);
-              } else {
-                return Text('loading...');
-              }
-            },
-          )
+        appBar: AppBar(
+          title: Text('Privacy Policy'),
         ),
-      )
+        body: SingleChildScrollView(
+          child: Padding(
+              padding: const EdgeInsets.all(25),
+              child: FutureBuilder<String>(
+                future: getFileData('assets/txt/privacy_policy.txt'),
+                builder:
+                    (BuildContext context, AsyncSnapshot<String> snapshot) {
+                  if (snapshot.hasData) {
+                    final theText = snapshot.data;
+                    return Text(theText!);
+                  } else {
+                    return Text('loading...');
+                  }
+                },
+              )
+          ),
+        )
     );
   }
 }

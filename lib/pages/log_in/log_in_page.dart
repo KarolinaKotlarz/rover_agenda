@@ -46,7 +46,7 @@ class Login extends StatelessWidget {
   Widget build(BuildContext context) {
     return FlutterLogin(
       title: 'Rover Agenda',
-      logo: const AssetImage('img/rover_agenda_icon.png'),
+      logo: const AssetImage('assets/img/rover_agenda_icon.png'),
       onLogin: _authUser,
       onSignup: _signupUser,
       loginProviders: <LoginProvider>[

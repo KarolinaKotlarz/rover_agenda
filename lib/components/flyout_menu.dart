@@ -28,7 +28,7 @@ class FlyoutMenu extends StatelessWidget {
                 color: Colors.red,
                 image: DecorationImage(
                     fit: BoxFit.fitWidth,
-                    image: AssetImage('img/rover_agenda_icon.png'))),
+                    image: AssetImage('assets/img/rover_agenda_icon.png'))),
           ),
           ListTile(
             leading: const Icon(Icons.book_outlined),
