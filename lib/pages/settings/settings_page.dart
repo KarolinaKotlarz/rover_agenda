@@ -6,7 +6,7 @@ import 'package:rover_agenda/pages/settings/faq_page.dart';
 import 'package:rover_agenda/pages/settings/privacy_policy_page.dart';
 
 import 'change_password_form.dart';
-import '../../components/flyout_menu.dart';
+import '../../flyout_menu.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({Key? key}) : super(key: key);

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:instabug_flutter/Instabug.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
-import '../../components/flyout_menu.dart';
+import '../../flyout_menu.dart';
 import '../../globals.dart' as globals;
 
 class SchoolCalendar extends StatelessWidget {

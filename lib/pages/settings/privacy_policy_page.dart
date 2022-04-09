@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'dart:async';
 
 
-import '../../components/flyout_menu.dart';
+import '../../flyout_menu.dart';
 import '../../globals.dart' as globals;
 
 class PrivacyPolicy extends StatefulWidget {
