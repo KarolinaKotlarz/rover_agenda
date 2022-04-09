@@ -60,7 +60,9 @@ flutter:
 
   assets:
     - assets/documents/privacy_policy.txt
-    - assets/images/rover_agenda_icon.png
+    - assets/images/rover_agenda_login_icon.png
+    - assets/images/login_background.png
+    - assets/images/navbar_icon.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

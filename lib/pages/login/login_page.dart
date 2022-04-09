@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_login/flutter_login.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rover_agenda/pages/schedule/calendar/schedule_page.dart';
+import '../../globals.dart' as globals;
+
 
 const users = {
   'test@gmail.com': 'test',
@@ -45,8 +47,15 @@ class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FlutterLogin(
+      theme: LoginTheme(
+        pageColorDark: globals.navBarColor,
+        pageColorLight: globals.buttonColor,
+        buttonTheme: LoginButtonTheme(
+          backgroundColor: globals.buttonColor
+        )
+      ),
       title: 'Rover Agenda',
-      logo: const AssetImage('assets/images/rover_agenda_icon.png'),
+      logo: const AssetImage('assets/images/rover_agenda_login_icon.png'),
       onLogin: _authUser,
       onSignup: _signupUser,
       loginProviders: <LoginProvider>[

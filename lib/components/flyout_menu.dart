@@ -9,6 +9,8 @@ import '../pages/schedule/calendar/schedule_page.dart';
 import '../pages/school_calendar/school_calendar.dart';
 import '../pages/extracurriculars/extracurriculars_page.dart';
 import '../pages/teachers/teacher_list_page.dart';
+import '../../globals.dart' as globals;
+
 
 class FlyoutMenu extends StatelessWidget {
   const FlyoutMenu({Key? key}) : super(key: key);
@@ -25,10 +27,9 @@ class FlyoutMenu extends StatelessWidget {
               style: TextStyle(color: Colors.white, fontSize: 25),
             ),
             decoration: BoxDecoration(
-                color: Colors.red,
                 image: DecorationImage(
                     fit: BoxFit.fitWidth,
-                    image: AssetImage('assets/images/rover_agenda_icon.png'))),
+                    image: AssetImage('assets/images/navbar_icon.png'))),
           ),
           ListTile(
             leading: const Icon(Icons.book_outlined),

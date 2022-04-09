@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'pages/login/login_page.dart';
+import '../../globals.dart' as globals;
 
 void main() {
   runApp(const RoverAgenda());
@@ -13,9 +14,7 @@ class RoverAgenda extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Rover Agenda',
-      theme: ThemeData(
-        primarySwatch: Colors.red.shade50,
-      ),
+      theme: globals.roverTheme,
       home: Scaffold(
         body: Login(),
       ),
