@@ -11,6 +11,7 @@ class FAQs extends StatefulWidget {
 
 class _FAQsState extends State<FAQs> {
   bool _customTileExpanded = false;
+  List<bool> _expanded = List<bool>.filled(globals.FAQs.length, false);
 
   @override
   Widget build(BuildContext context) {
@@ -20,19 +21,20 @@ class _FAQsState extends State<FAQs> {
       ),
       body: ListView(
       children: <Widget>[
-        for(var faq in globals.FAQs)
+        //for(var faq in globals.FAQs)
+        for(int i = 0; i < globals.FAQs.length; i++)
         ExpansionTile(
-          title: Text(faq.question),
+          title: Text(globals.FAQs[i].question),
           trailing: Icon(
-            _customTileExpanded
+            _expanded[i]
                 ? Icons.horizontal_rule_outlined
                 : Icons.add,
           ),
           children: <Widget>[
-            ListTile(title: Text(faq.answer), subtitle: const Text('')),
+            ListTile(title: Text(globals.FAQs[i].answer), subtitle: const Text('')),
           ],
           onExpansionChanged: (bool expanded) {
-            setState(() => _customTileExpanded = expanded);
+            setState(() => _expanded[i] = expanded);
           },
         ),
       ],
