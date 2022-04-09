@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'dart:async';
 
 
-import '../../flyout_menu.dart';
+import '../../components/flyout_menu.dart';
 import '../../globals.dart' as globals;
 
 class PrivacyPolicy extends StatefulWidget {
@@ -30,7 +30,7 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
           child: Padding(
               padding: const EdgeInsets.all(25),
               child: FutureBuilder<String>(
-                future: getFileData('assets/txt/privacy_policy.txt'),
+                future: getFileData('assets/documents/privacy_policy.documents'),
                 builder:
                     (BuildContext context, AsyncSnapshot<String> snapshot) {
                   if (snapshot.hasData) {

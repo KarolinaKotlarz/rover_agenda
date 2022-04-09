@@ -5,10 +5,10 @@ import 'package:rover_agenda/pages/lunch_menu/lunch_menu_page.dart';
 import 'package:rover_agenda/pages/settings/settings_page.dart';
 import 'package:rover_agenda/pages/schedule/calendar/schedule_page.dart';
 
-import 'pages/schedule/calendar/schedule_page.dart';
-import 'pages/school_calendar/school_calendar.dart';
-import 'pages/extracurriculars/extracurriculars_page.dart';
-import 'pages/teachers/teacher_list_page.dart';
+import '../pages/schedule/calendar/schedule_page.dart';
+import '../pages/school_calendar/school_calendar.dart';
+import '../pages/extracurriculars/extracurriculars_page.dart';
+import '../pages/teachers/teacher_list_page.dart';
 
 class FlyoutMenu extends StatelessWidget {
   const FlyoutMenu({Key? key}) : super(key: key);
@@ -28,7 +28,7 @@ class FlyoutMenu extends StatelessWidget {
                 color: Colors.red,
                 image: DecorationImage(
                     fit: BoxFit.fitWidth,
-                    image: AssetImage('assets/img/rover_agenda_icon.png'))),
+                    image: AssetImage('assets/images/rover_agenda_icon.png'))),
           ),
           ListTile(
             leading: const Icon(Icons.book_outlined),

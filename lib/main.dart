@@ -14,7 +14,7 @@ class RoverAgenda extends StatelessWidget {
     return MaterialApp(
       title: 'Rover Agenda',
       theme: ThemeData(
-        primarySwatch: Colors.red,
+        primarySwatch: Colors.red.shade50,
       ),
       home: Scaffold(
         body: Login(),
