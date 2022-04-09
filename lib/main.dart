@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'pages/log_in/log_in_page.dart';
+import 'pages/login/login_page.dart';
 
 void main() {
   runApp(const RoverAgenda());

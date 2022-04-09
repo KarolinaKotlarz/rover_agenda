@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:instabug_flutter/BugReporting.dart';
-import 'package:rover_agenda/pages/log_in/log_in_page.dart';
+import 'package:rover_agenda/pages/login/login_page.dart';
 import 'package:rover_agenda/pages/lunch_menu/lunch_menu_page.dart';
 import 'package:rover_agenda/pages/settings/settings_page.dart';
 import 'package:rover_agenda/pages/schedule/calendar/schedule_page.dart';
