@@ -4,16 +4,16 @@ import 'dart:math';
 ///Package imports
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:rover_agenda/components/flyout_menu.dart';
 
 ///calendar import
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
-import '../../../../flyout_menu.dart';
 ///Local import
 import '../model/sample_view.dart';
 import 'appointment_editor.dart';
 import 'getting_started.dart';
-import '../../../../globals.dart' as globals;
+import '../../../globals.dart' as globals;
 
 
 /// Widget class of recurrence calendar
@@ -42,8 +42,8 @@ class RecurrenceCalendarState extends SampleViewState {
     CalendarView.workWeek,
   ];
 
-  final TimeSlotViewSettings _timeSlotViewSettings = TimeSlotViewSettings(
-    timeInterval: Duration(minutes: 30), timeFormat: 'h:mm',
+  final TimeSlotViewSettings _timeSlotViewSettings = const TimeSlotViewSettings(
+    timeInterval: const Duration(minutes: 30), timeFormat: 'h:mm',
     startHour: 7,
     endHour: 22,
   );
@@ -232,7 +232,7 @@ class RecurrenceCalendarState extends SampleViewState {
       appBar: AppBar(
         title: const Text('School Calendar'),
       ),
-      drawer: NavDrawer(),
+      drawer: const FlyoutMenu(),
       body: Row(children: <Widget>[
         Expanded(
           child: calendarController.view == CalendarView.month &&

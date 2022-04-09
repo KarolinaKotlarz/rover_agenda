@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:instabug_flutter/Instabug.dart';
-import 'log_in/log_in_page.dart';
+import 'pages/login/login_page.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const RoverAgenda());
 }
 
-class MyApp extends StatelessWidget {
+class RoverAgenda extends StatelessWidget {
+  const RoverAgenda({Key? key}) : super(key: key);
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Rover Agenda',
       theme: ThemeData(
-        primarySwatch: Colors.red,
+        primarySwatch: Colors.red.shade50,
       ),
       home: Scaffold(
         body: Login(),

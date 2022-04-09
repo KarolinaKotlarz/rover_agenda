@@ -4,9 +4,9 @@
 
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
-import 'package:rover_agenda/flyout_menu.dart';
-import '../globals.dart';
-import 'package:rover_agenda/teachers/email_form_page.dart';
+import 'package:rover_agenda/components/flyout_menu.dart';
+import '../../globals.dart';
+import 'package:rover_agenda/pages/teachers/email_form_page.dart';
 
 
 class Extracurriculars extends StatefulWidget {
@@ -20,7 +20,7 @@ class Extracurriculars extends StatefulWidget {
 
 class _ExtracurricularsState
     extends State<Extracurriculars> {
-  ContainerTransitionType _transitionType = ContainerTransitionType.fade;
+  final ContainerTransitionType _transitionType = ContainerTransitionType.fade;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,7 @@ class _ExtracurricularsState
       appBar: AppBar(
         title: const Text('Extracurriculars'),
       ),
-      drawer: NavDrawer(),
+      drawer: FlyoutMenu(),
       body: ListView(
         padding: const EdgeInsets.all(8.0),
         children: <Widget>[
