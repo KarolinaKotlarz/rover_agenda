@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="roveragenda.me.rover_agenda">
    <application
-        android:label="rover_agenda"
+        android:label="Rover Agenda"
         android:name=".MyApplication"
         android:icon="@mipmap/ic_launcher">
         <activity
