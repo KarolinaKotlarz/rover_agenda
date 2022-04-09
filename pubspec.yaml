@@ -59,7 +59,7 @@ flutter:
   #   - images/a_dot_ham.jpeg
 
   assets:
-    - assets/documents/privacy_policy.documents
+    - assets/documents/privacy_policy.txt
     - assets/images/rover_agenda_icon.png
 
 
