@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../globals/globals.dart' as globals;
+import '../../globals.dart' as globals;
 
 class FAQs extends StatefulWidget {
   const FAQs({Key? key}) : super(key: key);

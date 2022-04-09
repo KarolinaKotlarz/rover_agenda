@@ -5,7 +5,7 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:rover_agenda/components/flyout_menu.dart';
-import '../../globals/globals.dart';
+import '../../globals.dart';
 import 'package:rover_agenda/pages/teachers/email_form_page.dart';
 
 

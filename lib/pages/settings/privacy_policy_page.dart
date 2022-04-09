@@ -4,7 +4,7 @@ import 'dart:async';
 
 
 import '../../components/flyout_menu.dart';
-import '../../globals/globals.dart' as globals;
+import '../../globals.dart' as globals;
 
 class PrivacyPolicy extends StatefulWidget {
   const PrivacyPolicy({Key? key}) : super(key: key);

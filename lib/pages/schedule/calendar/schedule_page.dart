@@ -13,7 +13,7 @@ import 'package:syncfusion_flutter_calendar/calendar.dart';
 import '../model/sample_view.dart';
 import 'appointment_editor.dart';
 import 'getting_started.dart';
-import '../../../globals/globals.dart' as globals;
+import '../../../globals.dart' as globals;
 
 
 /// Widget class of recurrence calendar

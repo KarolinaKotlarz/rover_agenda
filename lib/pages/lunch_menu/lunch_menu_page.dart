@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rover_agenda/components/flyout_menu.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
-import '../../globals/globals.dart' as globals;
+import '../../globals.dart' as globals;
 
 class LunchMenu extends StatelessWidget {
   const LunchMenu({Key? key}) : super(key: key);

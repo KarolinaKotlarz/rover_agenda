@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../globals/globals.dart';
+import '../../globals.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class EmailFormPage extends StatefulWidget {
