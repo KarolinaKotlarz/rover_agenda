@@ -30,7 +30,7 @@ void initState() {
                 future: FAQsFuture,
                 builder:
                     (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-                  switch (snapshot.connectionState) {
+                  switch (snapshot.connectionState) { // This checks the connection state and updates the UI accordingly.
                     case ConnectionState.none:
                       return Text('None');
                     case ConnectionState.waiting:
@@ -39,11 +39,11 @@ void initState() {
                       return Text('Active');
                     case ConnectionState.done:
                       return  ListView(
-                        children: snapshot.data.map<Widget>((todo) {
+                        children: snapshot.data.map<Widget>((faq) { // Maps each FAQ to an expandable tile.
                           return ExpansionTile(
-                            title: Text(todo.question),
+                            title: Text(faq.question),
                             children: <Widget>[
-                              Text(todo.answer),
+                              Text(faq.answer),
                             ],
                           );
                         }).toList(),
