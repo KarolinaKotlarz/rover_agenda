@@ -48,10 +48,10 @@ class Login extends StatelessWidget {
   Widget build(BuildContext context) {
     return FlutterLogin(
       theme: LoginTheme(
-        pageColorDark: globals.navBarColor,
-        pageColorLight: globals.buttonColor,
+        pageColorDark: Color(0xFF8D0514),
+        pageColorLight: Color(0xFFFF2B2B),
         buttonTheme: LoginButtonTheme(
-          backgroundColor: globals.buttonColor
+          backgroundColor: Color(0xFFFF2B2B)
         )
       ),
       title: 'Rover Agenda',

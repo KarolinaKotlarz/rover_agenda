@@ -72,7 +72,7 @@ class SettingsPage extends StatelessWidget {
                 onPressed: (BuildContext context) {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const FAQs()),
+                    MaterialPageRoute(builder: (context) => const Todos()),
                   );
                 },
               ),

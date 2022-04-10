@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rover_agenda/pages/settings/faq_page.dart';
 import 'pages/login/login_page.dart';
 import '../../globals.dart' as globals;
 
@@ -16,7 +17,7 @@ class RoverAgenda extends StatelessWidget {
       title: 'Rover Agenda',
       theme: globals.roverTheme,
       home: Scaffold(
-        body: Login(),
+        body: Todos(),
       ),
     );
   }

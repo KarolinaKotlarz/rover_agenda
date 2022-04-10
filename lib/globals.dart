@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
+import 'package:http/http.dart' as http;
 
 List<Appointment> appointments = <Appointment>[];
 List<Appointment> schoolEvents = <Appointment>[];
@@ -9,44 +12,15 @@ List<Teacher> teachers = _getTeachers();
 List<Extracurricular> extracurriculars = _getExtracurriculars();
 List<Appointment> _lunches = <Appointment>[];
 List<FAQ> FAQs = _getFAQs();
+Future<List<Todo>> Todos = getTodos();
 
 DateTime semesterOneStart = DateTime(2021, 8, 30);
 DateTime semesterOneEnd = DateTime(2022, 1, 21);
 DateTime semesterTwoStart = DateTime(2022, 1, 24);
 DateTime semesterTwoEnd = DateTime(2022, 6, 6);
 
-const String loremIpsumParagraph =
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod '
-    'tempor incididunt ut labore et dolore magna aliqua. Vulputate dignissim '
-    'suspendisse in est. Ut ornare lectus sit amet. Eget nunc lobortis mattis '
-    'aliquam faucibus purus in. Hendrerit gravida rutrum quisque non tellus '
-    'orci ac auctor. Mattis aliquam faucibus purus in massa. Tellus rutrum '
-    'tellus pellentesque eu tincidunt tortor. Nunc eget lorem dolor sed. Nulla '
-    'at volutpat diam ut venenatis tellus in metus. Tellus cras adipiscing enim '
-    'eu turpis. Pretium fusce id velit ut tortor. Adipiscing enim eu turpis '
-    'egestas pretium. Quis varius quam quisque id. Blandit aliquam etiam erat '
-    'velit scelerisque. In nisl nisi scelerisque eu. Semper risus in hendrerit '
-    'gravida rutrum quisque. Suspendisse in est ante in nibh mauris cursus '
-    'mattis molestie. Adipiscing elit duis tristique sollicitudin nibh sit '
-    'amet commodo nulla. Pretium viverra suspendisse potenti nullam ac tortor '
-    'vitae.\n'
-    '\n'
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod '
-    'tempor incididunt ut labore et dolore magna aliqua. Vulputate dignissim '
-    'suspendisse in est. Ut ornare lectus sit amet. Eget nunc lobortis mattis '
-    'aliquam faucibus purus in. Hendrerit gravida rutrum quisque non tellus '
-    'orci ac auctor. Mattis aliquam faucibus purus in massa. Tellus rutrum '
-    'tellus pellentesque eu tincidunt tortor. Nunc eget lorem dolor sed. Nulla '
-    'at volutpat diam ut venenatis tellus in metus. Tellus cras adipiscing enim '
-    'eu turpis. Pretium fusce id velit ut tortor. Adipiscing enim eu turpis '
-    'egestas pretium. Quis varius quam quisque id. Blandit aliquam etiam erat '
-    'velit scelerisque. In nisl nisi scelerisque eu. Semper risus in hendrerit '
-    'gravida rutrum quisque. Suspendisse in est ante in nibh mauris cursus '
-    'mattis molestie. Adipiscing elit duis tristique sollicitudin nibh sit '
-    'amet commodo nulla. Pretium viverra suspendisse potenti nullam ac tortor '
-    'vitae';
 
-final Color navBarColor = Color(0xFF8D0514);
+final Color navBarColor = Color(0xFFCB1313);
 final Color buttonColor = Colors.red;
 
 final ThemeData roverTheme =
@@ -131,6 +105,11 @@ List<FAQ> _getFAQs() {
   return f;
 }
 
+Future<List<Todo>> getTodos() async {
+ var response = await http.get(Uri.parse("https://jsonplaceholder.typicode.com/todos"));
+ return json.decode(response.body).map<Todo>((json) => Todo.fromJson(json)).toList();
+}
+
 List<Teacher> _getTeachers() {
   List<Teacher> t = <Teacher>[];
 
@@ -170,6 +149,29 @@ class FAQ {
   String answer;
 }
 
+class Todo {
+  Todo({
+    required this.id,
+    required this.userId,
+    required this.title,
+    required this.completed,
+  });
+
+  int id;
+  int userId;
+  String title;
+  bool completed;
+
+  factory Todo.fromJson(Map<String, dynamic> json) {
+    return Todo(
+      userId: json['userId'],
+      id: json['id'],
+      title: json['title'],
+      completed: json['completed']
+    );
+  }
+}
+
 class Teacher {
   Teacher({
     required this.firstName,
@@ -197,3 +199,36 @@ class Extracurricular {
   String meetingDays;
   String description;
 }
+
+
+
+const String loremIpsumParagraph =
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod '
+    'tempor incididunt ut labore et dolore magna aliqua. Vulputate dignissim '
+    'suspendisse in est. Ut ornare lectus sit amet. Eget nunc lobortis mattis '
+    'aliquam faucibus purus in. Hendrerit gravida rutrum quisque non tellus '
+    'orci ac auctor. Mattis aliquam faucibus purus in massa. Tellus rutrum '
+    'tellus pellentesque eu tincidunt tortor. Nunc eget lorem dolor sed. Nulla '
+    'at volutpat diam ut venenatis tellus in metus. Tellus cras adipiscing enim '
+    'eu turpis. Pretium fusce id velit ut tortor. Adipiscing enim eu turpis '
+    'egestas pretium. Quis varius quam quisque id. Blandit aliquam etiam erat '
+    'velit scelerisque. In nisl nisi scelerisque eu. Semper risus in hendrerit '
+    'gravida rutrum quisque. Suspendisse in est ante in nibh mauris cursus '
+    'mattis molestie. Adipiscing elit duis tristique sollicitudin nibh sit '
+    'amet commodo nulla. Pretium viverra suspendisse potenti nullam ac tortor '
+    'vitae.\n'
+    '\n'
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod '
+    'tempor incididunt ut labore et dolore magna aliqua. Vulputate dignissim '
+    'suspendisse in est. Ut ornare lectus sit amet. Eget nunc lobortis mattis '
+    'aliquam faucibus purus in. Hendrerit gravida rutrum quisque non tellus '
+    'orci ac auctor. Mattis aliquam faucibus purus in massa. Tellus rutrum '
+    'tellus pellentesque eu tincidunt tortor. Nunc eget lorem dolor sed. Nulla '
+    'at volutpat diam ut venenatis tellus in metus. Tellus cras adipiscing enim '
+    'eu turpis. Pretium fusce id velit ut tortor. Adipiscing enim eu turpis '
+    'egestas pretium. Quis varius quam quisque id. Blandit aliquam etiam erat '
+    'velit scelerisque. In nisl nisi scelerisque eu. Semper risus in hendrerit '
+    'gravida rutrum quisque. Suspendisse in est ante in nibh mauris cursus '
+    'mattis molestie. Adipiscing elit duis tristique sollicitudin nibh sit '
+    'amet commodo nulla. Pretium viverra suspendisse potenti nullam ac tortor '
+    'vitae';
