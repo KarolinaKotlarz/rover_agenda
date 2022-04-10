@@ -26,10 +26,12 @@ class SettingsPage extends StatelessWidget {
         title: const Text('Settings'),
       ),
       drawer: const FlyoutMenu(),
+
       body: SettingsList(
         sections: [
           /// Account section
           SettingsSection(
+            titlePadding: const EdgeInsets.all(10.0),
             title: 'ACCOUNT',
             tiles: [
               SettingsTile(
@@ -52,6 +54,7 @@ class SettingsPage extends StatelessWidget {
           /// Support section
           SettingsSection(
             title: 'SUPPORT',
+            titlePadding: const EdgeInsets.all(10.0),
             tiles: [
               SettingsTile(
                 title: 'Report a Bug',

@@ -230,7 +230,7 @@ class ScheduleCalendarState extends SampleViewState {
     final double _screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('School Calendar'),
+        title: const Text('My Schedule'),
       ),
       drawer: const FlyoutMenu(),
       body: Row(children: <Widget>[

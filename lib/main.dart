@@ -1,6 +1,6 @@
 /// Package imports
 import 'package:flutter/material.dart';
-
+import 'package:rover_agenda/pages/settings/faq_page.dart'
 /// Local imports
 import 'pages/login/login_page.dart';
 import '../../globals.dart' as globals;

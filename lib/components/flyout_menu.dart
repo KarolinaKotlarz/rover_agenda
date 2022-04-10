@@ -1,6 +1,11 @@
 /// Package imports
 import 'package:flutter/material.dart';
 import 'package:instabug_flutter/BugReporting.dart';
+import 'package:rover_agenda/components/flyout_menu_list.dart';
+import 'package:rover_agenda/pages/login/login_page.dart';
+import 'package:rover_agenda/pages/lunch_menu/lunch_menu_page.dart';
+import 'package:rover_agenda/pages/settings/settings_page.dart';
+import 'package:rover_agenda/pages/schedule/calendar/schedule_page.dart';
 
 /// Local imports
 import '../pages/login/login_page.dart';
@@ -32,100 +37,7 @@ class FlyoutMenu extends StatelessWidget {
                     fit: BoxFit.fitWidth,
                     image: AssetImage('assets/images/navbar_icon.png'))),
           ),
-          /// List of tiles
-          ListTile(
-            leading: const Icon(Icons.book_outlined),
-            title: const Text('Schedule'),
-            onTap: () => {
-              /// Opens the selected page
-              Navigator.of(context).pop(),
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => const SchedulePage(Key(''))),
-              ),
-            },
-          ),
-          ListTile(
-            leading: const Icon(Icons.fastfood_outlined),
-            title: const Text('Lunch Menu'),
-            onTap: () => {
-              /// Opens the selected page
-              Navigator.of(context).pop(),
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => const LunchMenu()),
-              ),
-            },
-          ),
-          ListTile(
-            leading: const Icon(Icons.people_alt_outlined),
-            title: const Text('Teachers'),
-            onTap: () => {
-              /// Opens the selected page
-              Navigator.of(context).pop(),
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => const TeacherList()),
-              ),
-            },
-          ),
-          ListTile(
-            leading: const Icon(Icons.widgets_outlined),
-            title: const Text('Extracurriculars'),
-            onTap: () => {
-              /// Opens the selected page
-              Navigator.of(context).pop(),
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => const Extracurriculars()),
-              ),
-            },
-          ),
-          ListTile(
-            leading: const Icon(Icons.calendar_today_sharp),
-            title: const Text('School Calendar'),
-            onTap: () => {
-              /// Opens the selected page
-              Navigator.of(context).pop(),
-              Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(builder: (context) => const SchoolCalendar()),
-              ),
-            },
-          ),
-          ListTile(
-            leading: const Icon(Icons.settings_outlined),
-            title: const Text('Settings'),
-            onTap: () => {
-              /// Opens the selected page
-              Navigator.of(context).pop(),
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => const SettingsPage()),
-              ),
-            },
-          ),
-          ListTile(
-            leading: const Icon(Icons.bug_report_outlined),
-            title: const Text('Report a Bug'),
-            onTap: () => {
-              /// Opens the bug reporting screen
-              Navigator.of(context).pop(),
-              BugReporting.show(ReportType.bug, [InvocationOption.commentFieldRequired] )
-            },
-          ),
-          ListTile(
-            leading: const Icon(Icons.exit_to_app),
-            title: const Text('Log Out'),
-            onTap: () => {
-              /// Logs the user out
-              Navigator.of(context).pop(),
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => const Login()),
-              ),
-            },
-          ),
+          ...getFlyoutMenuItems(context)
         ],
       ),
     );

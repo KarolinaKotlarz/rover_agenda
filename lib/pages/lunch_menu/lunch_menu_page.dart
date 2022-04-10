@@ -18,7 +18,7 @@ class LunchMenu extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Lunch Menu'),
       ),
-      drawer: const FlyoutMenu(),
+      drawer: const FlyoutMenu(), // Imports the flyout menu
       body: SfCalendar(
       /// The parameters of the calendar
         showDatePickerButton: true,

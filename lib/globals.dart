@@ -1,13 +1,18 @@
+
+import 'dart:convert';
 /// Package imports
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
+import 'package:http/http.dart' as http;
+
 
 /// Lists of data
 List<Appointment> schoolEvents = <Appointment>[];
 List<Appointment> lunches = _getLunchDataSource();
 List<Teacher> teachers = _getTeachers();
 List<Extracurricular> extracurriculars = _getExtracurriculars();
-List<FAQ> FAQs = _getFAQs();
+List<Appointment> _lunches = <Appointment>[];
+Future<List<FAQ>> FAQs = _getFAQs();
 
 /// Semester start and end dates
 DateTime semesterOneStart = DateTime(2021, 8, 30);
@@ -74,8 +79,8 @@ List<Appointment> _getLunchDataSource() {
   return _lunches;
 }
 
+Future<List<FAQ>> _getFAQs() async {
 /// Gets the FAQs
-List<FAQ> _getFAQs() {
   List<FAQ> f = <FAQ>[];
 
   f.add(FAQ(
@@ -105,6 +110,7 @@ List<FAQ> _getFAQs() {
 
   return f;
 }
+
 
 /// Gets the teachers
 List<Teacher> _getTeachers() {
@@ -148,6 +154,28 @@ class FAQ {
   String answer;
 }
 
+class Todo {
+  Todo({
+    required this.id,
+    required this.userId,
+    required this.title,
+    required this.completed,
+  });
+
+  int id;
+  int userId;
+  String title;
+  bool completed;
+
+  factory Todo.fromJson(Map<String, dynamic> json) {
+    return Todo(
+        userId: json['userId'],
+        id: json['id'],
+        title: json['title'],
+        completed: json['completed']);
+  }
+}
+
 class Teacher {
   Teacher({
     required this.firstName,
@@ -175,6 +203,7 @@ class Extracurricular {
   String meetingDays;
   String description;
 }
+
 
 /// Placeholder text
 const String loremIpsumParagraph =
