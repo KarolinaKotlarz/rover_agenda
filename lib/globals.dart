@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 import 'package:http/http.dart' as http;
 
+
 List<Appointment> appointments = <Appointment>[];
 List<Appointment> schoolEvents = <Appointment>[];
 List<Appointment> lunches = _getLunchDataSource();
@@ -19,21 +20,15 @@ DateTime semesterOneEnd = DateTime(2022, 1, 21);
 DateTime semesterTwoStart = DateTime(2022, 1, 24);
 DateTime semesterTwoEnd = DateTime(2022, 6, 6);
 
-
 final Color navBarColor = Color(0xFFCB1313);
 final Color buttonColor = Colors.red;
 
-final ThemeData roverTheme =
-    ThemeData(
-        primaryColor: navBarColor,
-        primarySwatch: Colors.red,
-        appBarTheme: AppBarTheme(
-          color: navBarColor
-        ),
-      buttonTheme: ButtonThemeData(
-        buttonColor: buttonColor
-      ),
-    );
+final ThemeData roverTheme = ThemeData(
+  primaryColor: navBarColor,
+  primarySwatch: Colors.red,
+  appBarTheme: AppBarTheme(color: navBarColor),
+  buttonTheme: ButtonThemeData(buttonColor: buttonColor),
+);
 
 List<Appointment> _getLunchDataSource() {
   _lunches.add(Appointment(
@@ -106,8 +101,12 @@ List<FAQ> _getFAQs() {
 }
 
 Future<List<Todo>> getTodos() async {
- var response = await http.get(Uri.parse("https://jsonplaceholder.typicode.com/todos"));
- return json.decode(response.body).map<Todo>((json) => Todo.fromJson(json)).toList();
+  var response =
+      await http.get(Uri.parse("https://jsonplaceholder.typicode.com/todos"));
+  return json
+      .decode(response.body)
+      .map<Todo>((json) => Todo.fromJson(json))
+      .toList();
 }
 
 List<Teacher> _getTeachers() {
@@ -139,6 +138,8 @@ List<Extracurricular> _getExtracurriculars() {
   return e;
 }
 
+
+
 class FAQ {
   FAQ({
     required this.question,
@@ -164,11 +165,10 @@ class Todo {
 
   factory Todo.fromJson(Map<String, dynamic> json) {
     return Todo(
-      userId: json['userId'],
-      id: json['id'],
-      title: json['title'],
-      completed: json['completed']
-    );
+        userId: json['userId'],
+        id: json['id'],
+        title: json['title'],
+        completed: json['completed']);
   }
 }
 
@@ -199,8 +199,6 @@ class Extracurricular {
   String meetingDays;
   String description;
 }
-
-
 
 const String loremIpsumParagraph =
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod '
