@@ -7,6 +7,7 @@ import '../../globals.dart' as globals;
 
 const users = {
   'test@gmail.com': 'test',
+  'student@gmail.com': 'student',
 };
 
 class Login extends StatelessWidget {
