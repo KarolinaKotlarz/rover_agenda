@@ -131,7 +131,10 @@ List<Extracurricular> _getExtracurriculars() {
   List<Extracurricular> e = <Extracurricular>[];
   Teacher _teacher1 = Teacher(
       firstName: "Gabrielle", lastName: "Li", email: "lig@eastonsd.org");
-  //Teacher _teacher2 = Teacher(firstName: "Darius", lastName: "Collins", email: "collins@eastonsd.org");
+  Teacher _teacher2 = Teacher(firstName: "Darius", lastName: "Collins", email: "collins@eastonsd.org");
+  Teacher _teacher3 = Teacher(firstName: "John", lastName: "Smith", email: "smithj@eastonsd.org");
+  Teacher _teacher4 = Teacher(firstName: "Bob", lastName: "Jenkins", email: "jenkinsb@gmail.com");
+  Teacher _teacher5 = Teacher(firstName: "John", lastName: "Doe", email: "john.doe@aol.com");
 
   e.add(Extracurricular(
       name: "FBLA",
@@ -139,6 +142,30 @@ List<Extracurricular> _getExtracurriculars() {
       teacher: _teacher1,
       meetingDays: "Tuesdays",
       description: "Future Business Leaders of America"));
+  e.add(Extracurricular(
+      name: "ADS",
+      room: "J315",
+      teacher: _teacher2,
+      meetingDays: "Thursdays",
+      description: "Advanced Data Structures"));
+  e.add(Extracurricular(
+      name: "AP Calculus AB",
+      room: "B101",
+      teacher: _teacher3,
+      meetingDays: "Tuesdays",
+      description: "AP Calculus AB"));
+  e.add(Extracurricular(
+      name: "APCS",
+      room: "K216",
+      teacher: _teacher4,
+      meetingDays: "Mondays",
+      description: "AP Computer Science A"));
+  e.add(Extracurricular(
+      name: "Accounting",
+      room: "J305",
+      teacher: _teacher5,
+      meetingDays: "Fridays",
+      description: "Accounting"));
 
   return e;
 }

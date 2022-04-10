@@ -24,6 +24,40 @@ List<ListTile> getFlyoutMenuItems(BuildContext context) {
                 builder: (context) => SchedulePage(Key('schedule'))));
       },
       selected: false));
+  items.add(ListTile(
+      leading: Icon(Icons.fastfood_outlined),
+      title: Text("Lunch Menu"),
+      onTap: () {
+        Navigator.of(context).pop();
+        Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+                builder: (context) => LunchMenu()));
+      },
+      selected: false));
+  items.add(ListTile(
+      leading: Icon(Icons.people_alt_outlined),
+      title: Text("Teachers"),
+      onTap: () {
+        Navigator.of(context).pop();
+        Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+                builder: (context) => TeacherList()));
+      },
+      selected: false));
+
+  items.add(ListTile(
+      leading: Icon(Icons.widgets_outlined),
+      title: Text("Extracurriculars"),
+      onTap: () {
+        Navigator.of(context).pop();
+        Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+                builder: (context) => Extracurriculars()));
+      },
+      selected: false));
 
   items.add(ListTile(
       leading: Icon(Icons.calendar_today_outlined),
