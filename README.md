@@ -1,16 +1,42 @@
-# rover_agenda
+# Rover Agenda - The #1 App for EAHS Students
 
-An app to make Easton students' lives easier.
+As a student of Easton Area High School, there are a lot of things for you to keep track of:
+classes, extracurriculars, school events, teachers, and so much more. With all that in mind,
+wouldn't it be so much easier if you could manage all of those things in one place?
 
-## Getting Started
+That's what our app, Rover Agenda, is here for. This app brings all of your school concerns into
+one easy-to-access place. With an included schedule, teachers list, school calendar, lunch menu,
+and extracurriculars section, you can keep track of everything you need to know. Each part of the
+app is customized to your individual needs, with data stored within your unique student account.
+No longer do you have to have several different apps to keep track of everything; with Rover Agenda,
+you can be sure to keep track of everything in your busy high school experience.
 
-This project is a starting point for a Flutter application.
+## Installation
 
-A few resources to get you started if this is your first Flutter project:
+To run the app, make sure that you have the latest versions of Android Studio, Dart, and Flutterinstalled.
+Open up the project file within Android studio and choose the device you would like to run the app
+on. Click on the Run button, and the app will run.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+If you would like to run Rover Agenda from the command line, you can do so by opening a terminal
+and navigating to the root directory of the app. Run the command '$ flutter run' and wait for the
+app to load.
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Usage
+
+To get started with the app, enter your username and password on the Login screen. If you do not
+yet have an account, click on the Signup button and enter your credentials. In the case that you've
+forgotten your password, click on the 'Forgot Password?' link and enter your email in the corresponding
+form. A confirmation email will be sent to the designated email.
+
+Upon logging in, you will be greeted with the schedule screen. To navigate to other areas of the app,
+use the flyout menu. This can be accessed by clicking on the hamburger menu in the top right corner.
+In this menu, you will also find the 'Log Out' button, which will log you out of your account. You
+will need to input your credentials to sign back in.
+
+Further instructions can be found within the documentation for Rover Agenda.
+
+## Credits and Licenses
+
+Rover Agenda is an app designed by Karolina Kotlarz, Vincent Lauro, and Emma Li.
+
+Further information can be found in the Rover Agenda Documentation: [link]

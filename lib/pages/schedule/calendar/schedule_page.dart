@@ -1,34 +1,34 @@
-///Dart imports
+/// Dart imports
 import 'dart:math';
 
-///Package imports
+/// Package imports
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:rover_agenda/components/flyout_menu.dart';
 
-///calendar import
+/// Calendar import
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
-///Local import
+/// Local imports
 import '../model/sample_view.dart';
 import 'appointment_editor.dart';
 import 'getting_started.dart';
 import '../../../globals.dart' as globals;
 
 
-/// Widget class of recurrence calendar
+/// Widget class of schedule calendar
 class SchedulePage extends SampleView {
-  /// Creates recurrence calendar
+  /// Creates schedule calendar
   const SchedulePage(Key key) : super(key: key);
 
   @override
-  RecurrenceCalendarState createState() => RecurrenceCalendarState();
+  ScheduleCalendarState createState() => ScheduleCalendarState();
 }
 
-/// Represents the the state class of RecurrenceCalendarState
-class RecurrenceCalendarState extends SampleViewState {
-  /// Creates an instance of  state class of RecurrenceCalendarState
-  RecurrenceCalendarState();
+/// Represents the state class of ScheduleCalendarState
+class ScheduleCalendarState extends SampleViewState {
+  /// Creates an instance of  state class of ScheduleCalendarState
+  ScheduleCalendarState();
 
   /// Represents the calendar controller
   final CalendarController calendarController = CalendarController();
@@ -224,7 +224,7 @@ class RecurrenceCalendarState extends SampleViewState {
               primarySwatch: Colors.red,
             ).colorScheme
                 .copyWith(secondary: model.backgroundColor)),
-        child: _getRecurrenceCalendar(calendarController, _dataSource,
+        child: _getScheduleCalendar(calendarController, _dataSource,
             _onViewChanged, scheduleViewBuilder, _onCalendarTapped));
 
     final double _screenHeight = MediaQuery.of(context).size.height;
@@ -278,7 +278,7 @@ class RecurrenceCalendarState extends SampleViewState {
     });
   }
 
-  /// Creates the data source with the recurrence appointments by adding required
+  /// Creates the data source with the appointments by adding required
   /// information on it.
   List<Appointment> _getRecursiveAppointments() {
     _colorNames.add('Green');
@@ -409,10 +409,11 @@ class RecurrenceCalendarState extends SampleViewState {
     final List<Appointment> appointments = <Appointment>[];
     final Random random = Random();
 
-    // Data seed for the schedule
+    /// Defines the start and end of semesters
     final DateTime semester2start = globals.semesterTwoStart;
     final DateTime end = globals.semesterTwoStart;
 
+    /// Defines and adds each default block to the list
     final DateTime b1StartTime =
         DateTime(semester2start.year, semester2start.month, semester2start.day, 7, 20, 0);
     final DateTime b1EndTime = DateTime(
@@ -522,7 +523,7 @@ class RecurrenceCalendarState extends SampleViewState {
   }
 
   /// Returns the calendar widget based on the properties passed
-  SfCalendar _getRecurrenceCalendar(
+  SfCalendar _getScheduleCalendar(
       [CalendarController? calendarController,
       CalendarDataSource? calendarDataSource,
       dynamic onViewChanged,

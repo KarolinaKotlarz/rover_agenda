@@ -1,35 +1,46 @@
-import 'dart:convert';
 
+import 'dart:convert';
+/// Package imports
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 import 'package:http/http.dart' as http;
 
 
-List<Appointment> appointments = <Appointment>[];
+/// Lists of data
 List<Appointment> schoolEvents = <Appointment>[];
 List<Appointment> lunches = _getLunchDataSource();
-
 List<Teacher> teachers = _getTeachers();
 List<Extracurricular> extracurriculars = _getExtracurriculars();
 List<Appointment> _lunches = <Appointment>[];
 Future<List<FAQ>> FAQs = _getFAQs();
 
+/// Semester start and end dates
 DateTime semesterOneStart = DateTime(2021, 8, 30);
 DateTime semesterOneEnd = DateTime(2022, 1, 21);
 DateTime semesterTwoStart = DateTime(2022, 1, 24);
 DateTime semesterTwoEnd = DateTime(2022, 6, 6);
 
-final Color navBarColor = Color(0xFFCB1313);
+/// Colors
+final Color navBarColor = Color(0xFF8D0514);
 final Color buttonColor = Colors.red;
 
-final ThemeData roverTheme = ThemeData(
-  primaryColor: navBarColor,
-  primarySwatch: Colors.red,
-  appBarTheme: AppBarTheme(color: navBarColor),
-  buttonTheme: ButtonThemeData(buttonColor: buttonColor),
-);
+/// App theme
+final ThemeData roverTheme =
+    ThemeData(
+        primaryColor: navBarColor,
+        primarySwatch: Colors.red,
+        appBarTheme: AppBarTheme(
+          color: navBarColor
+        ),
+      buttonTheme: ButtonThemeData(
+        buttonColor: buttonColor
+      ),
+    );
 
+/// Gets the lunches
 List<Appointment> _getLunchDataSource() {
+  List<Appointment> _lunches = <Appointment>[];
+
   _lunches.add(Appointment(
       startTime: DateTime(2022, 1, 16, 0),
       endTime: DateTime(2022, 1, 16, 1),
@@ -69,6 +80,7 @@ List<Appointment> _getLunchDataSource() {
 }
 
 Future<List<FAQ>> _getFAQs() async {
+/// Gets the FAQs
   List<FAQ> f = <FAQ>[];
 
   f.add(FAQ(
@@ -100,6 +112,7 @@ Future<List<FAQ>> _getFAQs() async {
 }
 
 
+/// Gets the teachers
 List<Teacher> _getTeachers() {
   List<Teacher> t = <Teacher>[];
 
@@ -113,6 +126,7 @@ List<Teacher> _getTeachers() {
   return t;
 }
 
+/// Gets the extracurriculars
 List<Extracurricular> _getExtracurriculars() {
   List<Extracurricular> e = <Extracurricular>[];
   Teacher _teacher1 = Teacher(
@@ -129,8 +143,7 @@ List<Extracurricular> _getExtracurriculars() {
   return e;
 }
 
-
-
+/// Class definitions
 class FAQ {
   FAQ({
     required this.question,
@@ -191,6 +204,8 @@ class Extracurricular {
   String description;
 }
 
+
+/// Placeholder text
 const String loremIpsumParagraph =
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod '
     'tempor incididunt ut labore et dolore magna aliqua. Vulputate dignissim '

@@ -1,24 +1,26 @@
+/// Package imports
 import 'package:flutter_settings_ui/flutter_settings_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:instabug_flutter/BugReporting.dart';
 import 'package:instabug_flutter/Instabug.dart';
-import 'package:rover_agenda/pages/settings/faq_page.dart';
-import 'package:rover_agenda/pages/settings/privacy_policy_page.dart';
 
+/// Local imports
+import 'faq_page.dart';
+import 'privacy_policy_page.dart';
 import 'change_password_form.dart';
 import '../../components/flyout_menu.dart';
 
+/// The class representing the settings page
 class SettingsPage extends StatelessWidget {
   const SettingsPage({Key? key}) : super(key: key);
 
-
+  /// Starts Instabug
   void initState() {
     Instabug.start('76ed198e8e1d4438e3ff5b8b152d6e60', [InvocationEvent.shake, InvocationEvent.none]);
   }
 
   @override
   Widget build(BuildContext context) {
-    var v = true;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Settings'),
@@ -27,6 +29,7 @@ class SettingsPage extends StatelessWidget {
 
       body: SettingsList(
         sections: [
+          /// Account section
           SettingsSection(
             titlePadding: const EdgeInsets.all(10.0),
             title: 'ACCOUNT',
@@ -48,6 +51,7 @@ class SettingsPage extends StatelessWidget {
               ),
             ],
           ),
+          /// Support section
           SettingsSection(
             title: 'SUPPORT',
             titlePadding: const EdgeInsets.all(10.0),

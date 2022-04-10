@@ -1,9 +1,9 @@
-///Dart import
+/// Dart imports
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-///Local import
+/// Local imports
 import '../model/helper.dart';
 import '../model/model.dart';
 

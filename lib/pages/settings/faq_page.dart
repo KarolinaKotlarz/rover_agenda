@@ -1,7 +1,10 @@
+/// Package imports
 import 'package:flutter/material.dart';
 
+/// Local imports
 import '../../globals.dart' as globals;
 
+/// The class representing the FAQs page
 class FAQs extends StatefulWidget {
   const FAQs({Key? key}) : super(key: key);
 
@@ -19,6 +22,10 @@ void initState() {
 
 }
  // List<bool> _expanded = List<bool>.filled(globals.Todos, false);
+/// Represents the state class of FAQsState
+class _FAQsState extends State<FAQs> {
+  /// List of bools that determine which icon to show
+  List<bool> _expanded = List<bool>.filled(globals.FAQs.length, false);
 
   @override
   Widget build(BuildContext context) {

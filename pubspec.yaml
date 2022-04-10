@@ -16,7 +16,6 @@ dependencies:
     sdk: flutter
 
   # The following lines define the packages the app depends on.
-  table_calendar: ^3.0.3
   syncfusion_flutter_calendar: ^19.4.0
   cupertino_icons: ^1.0.2
   animations: ^2.0.2

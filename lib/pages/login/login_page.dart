@@ -1,20 +1,26 @@
+/// Package imports
 import 'package:flutter/material.dart';
 import 'package:flutter_login/flutter_login.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:rover_agenda/pages/schedule/calendar/schedule_page.dart';
+
+/// Local imports
+import '../schedule/calendar/schedule_page.dart';
 import '../../globals.dart' as globals;
 
-
+/// Default user logins
 const users = {
   'test@gmail.com': 'test',
   "student@fbla.com": "student",
 };
 
+/// The class representing the login page
 class Login extends StatelessWidget {
   const Login({Key? key}) : super(key: key);
 
+  /// Sets login time for debugging
   Duration get loginTime => const Duration(milliseconds: 2250);
 
+  /// Called to authenticate a user
   Future<String?> _authUser(LoginData data) {
     debugPrint('Name: ${data.name}, Password: ${data.password}');
     return Future.delayed(loginTime).then((_) {
@@ -28,6 +34,7 @@ class Login extends StatelessWidget {
     });
   }
 
+  /// Called to sign up a user
   Future<String?> _signupUser(SignupData data) {
     debugPrint('Signup Name: ${data.name}, Password: ${data.password}');
     return Future.delayed(loginTime).then((_) {
@@ -35,6 +42,7 @@ class Login extends StatelessWidget {
     });
   }
 
+  /// Called when the user asks to recover their password
   Future<String> _recoverPassword(String name) {
     debugPrint('Name: $name');
     return Future.delayed(loginTime).then((_) {
@@ -45,6 +53,7 @@ class Login extends StatelessWidget {
     });
   }
 
+  /// Builds the login screen
   @override
   Widget build(BuildContext context) {
     return FlutterLogin(
@@ -60,6 +69,7 @@ class Login extends StatelessWidget {
       onLogin: _authUser,
       onSignup: _signupUser,
       loginProviders: <LoginProvider>[
+      /// List of social media login buttons
         LoginProvider(
         icon: FontAwesomeIcons.google,
           label: 'Google',
@@ -92,12 +102,14 @@ class Login extends StatelessWidget {
         ),
       ],
       onSubmitAnimationCompleted: () {
+        /// Opens the schedule page
         Navigator.of(context).pushReplacement(MaterialPageRoute(
           builder: (context) => const SchedulePage(Key('')),
         ));
       },
       onRecoverPassword: _recoverPassword,
       messages: LoginMessages(
+        /// Sets custom texts
         recoverPasswordDescription:
         'We will send you an email with a link to recover your password to this email.',
       ),
