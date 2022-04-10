@@ -2,20 +2,20 @@ import 'package:flutter/material.dart';
 
 import '../../globals.dart' as globals;
 
-class Todos extends StatefulWidget {
-  const Todos({Key? key}) : super(key: key);
+class FAQs extends StatefulWidget {
+  const FAQs({Key? key}) : super(key: key);
 
   @override
-  State<Todos> createState() => _TodosState();
+  State<FAQs> createState() => _TodosState();
 }
 
-class _TodosState extends State<Todos> {
+class _TodosState extends State<FAQs> {
   bool _customTileExpanded = false;
-  late Future todosFuture;
+  late Future FAQsFuture;
 @override
 void initState() {
   super.initState();
-  todosFuture = globals.getTodos();
+  FAQsFuture = globals.FAQs;
 
 }
  // List<bool> _expanded = List<bool>.filled(globals.Todos, false);
@@ -27,7 +27,7 @@ void initState() {
         appBar: AppBar(),
         body: Container(
             child: FutureBuilder(
-                future: todosFuture,
+                future: FAQsFuture,
                 builder:
                     (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
                   switch (snapshot.connectionState) {
@@ -41,9 +41,9 @@ void initState() {
                       return  ListView(
                         children: snapshot.data.map<Widget>((todo) {
                           return ExpansionTile(
-                            title: Text(todo.title),
+                            title: Text(todo.question),
                             children: <Widget>[
-                              Text(todo.completed.toString()),
+                              Text(todo.answer),
                             ],
                           );
                         }).toList(),

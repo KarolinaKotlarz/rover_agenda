@@ -12,8 +12,7 @@ List<Appointment> lunches = _getLunchDataSource();
 List<Teacher> teachers = _getTeachers();
 List<Extracurricular> extracurriculars = _getExtracurriculars();
 List<Appointment> _lunches = <Appointment>[];
-List<FAQ> FAQs = _getFAQs();
-Future<List<Todo>> Todos = getTodos();
+Future<List<FAQ>> FAQs = _getFAQs();
 
 DateTime semesterOneStart = DateTime(2021, 8, 30);
 DateTime semesterOneEnd = DateTime(2022, 1, 21);
@@ -69,7 +68,7 @@ List<Appointment> _getLunchDataSource() {
   return _lunches;
 }
 
-List<FAQ> _getFAQs() {
+Future<List<FAQ>> _getFAQs() async {
   List<FAQ> f = <FAQ>[];
 
   f.add(FAQ(
@@ -100,14 +99,6 @@ List<FAQ> _getFAQs() {
   return f;
 }
 
-Future<List<Todo>> getTodos() async {
-  var response =
-      await http.get(Uri.parse("https://jsonplaceholder.typicode.com/todos"));
-  return json
-      .decode(response.body)
-      .map<Todo>((json) => Todo.fromJson(json))
-      .toList();
-}
 
 List<Teacher> _getTeachers() {
   List<Teacher> t = <Teacher>[];
