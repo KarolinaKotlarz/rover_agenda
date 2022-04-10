@@ -92,11 +92,8 @@ class _DetailsPage extends StatelessWidget {
           Container(
             color: Colors.black38,
             height: 250,
-            child: Padding(
-              padding: const EdgeInsets.all(70.0),
-              child: Image.asset(
-                'assets/placeholder_image.png',
-              ),
+            child: Image.asset(
+                'assets/images/placeholder_image.png',
             ),
           ),
           Padding(
