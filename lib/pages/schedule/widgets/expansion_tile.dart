@@ -1,4 +1,4 @@
-///Package import
+/// Package imports
 import 'package:flutter/material.dart';
 
 const Duration _kExpand = Duration(milliseconds: 200);

@@ -1,54 +1,25 @@
+/// Package imports
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
-List<Appointment> appointments = <Appointment>[];
+/// Lists of data
 List<Appointment> schoolEvents = <Appointment>[];
 List<Appointment> lunches = _getLunchDataSource();
-
 List<Teacher> teachers = _getTeachers();
 List<Extracurricular> extracurriculars = _getExtracurriculars();
-List<Appointment> _lunches = <Appointment>[];
 List<FAQ> FAQs = _getFAQs();
 
+/// Semester start and end dates
 DateTime semesterOneStart = DateTime(2021, 8, 30);
 DateTime semesterOneEnd = DateTime(2022, 1, 21);
 DateTime semesterTwoStart = DateTime(2022, 1, 24);
 DateTime semesterTwoEnd = DateTime(2022, 6, 6);
 
-const String loremIpsumParagraph =
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod '
-    'tempor incididunt ut labore et dolore magna aliqua. Vulputate dignissim '
-    'suspendisse in est. Ut ornare lectus sit amet. Eget nunc lobortis mattis '
-    'aliquam faucibus purus in. Hendrerit gravida rutrum quisque non tellus '
-    'orci ac auctor. Mattis aliquam faucibus purus in massa. Tellus rutrum '
-    'tellus pellentesque eu tincidunt tortor. Nunc eget lorem dolor sed. Nulla '
-    'at volutpat diam ut venenatis tellus in metus. Tellus cras adipiscing enim '
-    'eu turpis. Pretium fusce id velit ut tortor. Adipiscing enim eu turpis '
-    'egestas pretium. Quis varius quam quisque id. Blandit aliquam etiam erat '
-    'velit scelerisque. In nisl nisi scelerisque eu. Semper risus in hendrerit '
-    'gravida rutrum quisque. Suspendisse in est ante in nibh mauris cursus '
-    'mattis molestie. Adipiscing elit duis tristique sollicitudin nibh sit '
-    'amet commodo nulla. Pretium viverra suspendisse potenti nullam ac tortor '
-    'vitae.\n'
-    '\n'
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod '
-    'tempor incididunt ut labore et dolore magna aliqua. Vulputate dignissim '
-    'suspendisse in est. Ut ornare lectus sit amet. Eget nunc lobortis mattis '
-    'aliquam faucibus purus in. Hendrerit gravida rutrum quisque non tellus '
-    'orci ac auctor. Mattis aliquam faucibus purus in massa. Tellus rutrum '
-    'tellus pellentesque eu tincidunt tortor. Nunc eget lorem dolor sed. Nulla '
-    'at volutpat diam ut venenatis tellus in metus. Tellus cras adipiscing enim '
-    'eu turpis. Pretium fusce id velit ut tortor. Adipiscing enim eu turpis '
-    'egestas pretium. Quis varius quam quisque id. Blandit aliquam etiam erat '
-    'velit scelerisque. In nisl nisi scelerisque eu. Semper risus in hendrerit '
-    'gravida rutrum quisque. Suspendisse in est ante in nibh mauris cursus '
-    'mattis molestie. Adipiscing elit duis tristique sollicitudin nibh sit '
-    'amet commodo nulla. Pretium viverra suspendisse potenti nullam ac tortor '
-    'vitae';
-
+/// Colors
 final Color navBarColor = Color(0xFF8D0514);
 final Color buttonColor = Colors.red;
 
+/// App theme
 final ThemeData roverTheme =
     ThemeData(
         primaryColor: navBarColor,
@@ -61,7 +32,10 @@ final ThemeData roverTheme =
       ),
     );
 
+/// Gets the lunches
 List<Appointment> _getLunchDataSource() {
+  List<Appointment> _lunches = <Appointment>[];
+
   _lunches.add(Appointment(
       startTime: DateTime(2022, 1, 16, 0),
       endTime: DateTime(2022, 1, 16, 1),
@@ -100,6 +74,7 @@ List<Appointment> _getLunchDataSource() {
   return _lunches;
 }
 
+/// Gets the FAQs
 List<FAQ> _getFAQs() {
   List<FAQ> f = <FAQ>[];
 
@@ -131,6 +106,7 @@ List<FAQ> _getFAQs() {
   return f;
 }
 
+/// Gets the teachers
 List<Teacher> _getTeachers() {
   List<Teacher> t = <Teacher>[];
 
@@ -144,6 +120,7 @@ List<Teacher> _getTeachers() {
   return t;
 }
 
+/// Gets the extracurriculars
 List<Extracurricular> _getExtracurriculars() {
   List<Extracurricular> e = <Extracurricular>[];
   Teacher _teacher1 = Teacher(
@@ -160,6 +137,7 @@ List<Extracurricular> _getExtracurriculars() {
   return e;
 }
 
+/// Class definitions
 class FAQ {
   FAQ({
     required this.question,
@@ -197,3 +175,35 @@ class Extracurricular {
   String meetingDays;
   String description;
 }
+
+/// Placeholder text
+const String loremIpsumParagraph =
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod '
+    'tempor incididunt ut labore et dolore magna aliqua. Vulputate dignissim '
+    'suspendisse in est. Ut ornare lectus sit amet. Eget nunc lobortis mattis '
+    'aliquam faucibus purus in. Hendrerit gravida rutrum quisque non tellus '
+    'orci ac auctor. Mattis aliquam faucibus purus in massa. Tellus rutrum '
+    'tellus pellentesque eu tincidunt tortor. Nunc eget lorem dolor sed. Nulla '
+    'at volutpat diam ut venenatis tellus in metus. Tellus cras adipiscing enim '
+    'eu turpis. Pretium fusce id velit ut tortor. Adipiscing enim eu turpis '
+    'egestas pretium. Quis varius quam quisque id. Blandit aliquam etiam erat '
+    'velit scelerisque. In nisl nisi scelerisque eu. Semper risus in hendrerit '
+    'gravida rutrum quisque. Suspendisse in est ante in nibh mauris cursus '
+    'mattis molestie. Adipiscing elit duis tristique sollicitudin nibh sit '
+    'amet commodo nulla. Pretium viverra suspendisse potenti nullam ac tortor '
+    'vitae.\n'
+    '\n'
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod '
+    'tempor incididunt ut labore et dolore magna aliqua. Vulputate dignissim '
+    'suspendisse in est. Ut ornare lectus sit amet. Eget nunc lobortis mattis '
+    'aliquam faucibus purus in. Hendrerit gravida rutrum quisque non tellus '
+    'orci ac auctor. Mattis aliquam faucibus purus in massa. Tellus rutrum '
+    'tellus pellentesque eu tincidunt tortor. Nunc eget lorem dolor sed. Nulla '
+    'at volutpat diam ut venenatis tellus in metus. Tellus cras adipiscing enim '
+    'eu turpis. Pretium fusce id velit ut tortor. Adipiscing enim eu turpis '
+    'egestas pretium. Quis varius quam quisque id. Blandit aliquam etiam erat '
+    'velit scelerisque. In nisl nisi scelerisque eu. Semper risus in hendrerit '
+    'gravida rutrum quisque. Suspendisse in est ante in nibh mauris cursus '
+    'mattis molestie. Adipiscing elit duis tristique sollicitudin nibh sit '
+    'amet commodo nulla. Pretium viverra suspendisse potenti nullam ac tortor '
+    'vitae';

@@ -1,17 +1,17 @@
+/// Package imports
 import 'package:flutter/material.dart';
 import 'package:instabug_flutter/BugReporting.dart';
-import 'package:rover_agenda/pages/login/login_page.dart';
-import 'package:rover_agenda/pages/lunch_menu/lunch_menu_page.dart';
-import 'package:rover_agenda/pages/settings/settings_page.dart';
-import 'package:rover_agenda/pages/schedule/calendar/schedule_page.dart';
 
+/// Local imports
+import '../pages/login/login_page.dart';
+import '../pages/lunch_menu/lunch_menu_page.dart';
+import '../pages/settings/settings_page.dart';
 import '../pages/schedule/calendar/schedule_page.dart';
 import '../pages/school_calendar/school_calendar.dart';
 import '../pages/extracurriculars/extracurriculars_page.dart';
 import '../pages/teachers/teacher_list_page.dart';
-import '../../globals.dart' as globals;
 
-
+/// The class representing the flyout menu
 class FlyoutMenu extends StatelessWidget {
   const FlyoutMenu({Key? key}) : super(key: key);
 
@@ -21,6 +21,7 @@ class FlyoutMenu extends StatelessWidget {
       child: ListView(
         padding: EdgeInsets.zero,
         children: <Widget>[
+          /// Image with logo
           const DrawerHeader(
             child: Text(
               '',
@@ -31,10 +32,12 @@ class FlyoutMenu extends StatelessWidget {
                     fit: BoxFit.fitWidth,
                     image: AssetImage('assets/images/navbar_icon.png'))),
           ),
+          /// List of tiles
           ListTile(
             leading: const Icon(Icons.book_outlined),
             title: const Text('Schedule'),
             onTap: () => {
+              /// Opens the selected page
               Navigator.of(context).pop(),
               Navigator.pushReplacement(
                 context,
@@ -46,6 +49,7 @@ class FlyoutMenu extends StatelessWidget {
             leading: const Icon(Icons.fastfood_outlined),
             title: const Text('Lunch Menu'),
             onTap: () => {
+              /// Opens the selected page
               Navigator.of(context).pop(),
               Navigator.pushReplacement(
                 context,
@@ -57,6 +61,7 @@ class FlyoutMenu extends StatelessWidget {
             leading: const Icon(Icons.people_alt_outlined),
             title: const Text('Teachers'),
             onTap: () => {
+              /// Opens the selected page
               Navigator.of(context).pop(),
               Navigator.pushReplacement(
                 context,
@@ -68,6 +73,7 @@ class FlyoutMenu extends StatelessWidget {
             leading: const Icon(Icons.widgets_outlined),
             title: const Text('Extracurriculars'),
             onTap: () => {
+              /// Opens the selected page
               Navigator.of(context).pop(),
               Navigator.pushReplacement(
                 context,
@@ -79,6 +85,7 @@ class FlyoutMenu extends StatelessWidget {
             leading: const Icon(Icons.calendar_today_sharp),
             title: const Text('School Calendar'),
             onTap: () => {
+              /// Opens the selected page
               Navigator.of(context).pop(),
               Navigator.pushReplacement(
               context,
@@ -90,6 +97,7 @@ class FlyoutMenu extends StatelessWidget {
             leading: const Icon(Icons.settings_outlined),
             title: const Text('Settings'),
             onTap: () => {
+              /// Opens the selected page
               Navigator.of(context).pop(),
               Navigator.pushReplacement(
                 context,
@@ -101,6 +109,7 @@ class FlyoutMenu extends StatelessWidget {
             leading: const Icon(Icons.bug_report_outlined),
             title: const Text('Report a Bug'),
             onTap: () => {
+              /// Opens the bug reporting screen
               Navigator.of(context).pop(),
               BugReporting.show(ReportType.bug, [InvocationOption.commentFieldRequired] )
             },
@@ -109,6 +118,7 @@ class FlyoutMenu extends StatelessWidget {
             leading: const Icon(Icons.exit_to_app),
             title: const Text('Log Out'),
             onTap: () => {
+              /// Logs the user out
               Navigator.of(context).pop(),
               Navigator.pushReplacement(
                 context,
