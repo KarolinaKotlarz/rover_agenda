@@ -42,35 +42,35 @@ List<Appointment> _getLunchDataSource() {
       startTime: DateTime(2022, 1, 16, 0),
       endTime: DateTime(2022, 1, 16, 1),
       subject: 'Pizza',
-      color: Colors.lightBlue,
+      color: Colors.blueAccent,
       recurrenceRule: 'FREQ=DAILY;COUNT=90'));
 
   _lunches.add(Appointment(
       startTime: DateTime(2022, 1, 16, 1),
       endTime: DateTime(2022, 1, 16, 2),
       subject: 'Quesadilla',
-      color: Colors.blueGrey,
+      color: Colors.blue,
       recurrenceRule: 'FREQ=DAILY;UNTIL=20220606'));
 
   _lunches.add(Appointment(
       startTime: DateTime(2022, 1, 16, 2),
       endTime: DateTime(2022, 1, 16, 3),
       subject: 'Salad',
-      color: Colors.lightGreenAccent,
+      color: Colors.lightBlue,
       recurrenceRule: 'FREQ=DAILY;UNTIL=20220606'));
 
   _lunches.add(Appointment(
       startTime: DateTime(2022, 1, 16, 3),
       endTime: DateTime(2022, 1, 16, 4),
       subject: 'Tacos',
-      color: Colors.pinkAccent,
+      color: Colors.lightBlueAccent,
       recurrenceRule: 'FREQ=DAILY;UNTIL=20220606'));
 
   _lunches.add(Appointment(
       startTime: DateTime(2022, 1, 16, 4),
       endTime: DateTime(2022, 1, 16, 5),
       subject: 'Hamburger',
-      color: Colors.yellowAccent,
+      color: Colors.lightBlue,
       recurrenceRule: 'FREQ=DAILY;UNTIL=20220606'));
 
   return _lunches;
