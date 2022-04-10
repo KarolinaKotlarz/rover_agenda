@@ -1,9 +1,7 @@
 
-import 'dart:convert';
 /// Package imports
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
-import 'package:http/http.dart' as http;
 
 
 /// Lists of data
@@ -11,7 +9,6 @@ List<Appointment> schoolEvents = <Appointment>[];
 List<Appointment> lunches = _getLunchDataSource();
 List<Teacher> teachers = _getTeachers();
 List<Extracurricular> extracurriculars = _getExtracurriculars();
-List<Appointment> _lunches = <Appointment>[];
 Future<List<FAQ>> FAQs = _getFAQs();
 
 /// Semester start and end dates
@@ -137,31 +134,31 @@ List<Extracurricular> _getExtracurriculars() {
   Teacher _teacher5 = Teacher(firstName: "John", lastName: "Doe", email: "john.doe@aol.com");
 
   e.add(Extracurricular(
-      name: "FBLA",
+      name: "Future Business Leaders of America",
       room: "J121",
       teacher: _teacher1,
       meetingDays: "Tuesdays",
       description: "Future Business Leaders of America"));
   e.add(Extracurricular(
-      name: "ADS",
+      name: "Chess Club",
       room: "J315",
       teacher: _teacher2,
       meetingDays: "Thursdays",
-      description: "Advanced Data Structures"));
+      description: "Chess Club"));
   e.add(Extracurricular(
-      name: "AP Calculus AB",
-      room: "B101",
+      name: "Computer Science Club",
+      room: "J221",
       teacher: _teacher3,
       meetingDays: "Tuesdays",
       description: "AP Calculus AB"));
   e.add(Extracurricular(
-      name: "APCS",
+      name: "Asian Culture Club",
       room: "K216",
       teacher: _teacher4,
       meetingDays: "Mondays",
       description: "AP Computer Science A"));
   e.add(Extracurricular(
-      name: "Accounting",
+      name: "YouThink Literary Magazine",
       room: "J305",
       teacher: _teacher5,
       meetingDays: "Fridays",
