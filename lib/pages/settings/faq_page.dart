@@ -1,5 +1,7 @@
 /// Package imports
 import 'package:flutter/material.dart';
+import 'dart:async';
+import 'dart:core';
 
 /// Local imports
 import '../../globals.dart' as globals;
@@ -15,17 +17,16 @@ class FAQs extends StatefulWidget {
 class _TodosState extends State<FAQs> {
   bool _customTileExpanded = false;
   late Future FAQsFuture;
-@override
-void initState() {
-  super.initState();
-  FAQsFuture = globals.FAQs;
 
-}
- // List<bool> _expanded = List<bool>.filled(globals.Todos, false);
-/// Represents the state class of FAQsState
-class _FAQsState extends State<FAQs> {
+  @override
+  void initState() {
+    super.initState();
+    FAQsFuture = globals.FAQs;
+  }
+
+  // List<bool> _expanded = List<bool>.filled(globals.Todos, false);
+  /// Represents the state class of FAQsStateclass _FAQsState extends State<FAQs> {
   /// List of bools that determine which icon to show
-  List<bool> _expanded = List<bool>.filled(globals.FAQs.length, false);
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +38,8 @@ class _FAQsState extends State<FAQs> {
                 future: FAQsFuture,
                 builder:
                     (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-                  switch (snapshot.connectionState) { // This checks the connection state and updates the UI accordingly.
+                  switch (snapshot.connectionState) {
+                    // This checks the connection state and updates the UI accordingly.
                     case ConnectionState.none:
                       return Text('None');
                     case ConnectionState.waiting:
@@ -45,8 +47,9 @@ class _FAQsState extends State<FAQs> {
                     case ConnectionState.active:
                       return Text('Active');
                     case ConnectionState.done:
-                      return  ListView(
-                        children: snapshot.data.map<Widget>((faq) { // Maps each FAQ to an expandable tile.
+                      return ListView(
+                        children: snapshot.data.map<Widget>((faq) {
+                          // Maps each FAQ to an expandable tile.
                           return ExpansionTile(
                             title: Text(faq.question),
                             children: <Widget>[
