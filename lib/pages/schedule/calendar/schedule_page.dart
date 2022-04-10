@@ -281,15 +281,11 @@ class ScheduleCalendarState extends SampleViewState {
   /// Creates the data source with the appointments by adding required
   /// information on it.
   List<Appointment> _getRecursiveAppointments() {
-    _colorNames.add('Green');
-    _colorNames.add('Purple');
-    _colorNames.add('Red');
-    _colorNames.add('Orange');
-    _colorNames.add('Caramel');
-    _colorNames.add('Light Green');
-    _colorNames.add('Blue');
-    _colorNames.add('Peach');
-    _colorNames.add('Gray');
+    _colorNames.add('Navy Blue');
+    _colorNames.add('Dark Blue');
+    _colorNames.add('Sea Blue');
+    _colorNames.add('Light Blue');
+    _colorNames.add('Amethyst Blue');
 
     _timeZoneCollection.add('Default Time');
     _timeZoneCollection.add('AUS Central Standard Time');
@@ -396,15 +392,11 @@ class ScheduleCalendarState extends SampleViewState {
     _timeZoneCollection.add('West Pacific Standard Time');
     _timeZoneCollection.add('Yakutsk Standard Time');
 
-    _colorCollection.add(const Color(0xFF0F8644));
-    _colorCollection.add(const Color(0xFF8B1FA9));
-    _colorCollection.add(const Color(0xFFD20100));
-    _colorCollection.add(const Color(0xFFFC571D));
-    _colorCollection.add(const Color(0xFF36B37B));
+    _colorCollection.add(const Color(0xFF0F0044));
+    _colorCollection.add(const Color(0xFF0B1FA0));
+    _colorCollection.add(const Color(0xFF097099));
     _colorCollection.add(const Color(0xFF01A1EF));
     _colorCollection.add(const Color(0xFF3D4FB5));
-    _colorCollection.add(const Color(0xFFE47C73));
-    _colorCollection.add(const Color(0xFF636363));
 
     final List<Appointment> appointments = <Appointment>[];
     final Random random = Random();
