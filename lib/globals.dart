@@ -150,7 +150,7 @@ List<Extracurricular> _getExtracurriculars() {
       room: "J221",
       teacher: _teacher3,
       meetingDays: "Tuesdays",
-      description: "AP Calculus AB"));
+      description: "Computer Science Club"));
   e.add(Extracurricular(
       name: "Asian Culture Club",
       room: "K216",
