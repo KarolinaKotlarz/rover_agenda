@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_login/flutter_login.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:rover_agenda/schedule/calendar/recurrence.dart';
+import 'package:rover_agenda/pages/schedule/calendar/schedule_page.dart';
+import '../../globals.dart' as globals;
 
-const users = const {
+
+const users = {
   'test@gmail.com': 'test',
+  'student@gmail.com': 'student',
 };
 
 class Login extends StatelessWidget {
-  Duration get loginTime => Duration(milliseconds: 2250);
+  const Login({Key? key}) : super(key: key);
+
+  Duration get loginTime => const Duration(milliseconds: 2250);
 
   Future<String?> _authUser(LoginData data) {
     debugPrint('Name: ${data.name}, Password: ${data.password}');
@@ -43,8 +48,15 @@ class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FlutterLogin(
+      theme: LoginTheme(
+        pageColorDark: globals.navBarColor,
+        pageColorLight: globals.buttonColor,
+        buttonTheme: LoginButtonTheme(
+          backgroundColor: globals.buttonColor
+        )
+      ),
       title: 'Rover Agenda',
-      logo: AssetImage('assets/rover_agenda_icon.png'),
+      logo: const AssetImage('assets/images/rover_agenda_login_icon.png'),
       onLogin: _authUser,
       onSignup: _signupUser,
       loginProviders: <LoginProvider>[
@@ -81,7 +93,7 @@ class Login extends StatelessWidget {
       ],
       onSubmitAnimationCompleted: () {
         Navigator.of(context).pushReplacement(MaterialPageRoute(
-          builder: (context) => SchedulePage(Key('')),
+          builder: (context) => const SchedulePage(Key('')),
         ));
       },
       onRecoverPassword: _recoverPassword,
