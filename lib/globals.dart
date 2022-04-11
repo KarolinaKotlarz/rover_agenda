@@ -5,7 +5,7 @@ import 'package:syncfusion_flutter_calendar/calendar.dart';
 
 
 /// Lists of data
-List<Appointment> schoolEvents = <Appointment>[];
+List<Appointment> schoolEvents = _getSchoolEvents();
 List<Appointment> lunches = _getLunchDataSource();
 List<Teacher> teachers = _getTeachers();
 List<Extracurricular> extracurriculars = _getExtracurriculars();
@@ -124,7 +124,7 @@ List<Teacher> _getTeachers() {
 }
 
 /// Gets the school events
-List<Teacher> _getSchoolEvents() {
+List<Appointment> _getSchoolEvents() {
   List<Appointment> e = <Appointment>[];
 
   e.add(Appointment(
