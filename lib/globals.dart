@@ -119,6 +119,23 @@ List<Teacher> _getTeachers() {
       firstName: "John", lastName: "Smith", email: "smithj@eastonsd.org"));
   t.add(Teacher(
       firstName: "Darius", lastName: "Collins", email: "collins@eastonsd.org"));
+  t.add(Teacher(
+      firstName: "Cristen", lastName: "Charnley", email: "charnleyc@eastonst.org"));
+  t.add(Teacher(
+      firstName: "Alex", lastName: "Hirsch", email: "hirscha@eastonsd.org"));
+  t.add(Teacher(
+      firstName: "Bernadette", lastName: "Varela", email: "varelab@eastonsd.org"));
+  t.add(Teacher(
+      firstName: "Elliot", lastName: "Cheng", email: "chenge@eastonsd.org"));
+  t.add(Teacher(
+      firstName: "Bethann", lastName: "Folcher", email: "folcherb@eastonsd.org"));
+  t.add(Teacher(
+      firstName: "James", lastName: "Hibell", email: "hibellj@eastonsd.org"));
+  t.add(Teacher(
+      firstName: "Amy", lastName: "Fontno", email: "fontnoa@eastonsd.org"));
+  t.add(Teacher(
+      firstName: "Brandon", lastName: "Kazan", email: "kazanb@eastonsd.org"));
+
 
   return t;
 }
