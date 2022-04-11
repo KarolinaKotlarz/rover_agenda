@@ -123,6 +123,19 @@ List<Teacher> _getTeachers() {
   return t;
 }
 
+/// Gets the school events
+List<Teacher> _getSchoolEvents() {
+  List<Appointment> e = <Appointment>[];
+
+  e.add(Appointment(
+    startTime: DateTime(2022, 4, 16),
+    endTime: DateTime(2022, 1, 16),
+    subject: 'EAHS Day',
+    color: Colors.lightBlue,));
+
+  return e;
+}
+
 /// Gets the extracurriculars
 List<Extracurricular> _getExtracurriculars() {
   List<Extracurricular> e = <Extracurricular>[];
