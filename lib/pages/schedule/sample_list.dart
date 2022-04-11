@@ -1,8 +1,10 @@
+/// Package imports
 import 'package:flutter/foundation.dart';
 
-import 'package:rover_agenda/pages/schedule/calendar/appointment_editor.dart';
-import 'package:rover_agenda/pages/schedule/calendar/getting_started.dart';
-import 'package:rover_agenda/pages/schedule/calendar/schedule_page.dart';
+/// Local imports
+import 'calendar/appointment_editor.dart';
+import 'calendar/getting_started.dart';
+import 'calendar/schedule_page.dart';
 
 
 /// Contains the output widget of sample
@@ -11,7 +13,7 @@ Map<String, Function> getSampleWidget() {
   return <String, Function>{
     // Calendar Samples
     'getting_started_calendar': (Key key) => GettingStartedCalendar(key),
-    'recurrence_calendar': (Key key) => SchedulePage(key),
+    'schedule_calendar': (Key key) => SchedulePage(key),
     'appointment_editor_calendar': (Key key) => CalendarAppointmentEditor(key),
   };
 }

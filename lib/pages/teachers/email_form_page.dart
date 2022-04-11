@@ -1,24 +1,31 @@
+/// Package imports
 import 'package:flutter/material.dart';
-import '../../globals.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+/// Local imports
+import '../../globals.dart' as globals;
+
+/// The class representing the email form page; requires a teacher
 class EmailFormPage extends StatefulWidget {
   const EmailFormPage({Key? key, required this.teacher}) : super(key: key);
-  static String routeName = "/extracurriculars";
-  final Teacher teacher;
+
+  final globals.Teacher teacher;
 
   @override
   State<StatefulWidget> createState() {
-    return EmailFormState();
+    return _EmailFormState();
   }
 }
 
-class EmailFormState extends State<EmailFormPage> {
+/// Represents the state class of EmailFormState
+class _EmailFormState extends State<EmailFormPage> {
   final _formKey = GlobalKey<FormState>();
 
+  /// The text controllers of the form
   final controllerSubject = TextEditingController();
   final controllerBody = TextEditingController();
 
+  /// Builds the subject form field
   Widget _buildSubjectField() {
     return TextFormField(
         decoration: const InputDecoration(
@@ -38,6 +45,7 @@ class EmailFormState extends State<EmailFormPage> {
         });
   }
 
+  /// Builds the body form field
   Widget _buildBodyField() {
     return TextFormField(
         maxLines: 8,
@@ -62,80 +70,84 @@ class EmailFormState extends State<EmailFormPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('Compose Email to ' +
-              widget.teacher.firstName +
-              ' ' +
-              widget.teacher.lastName),
-        ),
-        body: SingleChildScrollView(
-            child: Container(
-          margin: EdgeInsets.all(24),
-          child: Form(
-            key: _formKey,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('To: ' + widget.teacher.email),
-                Text('From: You'),
-                Padding(padding: const EdgeInsets.all(8.0)),
-                _buildSubjectField(),
-                Padding(padding: const EdgeInsets.all(8.0)),
-                _buildBodyField(),
-                Padding(padding: const EdgeInsets.all(8.0)),
-                Row(
-                  children: [
-                    Align(
-                      alignment: Alignment.topLeft,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          // Validate returns true if the form is valid, or false otherwise.
-                          if (_formKey.currentState!.validate()) {
-                            _launchEmail(
-                                emailTo: widget.teacher.email,
-                                subject: controllerSubject.text,
-                                body: controllerBody.text);
-
-                            Navigator.pop(context);
-                          }
-                        },
-                        child: Row(
-                          children: [
-                            Icon(Icons.send, size: 15),
-                            Text(
-                              ' Send',
-                              textAlign: TextAlign.right,
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                    Padding(padding: const EdgeInsets.all(8.0)),
-                    Align(
-                      alignment: Alignment.topRight,
-                      child: ElevatedButton(
-                        onPressed: () {
+      appBar: AppBar(
+        title: Text('Compose Email to ' +
+            widget.teacher.firstName +
+            ' ' +
+            widget.teacher.lastName),
+      ),
+      body: SingleChildScrollView(
+          child: Container(
+        margin: EdgeInsets.all(24),
+        child: Form(
+          key: _formKey,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              /// To: and From: lines
+              Text('To: ' + widget.teacher.email),
+              Text('From: You'),
+              /// The form builder methods are called
+              Padding(padding: const EdgeInsets.all(8.0)),
+              _buildSubjectField(),
+              Padding(padding: const EdgeInsets.all(8.0)),
+              _buildBodyField(),
+              Padding(padding: const EdgeInsets.all(8.0)),
+              Row(
+                children: [
+                /// Send and Cancel buttons
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        if (_formKey.currentState!.validate()) {
+                          /// Calls method that opens the default email app
+                          _launchEmail(
+                              emailTo: widget.teacher.email,
+                              subject: controllerSubject.text,
+                              body: controllerBody.text);
                           Navigator.pop(context);
-                        },
-                        child: Row(
-                          children: [
-                            Icon(Icons.cancel_outlined, size: 15),
-                            Text(
-                              ' Cancel',
-                              textAlign: TextAlign.right,
-                            )
-                          ],
-                        ),
+                        }
+                      },
+                      child: Row(
+                        children: [
+                          Icon(Icons.send, size: 15),
+                          Text(
+                            ' Send',
+                            textAlign: TextAlign.right,
+                          )
+                        ],
                       ),
                     ),
-                  ],
-                ),
-              ],
-            ),
+                  ),
+                  Padding(padding: const EdgeInsets.all(8.0)),
+                  Align(
+                    alignment: Alignment.topRight,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: Row(
+                        children: [
+                          Icon(Icons.cancel_outlined, size: 15),
+                          Text(
+                            ' Cancel',
+                            textAlign: TextAlign.right,
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
           ),
-        )));
+        ),
+      ))
+    );
   }
 
+  /// Opens the default email app and passes the composed email to it
   Future _launchEmail(
       {required emailTo, required String subject, required String body}) async {
     final url =

@@ -1,44 +1,66 @@
+/// Package imports
 import 'package:flutter/material.dart';
+import 'dart:async';
+import 'dart:core';
 
+/// Local imports
 import '../../globals.dart' as globals;
 
+/// The class representing the FAQs page
 class FAQs extends StatefulWidget {
   const FAQs({Key? key}) : super(key: key);
 
   @override
-  State<FAQs> createState() => _FAQsState();
+  State<FAQs> createState() => _TodosState();
 }
 
-class _FAQsState extends State<FAQs> {
+class _TodosState extends State<FAQs> {
   bool _customTileExpanded = false;
-  List<bool> _expanded = List<bool>.filled(globals.FAQs.length, false);
+  late Future FAQsFuture;
+
+  @override
+  void initState() {
+    super.initState();
+    FAQsFuture = globals.FAQs;
+  }
+
+  // List<bool> _expanded = List<bool>.filled(globals.Todos, false);
+  /// Represents the state class of FAQsStateclass _FAQsState extends State<FAQs> {
+  /// List of bools that determine which icon to show
 
   @override
   Widget build(BuildContext context) {
+    // TODO: implement build
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Frequently Asked Questions'),
-      ),
-      body: ListView(
-      children: <Widget>[
-        //for(var faq in globals.FAQs)
-        for(int i = 0; i < globals.FAQs.length; i++)
-        ExpansionTile(
-          title: Text(globals.FAQs[i].question),
-          trailing: Icon(
-            _expanded[i]
-                ? Icons.horizontal_rule_outlined
-                : Icons.add,
-          ),
-          children: <Widget>[
-            ListTile(title: Text(globals.FAQs[i].answer), subtitle: const Text('')),
-          ],
-          onExpansionChanged: (bool expanded) {
-            setState(() => _expanded[i] = expanded);
-          },
-        ),
-      ],
-    ),
-    );
+        appBar: AppBar(),
+        body: Container(
+            child: FutureBuilder(
+                future: FAQsFuture,
+                builder:
+                    (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+                  switch (snapshot.connectionState) {
+                    // This checks the connection state and updates the UI accordingly.
+                    case ConnectionState.none:
+                      return Text('None');
+                    case ConnectionState.waiting:
+                      return Text('Waiting');
+                    case ConnectionState.active:
+                      return Text('Active');
+                    case ConnectionState.done:
+                      return ListView(
+                        children: snapshot.data.map<Widget>((faq) {
+                          // Maps each FAQ to an expandable tile.
+                          return ExpansionTile(
+                            title: Text(faq.question),
+                            children: <Widget>[
+                              Text(faq.answer),
+                            ],
+                          );
+                        }).toList(),
+                      );
+                    default:
+                      return Text('Default');
+                  }
+                })));
   }
 }

@@ -25,6 +25,7 @@ dependencies:
   desktop_window: ^0.4.0
   font_awesome_flutter: ^9.1.0
   instabug_flutter: ^10.13.0
+  http:
 
 dev_dependencies:
   flutter_test:
@@ -43,3 +44,4 @@ flutter:
     - assets/images/rover_agenda_login_icon.png
     - assets/images/login_background.png
     - assets/images/navbar_icon.png
+    - assets/images/placeholder_image.png

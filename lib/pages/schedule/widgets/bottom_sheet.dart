@@ -1,7 +1,7 @@
-///Flutter package imports
+/// Package imports
 import 'package:flutter/material.dart';
 
-///Local import
+/// Local imports
 import '../model/model.dart';
 
 /// To show the setting panel content on the bottom sheet

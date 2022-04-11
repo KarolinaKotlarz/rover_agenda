@@ -1,26 +1,26 @@
-///Dart imports
+/// Dart imports
 import 'dart:core';
 import 'dart:math';
 
-///Package imports
+/// Package imports
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 
-///calendar import
+/// Calendar import
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 import 'package:syncfusion_flutter_core/core.dart';
 
-///Local import
+/// Local import
 import '../model/model.dart';
 import '../model/sample_view.dart';
 import 'getting_started.dart';
 
 /// Render the widget of appointment editor calendar
 class CalendarAppointmentEditor extends SampleView {
-  /// creates the appointment editor
+  /// Creates the appointment editor
   const CalendarAppointmentEditor(Key key) : super(key: key);
 
   @override

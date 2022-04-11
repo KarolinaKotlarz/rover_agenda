@@ -1,11 +1,12 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+/// Dart imports
 import 'dart:async';
 
+/// Package imports
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
-import '../../components/flyout_menu.dart';
-import '../../globals.dart' as globals;
 
+/// The class representing the privacy policy page
 class PrivacyPolicy extends StatefulWidget {
   const PrivacyPolicy({Key? key}) : super(key: key);
 
@@ -13,36 +14,37 @@ class PrivacyPolicy extends StatefulWidget {
   _PrivacyPolicyState createState() => _PrivacyPolicyState();
 }
 
+/// Represents the state class of PrivacyPolicyState
 class _PrivacyPolicyState extends State<PrivacyPolicy> {
+  /// Gets the data from the privacy policy file
   Future<String> getFileData(String path) async {
     final String data = await rootBundle.loadString(path);
     return data;
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('Privacy Policy'),
+      appBar: AppBar(
+        title: Text('Privacy Policy'),
+      ),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(25),
+          child: FutureBuilder<String>(
+            future: getFileData('assets/documents/privacy_policy.txt'),
+            builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
+              /// Displays the privacy policy or 'Loading...' text
+              if (snapshot.hasData) {
+                final theText = snapshot.data;
+                return Text(theText!);
+              } else {
+                return Text('Loading...');
+              }
+            },
+          )
         ),
-        body: SingleChildScrollView(
-          child: Padding(
-              padding: const EdgeInsets.all(25),
-              child: FutureBuilder<String>(
-                future: getFileData('assets/documents/privacy_policy.txt'),
-                builder:
-                    (BuildContext context, AsyncSnapshot<String> snapshot) {
-                  if (snapshot.hasData) {
-                    final theText = snapshot.data;
-                    return Text(theText!);
-                  } else {
-                    return Text('loading...');
-                  }
-                },
-              )
-          ),
-        )
+      )
     );
   }
 }

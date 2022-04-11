@@ -11,9 +11,17 @@ app is customized to your individual needs, with data stored within your unique 
 No longer do you have to have several different apps to keep track of everything; with Rover Agenda,
 you can be sure to keep track of everything in your busy high school experience.
 
-## Installation
+## Features
+    - Custom Schedule
+    - Weekly Lunch Menu
+    - Teachers List
+    - Built-in Email Form
+    - Extracurricular Information
+    - School Calendar
 
-To run the app, make sure that you have the latest versions of Android Studio, Dart, and Flutterinstalled.
+## Build Instructions
+
+To run the app, make sure that you have the latest versions of Android Studio, Dart, and Flutter installed.
 Open up the project file within Android studio and choose the device you would like to run the app
 on. Click on the Run button, and the app will run.
 
@@ -35,10 +43,12 @@ will need to input your credentials to sign back in.
 
 Further instructions can be found within the documentation for Rover Agenda.
 
-## Credits and Licenses
+## Resources Used
+
+
+
+## Credits
 
 Rover Agenda is an app designed by Karolina Kotlarz, Vincent Lauro, and Emma Li.
 
-Resources listed have been used with proper permission:
-    - xxxxxxx (help idk what we used haha....)
-
+Further information can be found in the Rover Agenda Documentation: [link]

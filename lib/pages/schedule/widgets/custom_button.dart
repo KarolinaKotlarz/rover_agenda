@@ -1,4 +1,4 @@
-///Package import
+/// Package imports
 import 'package:flutter/material.dart';
 
 /// Collection of left, right or up, down icon buttons with text widget

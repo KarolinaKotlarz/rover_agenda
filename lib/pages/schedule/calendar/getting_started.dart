@@ -1,15 +1,15 @@
-///Dart imports
+/// Dart imports
 import 'dart:math';
 
-///Package imports
+/// Package imports
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 
-///calendar import
+/// Calendar import
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
-///Local import
+/// Local import
 import '../model/sample_view.dart';
 
 /// Widget of getting started calendar

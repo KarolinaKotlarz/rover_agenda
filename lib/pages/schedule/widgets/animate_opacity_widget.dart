@@ -1,4 +1,4 @@
-///flutter package import
+/// Package imports
 import 'package:flutter/material.dart';
 
 /// Creates a widget that makes its child partially transparent.

@@ -1,4 +1,4 @@
-/// dart imports
+/// Dart imports
 import 'dart:io' show Platform;
 
 /// Package imports
