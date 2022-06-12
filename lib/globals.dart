@@ -5,7 +5,7 @@ import 'package:syncfusion_flutter_calendar/calendar.dart';
 
 
 /// Lists of data
-List<Appointment> schoolEvents = <Appointment>[];
+List<Appointment> schoolEvents = _getSchoolEvents();
 List<Appointment> lunches = _getLunchDataSource();
 List<Teacher> teachers = _getTeachers();
 List<Extracurricular> extracurriculars = _getExtracurriculars();
@@ -119,8 +119,38 @@ List<Teacher> _getTeachers() {
       firstName: "John", lastName: "Smith", email: "smithj@eastonsd.org"));
   t.add(Teacher(
       firstName: "Darius", lastName: "Collins", email: "collins@eastonsd.org"));
+  t.add(Teacher(
+      firstName: "Cristen", lastName: "Charnley", email: "charnleyc@eastonst.org"));
+  t.add(Teacher(
+      firstName: "Alex", lastName: "Hirsch", email: "hirscha@eastonsd.org"));
+  t.add(Teacher(
+      firstName: "Bernadette", lastName: "Varela", email: "varelab@eastonsd.org"));
+  t.add(Teacher(
+      firstName: "Elliot", lastName: "Cheng", email: "chenge@eastonsd.org"));
+  t.add(Teacher(
+      firstName: "Bethann", lastName: "Folcher", email: "folcherb@eastonsd.org"));
+  t.add(Teacher(
+      firstName: "James", lastName: "Hibell", email: "hibellj@eastonsd.org"));
+  t.add(Teacher(
+      firstName: "Amy", lastName: "Fontno", email: "fontnoa@eastonsd.org"));
+  t.add(Teacher(
+      firstName: "Brandon", lastName: "Kazan", email: "kazanb@eastonsd.org"));
+
 
   return t;
+}
+
+/// Gets the school events
+List<Appointment> _getSchoolEvents() {
+  List<Appointment> e = <Appointment>[];
+
+  e.add(Appointment(
+    startTime: DateTime(2022, 4, 16),
+    endTime: DateTime(2022, 1, 16),
+    subject: 'EAHS Day',
+    color: Colors.lightBlue,));
+
+  return e;
 }
 
 /// Gets the extracurriculars
@@ -138,31 +168,31 @@ List<Extracurricular> _getExtracurriculars() {
       room: "J121",
       teacher: _teacher1,
       meetingDays: "Tuesdays",
-      description: "Future Business Leaders of America"));
+      description: "Future Business Leaders of America is a club that allows students to develop their business skills and experience entrepreneurship."));
   e.add(Extracurricular(
       name: "Chess Club",
       room: "J315",
       teacher: _teacher2,
       meetingDays: "Thursdays",
-      description: "Chess Club"));
+      description: "Chess Club is a club where students can play chess and compete in tournaments."));
   e.add(Extracurricular(
       name: "Computer Science Club",
       room: "J221",
       teacher: _teacher3,
       meetingDays: "Tuesdays",
-      description: "Computer Science Club"));
+      description: "Computer Science Club is a club that teaches students how to program in C#."));
   e.add(Extracurricular(
       name: "Asian Culture Club",
       room: "K216",
       teacher: _teacher4,
       meetingDays: "Mondays",
-      description: "AP Computer Science A"));
+      description: "Asian Culture Club where students learn about Asian culture."));
   e.add(Extracurricular(
       name: "YouThink Literary Magazine",
       room: "J305",
       teacher: _teacher5,
       meetingDays: "Fridays",
-      description: "Accounting"));
+      description: "YouThink Literary Magazine is a club that publishes the writing and artwork of students."));
 
   return e;
 }
