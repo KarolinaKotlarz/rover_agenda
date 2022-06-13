@@ -32,7 +32,9 @@ class _TodosState extends State<FAQs> {
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(
+          title: const Text('FAQs'),
+        ),
         body: Container(
             child: FutureBuilder(
                 future: FAQsFuture,

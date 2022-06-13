@@ -30,12 +30,31 @@ class LunchMenu extends StatelessWidget {
           endHour: 10,
           timeIntervalHeight: -1,
         ),
+        onTap: (CalendarTapDetails details) => showDialog<String>(
+          context: context,
+          builder: (BuildContext context) => AlertDialog(
+            title: const Text('AlertDialog Title'),
+            content: Text(""),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () => Navigator.pop(context, 'Cancel'),
+                child: const Text('Cancel'),
+              ),
+              TextButton(
+                onPressed: () => Navigator.pop(context, 'OK'),
+                child: const Text('OK'),
+              ),
+            ],
+          ),
+        ),
         dataSource: _LunchDataSource(globals.lunches), /// Gets the lunches from the globals file
       ),
 
     );
   }
 }
+
+
 
 /// Converts list of lunches into a data source for the calendar
 class _LunchDataSource extends CalendarDataSource {

@@ -1,6 +1,7 @@
 /// Package imports
 import 'package:flutter/material.dart';
 import 'package:flutter_login/flutter_login.dart';
+import 'package:flutter_signin_button/button_view.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 /// Local imports
@@ -71,28 +72,28 @@ class Login extends StatelessWidget {
       loginProviders: <LoginProvider>[
       /// List of social media login buttons
         LoginProvider(
-        icon: FontAwesomeIcons.google,
-          label: 'Google',
+          button: Buttons.FacebookNew,
+          label: "Login with Facebook",
           callback: () async {
-            debugPrint('start google sign in');
+            debugPrint('start linkedin sign in');
             await Future.delayed(loginTime);
-            debugPrint('stop google sign in');
+            debugPrint('stop linkedin sign in');
             return null;
           },
         ),
         LoginProvider(
-          icon: FontAwesomeIcons.facebookF,
-          label: 'Facebook',
+          button: Buttons.GoogleDark,
+          label: "Sign in with Google",
           callback: () async {
-            debugPrint('start facebook sign in');
+            debugPrint('start linkedin sign in');
             await Future.delayed(loginTime);
-            debugPrint('stop facebook sign in');
+            debugPrint('stop linkedin sign in');
             return null;
           },
         ),
         LoginProvider(
-          icon: FontAwesomeIcons.linkedin,
-          label: 'LinkedIn',
+          button: Buttons.AppleDark,
+          label: "Sign up with Apple",
           callback: () async {
             debugPrint('start linkedin sign in');
             await Future.delayed(loginTime);
@@ -112,6 +113,7 @@ class Login extends StatelessWidget {
         /// Sets custom texts
         recoverPasswordDescription:
         'We will send you an email with a link to recover your password to this email.',
+        providersTitleFirst: "or",
       ),
     );
   }
