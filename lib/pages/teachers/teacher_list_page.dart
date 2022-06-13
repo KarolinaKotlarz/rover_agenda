@@ -20,8 +20,42 @@ class TeacherList extends StatelessWidget {
       body: ListView(
         children: <Widget>[
           /// Loops through the list of teachers in globals to display all of them
-          for(var teacher in globals.teachers)
-          Container(
+          for (var teacher in globals.teachers)
+            ListTile(
+              leading: CircleAvatar(
+                backgroundColor: Colors.white,
+                backgroundImage: AssetImage('assets/images/placeholder_image.png'),
+              ),
+              title: Text(
+                teacher.firstName + " " + teacher.lastName,
+              ),
+              subtitle: Text(teacher.email),
+              trailing: /*Icon(Icons.email_outlined, color: Colors.red, size: 40,)*/ Container(
+                child: IconButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              EmailFormPage(teacher: teacher)),
+                    );
+                  },
+                  icon: const Icon(
+                    Icons.email_outlined,
+                    color: Colors.red,
+                  ),
+                  iconSize: 30,
+                ),
+                decoration: const BoxDecoration(
+                  borderRadius:
+                      const BorderRadius.all(const Radius.circular(30.0)),
+                ),
+              ),
+              onTap: () {
+                Text('Another data');
+              },
+            ),
+          /*Container(
             color: Colors.grey[200],
             margin: const EdgeInsets.only(top: 10.0),
             child: Row(
@@ -69,7 +103,7 @@ class TeacherList extends StatelessWidget {
                 ),
               ]
             ),
-          ),
+          ),*/
         ],
       ),
     );

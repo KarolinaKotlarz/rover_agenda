@@ -10,7 +10,6 @@ import '../pages/schedule/calendar/schedule_page.dart';
 import '../pages/school_calendar/school_calendar.dart';
 import '../pages/extracurriculars/extracurriculars_page.dart';
 import '../pages/teachers/teacher_list_page.dart';
-import '../globals.dart' as globals;
 
 List<ListTile> getFlyoutMenuItems(BuildContext context) {
   List<ListTile> items = <ListTile>[];
