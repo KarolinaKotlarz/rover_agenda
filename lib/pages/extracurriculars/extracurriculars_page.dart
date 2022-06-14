@@ -49,9 +49,13 @@ class _ExtracurricularsState
               closedElevation: 0.0,
               closedBuilder: (BuildContext _, VoidCallback openContainer) {
                 return ListTile(
+                  leading: CircleAvatar(
+                    backgroundColor: Colors.white,
+                    backgroundImage: AssetImage('assets/images/placeholder_image.png'),
+                  ),
                   onTap: openContainer,
                   title: Text(e.name),
-                  subtitle: Text('Advisor: ' + e.teacher.firstName + ' ' + e.teacher.lastName),
+                  subtitle: Text('Adviser: ' + e.teacher.firstName + ' ' + e.teacher.lastName),
                 );
               },
             ),
