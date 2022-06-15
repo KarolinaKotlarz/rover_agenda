@@ -10,58 +10,182 @@ import 'package:flutter/material.dart';
 import '../../components/flyout_menu.dart';
 import '../../globals.dart';
 import '../../pages/teachers/email_form_page.dart';
+import '../../globals.dart' as globals;
 
 /// The class representing the extracurriculars page
 class Extracurriculars extends StatefulWidget {
   const Extracurriculars({Key? key}) : super(key: key);
 
   @override
-  _ExtracurricularsState createState() {
-    return _ExtracurricularsState();
-  }
+  _ExtracurricularsState createState() => new _ExtracurricularsState();
 }
 
 /// Represents the state class of ExtracurricularsState
-class _ExtracurricularsState
-    extends State<Extracurriculars> {
+class _ExtracurricularsState extends State<Extracurriculars> {
   /// Sets the transition type to be used
   final ContainerTransitionType _transitionType = ContainerTransitionType.fade;
+
+  TextEditingController _searchQueryController = TextEditingController();
+  bool _isSearching = false;
+  String searchQuery = "Search query";
+
+  final duplicateItems = globals.extracurriculars;
+  var extracurriculars = List.empty(growable: true);
+
+  Widget _buildSearchField() {
+    return TextField(
+      controller: _searchQueryController,
+      autofocus: true,
+      decoration: InputDecoration(
+        hintText: "Search for club...",
+        border: InputBorder.none,
+        hintStyle: TextStyle(color: Colors.white30),
+      ),
+      style: TextStyle(color: Colors.white, fontSize: 16.0),
+      onChanged: (query) {
+        updateSearchQuery(query);
+        filterSearchResults(query);
+      },
+    );
+  }
+
+  List<Widget> _buildActions() {
+    if (_isSearching) {
+      return <Widget>[
+        IconButton(
+          icon: const Icon(Icons.clear),
+          onPressed: () {
+            if (_searchQueryController == null ||
+                _searchQueryController.text.isEmpty) {
+              Navigator.pop(context);
+              return;
+            }
+            _clearSearchQuery();
+          },
+        ),
+      ];
+    }
+
+    return <Widget>[
+      IconButton(
+        icon: const Icon(Icons.search),
+        onPressed: _startSearch,
+      ),
+    ];
+  }
+
+  void _startSearch() {
+    ModalRoute.of(context)
+        ?.addLocalHistoryEntry(LocalHistoryEntry(onRemove: _stopSearching));
+
+    setState(() {
+      _isSearching = true;
+    });
+  }
+
+  void updateSearchQuery(String newQuery) {
+    setState(() {
+      searchQuery = newQuery;
+    });
+  }
+
+  void _stopSearching() {
+    _clearSearchQuery();
+
+    setState(() {
+      _isSearching = false;
+    });
+  }
+
+  void _clearSearchQuery() {
+    setState(() {
+      _searchQueryController.clear();
+      updateSearchQuery("");
+
+      extracurriculars.clear();
+      extracurriculars.addAll(duplicateItems);
+    });
+  }
+
+  void filterSearchResults(String query) {
+    List<globals.Extracurricular> dummySearchList = List.empty(growable: true);
+    dummySearchList.addAll(duplicateItems);
+    if(query.isNotEmpty) {
+      List<globals.Extracurricular> dummyListData = List.empty(growable: true);
+      dummySearchList.forEach((item) {
+        if(item.name.toLowerCase().contains(query.toLowerCase())) {
+          dummyListData.add(item);
+        }
+      });
+      setState(() {
+        extracurriculars.clear();
+        extracurriculars.addAll(dummyListData);
+      });
+      return;
+    } else {
+      setState(() {
+        extracurriculars.clear();
+        extracurriculars.addAll(duplicateItems);
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    extracurriculars.addAll(duplicateItems);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Extracurriculars'),
+        leading: _isSearching ?  BackButton() : Builder(builder: (context) => // Ensure Scaffold is in context
+          IconButton(
+              icon: Icon(Icons.menu),
+              onPressed: () => Scaffold.of(context).openDrawer()
+          ),
+        ),
+        title: _isSearching ? _buildSearchField() : Text('Extracurriculars'),
+        actions: _buildActions(),
       ),
-      drawer: FlyoutMenu(),
-      body: ListView(
-        padding: const EdgeInsets.all(8.0),
-        children: <Widget>[
-          for(var e in extracurriculars)
-          /// Defines the widget that displays each extracurricular
-          OpenContainer<bool>(
-              transitionType: _transitionType,
-              openBuilder: (BuildContext _, VoidCallback openContainer) {
-                return _DetailsPage(extracurricular: e);
-              },
-              tappable: false,
-              closedShape: const RoundedRectangleBorder(),
-              closedElevation: 0.0,
-              closedBuilder: (BuildContext _, VoidCallback openContainer) {
-                return ListTile(
-                  leading: CircleAvatar(
-                    backgroundColor: Colors.white,
-                    backgroundImage: AssetImage('assets/images/placeholder_image.png'),
-                  ),
-                  onTap: openContainer,
-                  title: Text(e.name),
-                  subtitle: Text('Adviser: ' + e.teacher.firstName + ' ' + e.teacher.lastName),
-                );
-              },
-            ),
-        ],
-      ),
-    );
+      drawer: const FlyoutMenu(),
+      body: Column(
+        children: [
+          Expanded(
+            child: ListView.builder(
+            shrinkWrap: true,
+            itemCount: extracurriculars.length,
+            itemBuilder: (context, index) {
+              var e = extracurriculars[index];
+              /// Defines the widget that displays each extracurricular
+              return OpenContainer<bool>(
+                transitionType: _transitionType,
+                openBuilder: (BuildContext _, VoidCallback openContainer) {
+                  return _DetailsPage(extracurricular: e);
+                },
+                tappable: false,
+                closedShape: const RoundedRectangleBorder(),
+                closedElevation: 0.0,
+                closedBuilder: (BuildContext _, VoidCallback openContainer) {
+                  return ListTile(
+                    leading: CircleAvatar(
+                      backgroundColor: Colors.white,
+                      backgroundImage: AssetImage(
+                          'assets/images/placeholder_image.png'),
+                    ),
+                    onTap: openContainer,
+                    title: Text(e.name),
+                    subtitle: Text('Adviser: ' + e.teacher.firstName + ' ' +
+                        e.teacher.lastName),
+                  );
+                },
+              );
+            }
+          ),
+        ),
+      ],
+    ));
   }
 }
 

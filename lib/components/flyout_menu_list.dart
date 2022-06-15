@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:instabug_flutter/BugReporting.dart';
 import 'package:intl/intl.dart';
+import 'package:rover_agenda/onboarding/onboarding_page.dart';
 import 'package:rover_agenda/pages/login/login_page.dart';
 import 'package:rover_agenda/pages/lunch_menu/lunch_menu_page.dart';
 import 'package:rover_agenda/pages/settings/settings_page.dart';
@@ -106,6 +107,18 @@ List<ListTile> getFlyoutMenuItems(BuildContext context) {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => const Login()),
+      ),
+    },
+  ));
+
+  items.add(ListTile(
+    leading: const Icon(Icons.exit_to_app),
+    title: const Text('Log Out to Onboarding'),
+    onTap: () => {
+      Navigator.of(context).pop(),
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => Onboarding()),
       ),
     },
   ));

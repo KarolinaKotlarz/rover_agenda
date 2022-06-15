@@ -240,6 +240,10 @@ class Teacher {
   String firstName;
   String lastName;
   String email;
+
+  String getFullName() {
+    return firstName + ' ' + lastName;
+  }
 }
 
 class Extracurricular {
