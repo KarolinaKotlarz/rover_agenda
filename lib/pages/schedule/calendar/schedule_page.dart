@@ -5,6 +5,8 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:rover_agenda/components/flyout_menu.dart';
+import 'package:share_plus/share_plus.dart';
+import 'package:intl/intl.dart';
 
 /// Calendar import
 import 'package:syncfusion_flutter_calendar/calendar.dart';
@@ -230,6 +232,26 @@ class ScheduleCalendarState extends SampleViewState {
     final double _screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.share),
+            onPressed: () {
+              String textToShare = 'My Schedule:\n\n';
+
+              List<Appointment> _classes = _getRecursiveAppointments();
+
+              _classes.forEach((c) {
+                String startTime = DateFormat("h:mm").format(c.startTime);
+                String endTime = DateFormat("h:mm").format(c.endTime);
+                String subject = c.subject;
+
+                textToShare += '($startTime - $endTime)\t$subject\n';
+              });
+
+              Share.share(textToShare);
+            },
+          ),
+        ],
         title: const Text('My Schedule'),
       ),
       drawer: const FlyoutMenu(),

@@ -30,39 +30,41 @@ class _TodosState extends State<FAQs> {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('FAQs'),
-        ),
-        body: Container(
-            child: FutureBuilder(
-                future: FAQsFuture,
-                builder:
-                    (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-                  switch (snapshot.connectionState) {
-                    // This checks the connection state and updates the UI accordingly.
-                    case ConnectionState.none:
-                      return Text('None');
-                    case ConnectionState.waiting:
-                      return Text('Waiting');
-                    case ConnectionState.active:
-                      return Text('Active');
-                    case ConnectionState.done:
-                      return ListView(
-                        children: snapshot.data.map<Widget>((faq) {
-                          // Maps each FAQ to an expandable tile.
-                          return ExpansionTile(
-                            title: Text(faq.question),
-                            children: <Widget>[
-                              Text(faq.answer),
-                            ],
-                          );
-                        }).toList(),
+      appBar: AppBar(
+        title: const Text('FAQs'),
+      ),
+      body: Container(
+          child: FutureBuilder(
+            future: FAQsFuture,
+            builder:
+              (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+              switch (snapshot.connectionState) {
+                // This checks the connection state and updates the UI accordingly.
+                case ConnectionState.none:
+                  return Text('None');
+                case ConnectionState.waiting:
+                  return Text('Waiting');
+                case ConnectionState.active:
+                  return Text('Active');
+                case ConnectionState.done:
+                  return ListView(
+                    children: snapshot.data.map<Widget>((faq) {
+                      // Maps each FAQ to an expandable tile.
+                      return ExpansionTile(
+                        title: Text(faq.question),
+                        children: <Widget>[
+                          Text(faq.answer),
+                        ],
                       );
-                    default:
-                      return Text('Default');
-                  }
-                })));
+                    }).toList(),
+                  );
+                default:
+                  return Text('Default');
+              }
+            }
+          )
+      )
+    );
   }
 }

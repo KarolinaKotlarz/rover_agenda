@@ -1,5 +1,7 @@
 /// Package imports
+
 import 'package:flutter/material.dart';
+import 'package:share_plus/share_plus.dart';
 
 /// Local imports
 import 'email_form_page.dart';
@@ -178,7 +180,7 @@ class _TeacherListState extends State<TeacherList> {
                   ),
                 ),
                 onTap: () {
-                  Text('Another data');
+                    /// TODO: Teacher pop-up
                 },
                 );
               }
