@@ -2,9 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 /// Local imports
-import 'email_form_page.dart';
 import '../../components/flyout_menu.dart';
 import '../../globals.dart' as globals;
 
@@ -18,6 +18,7 @@ class TeacherList extends StatefulWidget {
 
 /// Represents the state class of TeacherListState
 class _TeacherListState extends State<TeacherList> {
+
   TextEditingController _searchQueryController = TextEditingController();
   bool _isSearching = false;
   String searchQuery = "Search query";
@@ -163,11 +164,10 @@ class _TeacherListState extends State<TeacherList> {
                   trailing: /*Icon(Icons.email_outlined, color: Colors.red, size: 40,)*/ Container(
                     child: IconButton(
                       onPressed: () {
-                      Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => EmailFormPage(teacher: teacher)),
-                      );
+                        /// Calls method that opens the default email app
+                        _launchEmail(
+                            emailTo: teacher.email);
+                        Navigator.pop(context);
                     },
                     icon: const Icon(
                       Icons.email_outlined,
@@ -189,5 +189,13 @@ class _TeacherListState extends State<TeacherList> {
         ],
       ),
     );
+
+  }
+  /// Opens the default email app and passes the composed email to it
+  Future _launchEmail(
+      {required emailTo}) async {
+    final url =
+        'mailto:$emailTo?subject=${Uri.encodeFull('')}&body=${Uri.encodeFull('')}';
+    await launch(url);
   }
 }
