@@ -33,7 +33,7 @@ class LunchMenu extends StatelessWidget {
         onTap: (CalendarTapDetails details) => showDialog<String>(
           context: context,
           builder: (BuildContext context) => AlertDialog(
-            title: const Text('AlertDialog Title'),
+            title:  Text('test'),
             content: Text(""),
             actions: <Widget>[
               TextButton(

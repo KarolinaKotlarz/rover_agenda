@@ -3,6 +3,7 @@ import 'package:flutter_settings_ui/flutter_settings_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:instabug_flutter/BugReporting.dart';
 import 'package:instabug_flutter/Instabug.dart';
+import 'package:rover_agenda/pages/settings/profile_page.dart';
 
 /// Local imports
 import 'faq_page.dart';
@@ -37,7 +38,12 @@ class SettingsPage extends StatelessWidget {
               SettingsTile(
                 title: 'Edit Profile',
                 leading: const Icon(Icons.person_outline_sharp),
-                onPressed: (BuildContext context) {},
+                onPressed: (BuildContext context) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const ProfilePage()),
+                  );
+                },
               ),
               SettingsTile(
                 title: 'Change Password',

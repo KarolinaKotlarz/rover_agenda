@@ -4,6 +4,7 @@ import 'dart:math';
 /// Package imports
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rover_agenda/components/flyout_menu.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:intl/intl.dart';
@@ -16,7 +17,6 @@ import '../model/sample_view.dart';
 import 'appointment_editor.dart';
 import 'getting_started.dart';
 import '../../../globals.dart' as globals;
-
 
 /// Widget class of schedule calendar
 class SchedulePage extends SampleView {
@@ -45,7 +45,8 @@ class ScheduleCalendarState extends SampleViewState {
   ];
 
   final TimeSlotViewSettings _timeSlotViewSettings = const TimeSlotViewSettings(
-    timeInterval: const Duration(minutes: 30), timeFormat: 'h:mm',
+    timeInterval: const Duration(minutes: 30),
+    timeFormat: 'h:mm',
     startHour: 7,
     endHour: 22,
   );
@@ -223,9 +224,8 @@ class ScheduleCalendarState extends SampleViewState {
           primarySwatch: Colors.red,
         ).copyWith(
             colorScheme: ThemeData(
-              primarySwatch: Colors.red,
-            ).colorScheme
-                .copyWith(secondary: model.backgroundColor)),
+          primarySwatch: Colors.red,
+        ).colorScheme.copyWith(secondary: model.backgroundColor)),
         child: _getScheduleCalendar(calendarController, _dataSource,
             _onViewChanged, scheduleViewBuilder, _onCalendarTapped));
 
@@ -428,33 +428,31 @@ class ScheduleCalendarState extends SampleViewState {
     final DateTime end = globals.semesterTwoStart;
 
     /// Defines and adds each default block to the list
-    final DateTime b1StartTime =
-        DateTime(semester2start.year, semester2start.month, semester2start.day, 7, 20, 0);
-    final DateTime b1EndTime = DateTime(
-        semester2start.year, semester2start.month, semester2start.day, 8, 38, 0);
-    final RecurrenceProperties b1Recurrence =
-        RecurrenceProperties(
-            startDate: b1StartTime,
-            recurrenceType: RecurrenceType.daily,
-            recurrenceRange: RecurrenceRange.count,
-            recurrenceCount: 90);
+    final DateTime b1StartTime = DateTime(semester2start.year,
+        semester2start.month, semester2start.day, 7, 20, 0);
+    final DateTime b1EndTime = DateTime(semester2start.year,
+        semester2start.month, semester2start.day, 8, 38, 0);
+    final RecurrenceProperties b1Recurrence = RecurrenceProperties(
+        startDate: b1StartTime,
+        recurrenceType: RecurrenceType.daily,
+        recurrenceRange: RecurrenceRange.count,
+        recurrenceCount: 90);
 
     final Appointment blockOne = Appointment(
         startTime: b1StartTime,
         endTime: b1EndTime,
         color: _colorCollection[0],
         subject: 'Block One',
-        recurrenceRule: SfCalendar.generateRRule(
-            b1Recurrence, b1StartTime, b1EndTime));
+        recurrenceRule:
+            SfCalendar.generateRRule(b1Recurrence, b1StartTime, b1EndTime));
 
     appointments.add(blockOne);
 
-    final DateTime b2StartTime =
-    DateTime(semester2start.year, semester2start.month, semester2start.day, 8, 53, 0);
-    final DateTime b2EndTime = DateTime(
-        semester2start.year, semester2start.month, semester2start.day, 10, 11, 0);
-    final RecurrenceProperties b2Recurrence =
-    RecurrenceProperties(
+    final DateTime b2StartTime = DateTime(semester2start.year,
+        semester2start.month, semester2start.day, 8, 53, 0);
+    final DateTime b2EndTime = DateTime(semester2start.year,
+        semester2start.month, semester2start.day, 10, 11, 0);
+    final RecurrenceProperties b2Recurrence = RecurrenceProperties(
         startDate: b2StartTime,
         recurrenceType: RecurrenceType.daily,
         recurrenceRange: RecurrenceRange.count,
@@ -465,17 +463,16 @@ class ScheduleCalendarState extends SampleViewState {
         endTime: b2EndTime,
         color: _colorCollection[1],
         subject: 'Block Two',
-        recurrenceRule: SfCalendar.generateRRule(
-            b2Recurrence, b2StartTime, b2EndTime));
+        recurrenceRule:
+            SfCalendar.generateRRule(b2Recurrence, b2StartTime, b2EndTime));
 
     appointments.add(blockTwo);
 
-    final DateTime b3StartTime =
-    DateTime(semester2start.year, semester2start.month, semester2start.day, 10, 16, 0);
-    final DateTime b3EndTime = DateTime(
-        semester2start.year, semester2start.month, semester2start.day, 11, 34, 0);
-    final RecurrenceProperties b3Recurrence =
-    RecurrenceProperties(
+    final DateTime b3StartTime = DateTime(semester2start.year,
+        semester2start.month, semester2start.day, 10, 16, 0);
+    final DateTime b3EndTime = DateTime(semester2start.year,
+        semester2start.month, semester2start.day, 11, 34, 0);
+    final RecurrenceProperties b3Recurrence = RecurrenceProperties(
         startDate: b3StartTime,
         recurrenceType: RecurrenceType.daily,
         recurrenceRange: RecurrenceRange.count,
@@ -486,17 +483,16 @@ class ScheduleCalendarState extends SampleViewState {
         endTime: b3EndTime,
         color: _colorCollection[2],
         subject: 'Block Three',
-        recurrenceRule: SfCalendar.generateRRule(
-            b3Recurrence, b3StartTime, b3EndTime));
+        recurrenceRule:
+            SfCalendar.generateRRule(b3Recurrence, b3StartTime, b3EndTime));
 
     appointments.add(blockThree);
 
-    final DateTime b4StartTime =
-    DateTime(semester2start.year, semester2start.month, semester2start.day, 11, 39, 0);
-    final DateTime b4EndTime = DateTime(
-        semester2start.year, semester2start.month, semester2start.day, 12, 57, 0);
-    final RecurrenceProperties b4Recurrence =
-    RecurrenceProperties(
+    final DateTime b4StartTime = DateTime(semester2start.year,
+        semester2start.month, semester2start.day, 11, 39, 0);
+    final DateTime b4EndTime = DateTime(semester2start.year,
+        semester2start.month, semester2start.day, 12, 57, 0);
+    final RecurrenceProperties b4Recurrence = RecurrenceProperties(
         startDate: b4StartTime,
         recurrenceType: RecurrenceType.daily,
         recurrenceRange: RecurrenceRange.count,
@@ -507,17 +503,16 @@ class ScheduleCalendarState extends SampleViewState {
         endTime: b4EndTime,
         color: _colorCollection[3],
         subject: 'Block Four',
-        recurrenceRule: SfCalendar.generateRRule(
-            b4Recurrence, b4StartTime, b4EndTime));
+        recurrenceRule:
+            SfCalendar.generateRRule(b4Recurrence, b4StartTime, b4EndTime));
 
     appointments.add(blockFour);
 
-    final DateTime b5StartTime =
-    DateTime(semester2start.year, semester2start.month, semester2start.day, 13, 02, 0);
-    final DateTime b5EndTime = DateTime(
-        semester2start.year, semester2start.month, semester2start.day, 14, 20, 0);
-    final RecurrenceProperties b5Recurrence =
-    RecurrenceProperties(
+    final DateTime b5StartTime = DateTime(semester2start.year,
+        semester2start.month, semester2start.day, 13, 02, 0);
+    final DateTime b5EndTime = DateTime(semester2start.year,
+        semester2start.month, semester2start.day, 14, 20, 0);
+    final RecurrenceProperties b5Recurrence = RecurrenceProperties(
         startDate: b5StartTime,
         recurrenceType: RecurrenceType.daily,
         recurrenceRange: RecurrenceRange.count,
@@ -528,8 +523,8 @@ class ScheduleCalendarState extends SampleViewState {
         endTime: b5EndTime,
         color: _colorCollection[4],
         subject: 'Block Five',
-        recurrenceRule: SfCalendar.generateRRule(
-            b5Recurrence, b5StartTime, b5EndTime));
+        recurrenceRule:
+            SfCalendar.generateRRule(b5Recurrence, b5StartTime, b5EndTime));
 
     appointments.add(blockFive);
 
@@ -538,24 +533,66 @@ class ScheduleCalendarState extends SampleViewState {
 
   /// Returns the calendar widget based on the properties passed
   SfCalendar _getScheduleCalendar(
-      [CalendarController? calendarController,
-      CalendarDataSource? calendarDataSource,
-      dynamic onViewChanged,
-      dynamic scheduleViewBuilder,
-      dynamic calendarTapCallback]) {
-    return SfCalendar(
-      showNavigationArrow: model.isWebFullView,
-      controller: calendarController,
-      allowedViews: _allowedViews,
-      timeSlotViewSettings: _timeSlotViewSettings,
-      scheduleViewMonthHeaderBuilder: scheduleViewBuilder,
-      showDatePickerButton: true,
-      onViewChanged: onViewChanged,
-      dataSource: calendarDataSource,
-      monthViewSettings: const MonthViewSettings(
+    [CalendarController? calendarController,
+    CalendarDataSource? calendarDataSource,
+    dynamic onViewChanged,
+    dynamic scheduleViewBuilder,
+    dynamic calendarTapCallback]) {
+      return SfCalendar(
+        showNavigationArrow: model.isWebFullView,
+        controller: calendarController,
+        allowedViews: _allowedViews,
+        timeSlotViewSettings: _timeSlotViewSettings,
+        scheduleViewMonthHeaderBuilder: scheduleViewBuilder,
+        showDatePickerButton: true,
+        onViewChanged: onViewChanged,
+        dataSource: calendarDataSource,
+        monthViewSettings: const MonthViewSettings(
           appointmentDisplayMode: MonthAppointmentDisplayMode.appointment,
           appointmentDisplayCount: 4),
-      onTap: calendarTapCallback,
+        onTap: calendarTapCallback,
+        appointmentBuilder: (BuildContext context, CalendarAppointmentDetails details)
+        {
+          final Appointment meeting = details.appointments.first;
+          return Column(
+            children: [
+              Expanded(
+                child: Container(
+                  padding: EdgeInsets.all(3),
+                  height: 50,
+                  alignment: Alignment.topLeft,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.rectangle,
+                    borderRadius: BorderRadius.all(Radius.circular(5)),
+                    color: meeting.color,
+                  ),
+                  child: Column(
+                    children: [
+                      Text(
+                        meeting.subject,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w500,
+                        ),
+                        maxLines: 2,
+                        softWrap: false,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      Expanded(
+                        child: Container(
+                          padding: const EdgeInsets.all(0.0),
+                          alignment: Alignment.bottomRight,
+                          child: Icon(Icons.edit_sharp, size: 15, color: Colors.white,),
+                        )
+                      )
+                    ],
+                  ),
+                ),
+              )
+            ],
+          );
+        }
     );
   }
 }
