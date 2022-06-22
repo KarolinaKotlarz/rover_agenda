@@ -30,7 +30,7 @@ class FlyoutMenu extends StatelessWidget {
           const DrawerHeader(
             child: Text(
               'Rover Agenda',
-              style: TextStyle(color: Colors.white, fontSize: 25),
+              style: TextStyle(color: Colors.white, fontSize: 25, fontFamily: 'RobotoSlab'),
             ),
             decoration: BoxDecoration(
                 image: DecorationImage(

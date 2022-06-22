@@ -4,6 +4,7 @@ import 'package:rover_agenda/onboarding/onboarding_card.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../pages/login/login_page.dart';
+import 'package:rover_agenda/globals.dart';
 
 class Onboarding extends StatefulWidget {
   @override
@@ -15,27 +16,56 @@ class Onboarding extends StatefulWidget {
 class _OnboardingState extends State<Onboarding>{
 
   final data = [
-    OnboardingCardData(title: 'title',
-        subtitle: 'subtitle',
+    OnboardingCardData(title: 'Welcome',
+        subtitle: 'Welcome to Rover Agenda!',
         image: AssetImage('assets/images/rover_agenda_login_icon.png'),
-        backgroundColor: Colors.grey,
-        titleColor: Colors.red,
-        subtitleColor: Colors.redAccent,
+        backgroundColor: roverTheme.primaryColor,
+      titleColor: Colors.white,
+      subtitleColor: Colors.white,
     ),
-    OnboardingCardData(title: 'title',
-      subtitle: 'subtitle',
-      image: AssetImage('assets/images/rover_agenda_login_icon.png'),
-      backgroundColor: Colors.white,
-      titleColor: Colors.red,
-      subtitleColor: Colors.redAccent,
+    OnboardingCardData(title: 'Schedule',
+      subtitle: 'View your schedule and edit your classes.',
+      image: AssetImage('assets/images/Onboard_Schedule.png'),
+      backgroundColor: roverTheme.secondaryHeaderColor,
+      titleColor: Colors.white,
+      subtitleColor: Colors.white,
     ),
-    OnboardingCardData(title: 'title',
-      subtitle: 'subtitle',
-      image: AssetImage('assets/images/rover_agenda_login_icon.png'),
-      backgroundColor: Colors.grey,
-      titleColor: Colors.red,
-      subtitleColor: Colors.redAccent,
+    OnboardingCardData(title: 'Lunch Menu',
+      subtitle: 'See what\'s on the menu for this week.',
+      image: AssetImage('assets/images/Onboard_Lunches.png'),
+      backgroundColor: roverTheme.primaryColor,
+      titleColor: Colors.white,
+      subtitleColor: Colors.white,
+    ),
+    OnboardingCardData(title: 'Teachers',
+      subtitle: 'Know your teachers and email them when you need.',
+      image: AssetImage('assets/images/Onboard_Teachers.png'),
+      backgroundColor: roverTheme.secondaryHeaderColor,
+      titleColor: Colors.white,
+      subtitleColor: Colors.white,
+    ),
+    OnboardingCardData(title: 'Extracurriculars',
+      subtitle: 'Learn about the extracurricular activities Easton has to offer.',
+      image: AssetImage('assets/images/Onboard_Extracurriculars.png'),
+      backgroundColor: roverTheme.primaryColor,
+      titleColor: Colors.white,
+      subtitleColor: Colors.white,
+    ),
+    OnboardingCardData(title: 'Calendar',
+      subtitle: 'Take a look at upcoming events, taken from the official school announcements.',
+      image: AssetImage('assets/images/Onboard_Calendar.png'),
+      backgroundColor: roverTheme.secondaryHeaderColor,
+      titleColor: Colors.white,
+      subtitleColor: Colors.white,
+    ),
+    OnboardingCardData(title: 'Bug Reporting',
+      subtitle: 'Find any issues? Just let us know with a shake of your device, or use the menu.',
+      image: AssetImage('assets/images/Onboard_BugReporting.png'),
+      backgroundColor: roverTheme.primaryColor,
+      titleColor: Colors.white,
+      subtitleColor: Colors.white,
     )
+
   ];
 
   final controller = PageController();
@@ -53,6 +83,7 @@ class _OnboardingState extends State<Onboarding>{
 
     return Scaffold(
       floatingActionButton: TextButton(
+        style: ButtonStyle(foregroundColor: MaterialStateProperty.all(Colors.white)),
         onPressed: () async {
           Navigator.push(
             context,

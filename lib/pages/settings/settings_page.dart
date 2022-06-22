@@ -88,7 +88,7 @@ class SettingsPage extends StatelessWidget {
               ),
               SettingsTile(
                 title: 'Ask a Question',
-                leading: const Icon(Icons.question_mark_outlined),
+                leading: const Icon(Icons.add),
                 onPressed: (BuildContext context) {
                   BugReporting.show(ReportType.question, [InvocationOption.commentFieldRequired] );
                 },

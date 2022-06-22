@@ -59,12 +59,14 @@ class Login extends StatelessWidget {
   Widget build(BuildContext context) {
     return FlutterLogin(
       theme: LoginTheme(
+        titleStyle: TextStyle(fontFamily: 'Freshman'),
         pageColorDark: Color(0xFF8D0514),
         pageColorLight: Color(0xFFFF2B2B),
         buttonTheme: LoginButtonTheme(
           backgroundColor: Color(0xFFFF2B2B)
         )
       ),
+
       title: 'Rover Agenda',
       logo: const AssetImage('assets/images/rover_agenda_login_icon.png'),
       onLogin: _authUser,

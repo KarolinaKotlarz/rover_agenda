@@ -26,6 +26,7 @@ final ThemeData roverTheme =
     ThemeData(
         primaryColor: navBarColor,
         primarySwatch: Colors.red,
+        secondaryHeaderColor: Colors.red,
         appBarTheme: AppBarTheme(
           color: navBarColor
         ),

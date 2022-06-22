@@ -43,6 +43,14 @@ flutter:
   # The following line ensures that the Material Icons font is
   # included in the application.
   uses-material-design: true
+  fonts:
+    - family: Freshman
+      fonts:
+        - asset: assets/fonts/Freshman.ttf
+    - family: RobotoSlab
+      fonts:
+        - asset: assets/fonts/RobotoSlab.ttf
+
 
   assets:
     - assets/documents/privacy_policy.txt
@@ -50,3 +58,4 @@ flutter:
     - assets/images/login_background.png
     - assets/images/navbar_icon.png
     - assets/images/placeholder_image.png
+    - assets/images/

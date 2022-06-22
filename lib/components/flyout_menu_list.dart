@@ -17,7 +17,7 @@ List<ListTile> getFlyoutMenuItems(BuildContext context) {
 
 
   items.add(ListTile(
-      title: Text(DateFormat.yMMMMEEEEd().format(DateTime.now()), style: TextStyle(fontSize: 20)),
+      title: Text(DateFormat.yMMMMEEEEd().format(DateTime.now()), style: TextStyle(fontSize: 17)),
       selected: false));
   items.add(ListTile(
       leading: Icon(Icons.book_outlined),
