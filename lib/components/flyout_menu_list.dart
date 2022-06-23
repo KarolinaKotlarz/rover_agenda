@@ -106,7 +106,7 @@ List<ListTile> getFlyoutMenuItems(BuildContext context) {
       Navigator.of(context).pop(),
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => const Login()),
+        MaterialPageRoute(builder: (context) => Login()),
       ),
     },
   ));
