@@ -87,7 +87,7 @@ class _OnboardingState extends State<Onboarding>{
         onPressed: () async {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const Login()),
+            MaterialPageRoute(builder: (context) => Login()),
           );
 
           final prefs = await SharedPreferences.getInstance();

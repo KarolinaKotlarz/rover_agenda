@@ -11,6 +11,12 @@ List<Teacher> teachers = _getTeachers();
 List<Extracurricular> extracurriculars = _getExtracurriculars();
 Future<List<FAQ>> FAQs = _getFAQs();
 
+/// API constants
+class ApiConstants {
+  static String baseUrl = 'https://jsonplaceholder.typicode.com';
+  static String usersEndpoint = '/users';
+}
+
 /// Semester start and end dates
 DateTime semesterOneStart = DateTime(2021, 8, 30);
 DateTime semesterOneEnd = DateTime(2022, 1, 21);
@@ -115,27 +121,27 @@ List<Teacher> _getTeachers() {
   List<Teacher> t = <Teacher>[];
 
   t.add(Teacher(
-      firstName: "Gabrielle", lastName: "Li", email: "lig@eastonsd.org"));
+      firstName: "Gabrielle", lastName: "Li", email: "lig@eastonsd.org", fullName: '', id: '', suffix: ''));
   t.add(Teacher(
-      firstName: "John", lastName: "Smith", email: "smithj@eastonsd.org"));
+      firstName: "John", lastName: "Smith", email: "smithj@eastonsd.org", fullName: '', id: '', suffix: ''));
   t.add(Teacher(
-      firstName: "Darius", lastName: "Collins", email: "collins@eastonsd.org"));
+      firstName: "Darius", lastName: "Collins", email: "collins@eastonsd.org", fullName: '', id: '', suffix: ''));
   t.add(Teacher(
-      firstName: "Cristen", lastName: "Charnley", email: "charnleyc@eastonst.org"));
+      firstName: "Cristen", lastName: "Charnley", email: "charnleyc@eastonst.org", fullName: '', id: '', suffix: ''));
   t.add(Teacher(
-      firstName: "Alex", lastName: "Hirsch", email: "hirscha@eastonsd.org"));
+      firstName: "Alex", lastName: "Hirsch", email: "hirscha@eastonsd.org", fullName: '', id: '', suffix: ''));
   t.add(Teacher(
-      firstName: "Bernadette", lastName: "Varela", email: "varelab@eastonsd.org"));
+      firstName: "Bernadette", lastName: "Varela", email: "varelab@eastonsd.org", fullName: '', id: '', suffix: ''));
   t.add(Teacher(
-      firstName: "Elliot", lastName: "Cheng", email: "chenge@eastonsd.org"));
+      firstName: "Elliot", lastName: "Cheng", email: "chenge@eastonsd.org", fullName: '', id: '', suffix: ''));
   t.add(Teacher(
-      firstName: "Bethann", lastName: "Folcher", email: "folcherb@eastonsd.org"));
+      firstName: "Bethann", lastName: "Folcher", email: "folcherb@eastonsd.org", fullName: '', id: '', suffix: ''));
   t.add(Teacher(
-      firstName: "James", lastName: "Hibell", email: "hibellj@eastonsd.org"));
+      firstName: "James", lastName: "Hibell", email: "hibellj@eastonsd.org", fullName: '', id: '', suffix: ''));
   t.add(Teacher(
-      firstName: "Amy", lastName: "Fontno", email: "fontnoa@eastonsd.org"));
+      firstName: "Amy", lastName: "Fontno", email: "fontnoa@eastonsd.org", fullName: '', id: '', suffix: ''));
   t.add(Teacher(
-      firstName: "Brandon", lastName: "Kazan", email: "kazanb@eastonsd.org"));
+      firstName: "Brandon", lastName: "Kazan", email: "kazanb@eastonsd.org", fullName: '', id: '', suffix: ''));
 
 
   return t;
@@ -158,11 +164,11 @@ List<Appointment> _getSchoolEvents() {
 List<Extracurricular> _getExtracurriculars() {
   List<Extracurricular> e = <Extracurricular>[];
   Teacher _teacher1 = Teacher(
-      firstName: "Gabrielle", lastName: "Li", email: "lig@eastonsd.org");
-  Teacher _teacher2 = Teacher(firstName: "Darius", lastName: "Collins", email: "collins@eastonsd.org");
-  Teacher _teacher3 = Teacher(firstName: "John", lastName: "Smith", email: "smithj@eastonsd.org");
-  Teacher _teacher4 = Teacher(firstName: "Bob", lastName: "Jenkins", email: "jenkinsb@gmail.com");
-  Teacher _teacher5 = Teacher(firstName: "John", lastName: "Doe", email: "john.doe@aol.com");
+      firstName: "Gabrielle", lastName: "Li", email: "lig@eastonsd.org", suffix: '', id: '', fullName: '');
+  Teacher _teacher2 = Teacher(firstName: "Darius", lastName: "Collins", email: "collins@eastonsd.org", suffix: '', fullName: '', id: '');
+  Teacher _teacher3 = Teacher(firstName: "John", lastName: "Smith", email: "smithj@eastonsd.org", id: '', fullName: '', suffix: '');
+  Teacher _teacher4 = Teacher(firstName: "Bob", lastName: "Jenkins", email: "jenkinsb@gmail.com", fullName: '', id: '', suffix: '');
+  Teacher _teacher5 = Teacher(firstName: "John", lastName: "Doe", email: "john.doe@aol.com", fullName: '', id: '', suffix: '');
 
   e.add(Extracurricular(
       name: "Future Business Leaders of America",
@@ -233,17 +239,34 @@ class Todo {
 
 class Teacher {
   Teacher({
+    required this.id,
     required this.firstName,
     required this.lastName,
+    required this.fullName,
+    required this.suffix,
     required this.email,
   });
 
+  String id;
   String firstName;
   String lastName;
+  String fullName;
+  String suffix;
   String email;
 
   String getFullName() {
     return firstName + ' ' + lastName;
+  }
+
+  factory Teacher.fromJson(Map<String, dynamic> json) {
+    return Teacher(
+      id: json['id'],
+      firstName: json['firstName'],
+      lastName: json['lastName'],
+      fullName: json['fullName'],
+      suffix: json['suffix'],
+      email: json['email'],
+    );
   }
 }
 

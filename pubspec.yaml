@@ -31,6 +31,7 @@ dependencies:
   concentric_transition: ^1.0.3
   shared_preferences: ^2.0.15
   share_plus: ^4.0.8
+  dio: ^4.0.6
 
 dev_dependencies:
   flutter_test:
