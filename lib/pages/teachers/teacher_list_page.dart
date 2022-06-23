@@ -1,6 +1,7 @@
 /// Package imports
 
 import 'package:flutter/material.dart';
+import 'package:rover_agenda/http_api_client.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -25,6 +26,9 @@ class _TeacherListState extends State<TeacherList> {
 
   final duplicateItems = globals.teachers;
   var teachers = List.empty(growable: true);
+
+  late Future<globals.Teacher> teacher;
+  HttpApiClient _httpApiClientclient = new HttpApiClient();
 
   Widget _buildSearchField() {
     return TextField(
@@ -127,6 +131,7 @@ class _TeacherListState extends State<TeacherList> {
   @override
   void initState() {
     teachers.addAll(duplicateItems);
+    Future<globals.Teacher> teacher = _httpApiClientclient.fetchTeachers();
     super.initState();
   }
 
@@ -146,6 +151,19 @@ class _TeacherListState extends State<TeacherList> {
       drawer: const FlyoutMenu(),
       body: Column(
         children: [
+          FutureBuilder<globals.Teacher>(
+            future: teacher,
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return Text(snapshot.data!.email);
+              } else if (snapshot.hasError) {
+                return Text('${snapshot.error}');
+              }
+
+              // By default, show a loading spinner.
+              return const CircularProgressIndicator();
+            },
+          ),
           Expanded(
             child: ListView.builder(
               shrinkWrap: true,
