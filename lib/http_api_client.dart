@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 
 import 'globals.dart';
@@ -8,22 +9,37 @@ import 'globals.dart';
 class HttpApiClient {
   final String mainUrl = 'https://roveragenda.me';
 
-  Future<Teacher> fetchTeachers() async {
+  Future<List<Teacher>> fetchTeachers() async {
+    List<Teacher> _teachersList = List.empty(growable: true);
+
     final response = await http.get(
       Uri.parse('$mainUrl/api/teachers/all'),
       headers: {
-        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiI3ZTJlMDgwNS03YzNlLTQ5YWItOGUyNi1mMjFiODUzNWI4OGYiLCJuYW1lIjoiYWRtaW4iLCJqdGkiOiI4MDRhOTVkYS0yMWYzLTRhMDgtYjVkMi1kN2M0NjVhMTRhYjciLCJyb2xlIjpbIkFkbWluIiwiVXNlciJdLCJuYmYiOjE2NTU1NzY1NjcsImV4cCI6MTY1NjE4MTM2NywiaWF0IjoxNjU1NTc2NTY3fQ.ZZNIgFa_dxk5vEd8o5WQ2W6KyJmgVAJFGDwV1OKTXeU',
+        'Authorization': 'Bearer ',
       },
     );
 
     if (response.statusCode == 200) {
       // If the server did return a 200 OK response,
       // then parse the JSON.
-      return Teacher.fromJson(jsonDecode(response.body));
+      List<dynamic> values = new List.empty(growable: true);
+      values = json.decode(response.body);
+
+      if(values.length>0){
+        for(int i=0;i<values.length;i++){
+          if(values[i]!=null){
+            Map<String,dynamic> map=values[i];
+            _teachersList .add(Teacher.fromJson(map));
+            debugPrint('Id-------${map['id']}');
+          }
+        }
+      }
+
+      return _teachersList;
     } else {
       // If the server did not return a 200 OK response,
       // then throw an exception.
-      throw Exception('Failed to load album');
+      throw Exception(response.statusCode);
     }
   }
 }
