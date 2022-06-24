@@ -2,6 +2,7 @@
 /// Package imports
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
+import 'dart:math';
 
 
 /// Lists of data
@@ -246,28 +247,6 @@ class FAQ {
   }
 }
 
-class Todo {
-  Todo({
-    required this.id,
-    required this.userId,
-    required this.title,
-    required this.completed,
-  });
-
-  int id;
-  int userId;
-  String title;
-  bool completed;
-
-  factory Todo.fromJson(Map<String, dynamic> json) {
-    return Todo(
-        userId: json['userId'],
-        id: json['id'],
-        title: json['title'],
-        completed: json['completed']);
-  }
-}
-
 class Teacher {
   Teacher({
     required this.id,
@@ -303,29 +282,30 @@ class Teacher {
 
 class Extracurricular {
   Extracurricular({
+    id,
     required this.name,
-    required this.room,
+    room,
     required this.teacher,
     required this.meetingDays,
     required this.description,
   });
 
+  String id = '';
   String name;
-  String room;
+  String room = 'J' + (300 + Random().nextInt(20)).toString();
   Teacher teacher;
   String meetingDays;
   String description;
-/*
+
   factory Extracurricular.fromJson(Map<String, dynamic> json) {
-    return Teacher(
+    return Extracurricular(
       id: json['id'],
-      name: json['firstName'],
-      description: json['lastName'],
-      fullName: json['fullName'],
-      suffix: json['suffix'],
-      email: json['email'],
+      name: json['name'],
+      teacher: Teacher.fromJson(json['teacher']),
+      description: json['description'],
+      meetingDays: json['meetingDates'],
     );
-  }*/
+  }
 }
 
 
