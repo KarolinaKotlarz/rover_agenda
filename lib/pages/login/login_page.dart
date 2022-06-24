@@ -1,8 +1,12 @@
 /// Package imports
+
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_login/flutter_login.dart';
 import 'package:flutter_signin_button/button_view.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:rover_agenda/http_api_client.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 /// Local imports
 import '../schedule/calendar/schedule_page.dart';
@@ -16,15 +20,53 @@ const users = {
 
 /// The class representing the login page
 class Login extends StatelessWidget {
-  const Login({Key? key}) : super(key: key);
+   Login({Key? key}) : super(key: key);
+
+  final HttpApiClient _httpApiClient = HttpApiClient();
+
 
   /// Sets login time for debugging
   Duration get loginTime => const Duration(milliseconds: 2250);
 
   /// Called to authenticate a user
-  Future<String?> _authUser(LoginData data) {
+  Future<String?> _authUser(LoginData data) async {
     debugPrint('Name: ${data.name}, Password: ${data.password}');
-    return Future.delayed(loginTime).then((_) {
+    //get response from ApiClient
+    try {
+      var user = await _httpApiClient.login(
+        'admin',
+        data.password,
+      );
+
+      final prefs = await SharedPreferences.getInstance();
+      prefs.setString('token', user.token);
+      prefs.setString('userId', user.id);
+      prefs.setString('username', user.username);
+    }
+    on Exception catch (_) {
+      return 'Error Authenticating User';
+    }
+
+
+
+    //ScaffoldMessenger.of(context).hideCurrentSnackBar();
+
+    //if there is no error, get the user's accesstoken and pass it to HomeScreen
+    /*if (res['ErrorCode'] == null) {
+      String accessToken = res['access_token'];
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => HomeScreen(accesstoken: accessToken)));
+    } else {
+      //if an error occurs, show snackbar with error message
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text('Error: ${res['Message']}'),
+        backgroundColor: Colors.red.shade300,
+      ));
+    }*/
+    return null;
+    /*return Future.delayed(loginTime).then((_) {
       if (!users.containsKey(data.name)) {
         return 'User does not exist';
       }
@@ -32,7 +74,7 @@ class Login extends StatelessWidget {
         return 'Password does not match';
       }
       return null;
-    });
+    });*/
   }
 
   /// Called to sign up a user
@@ -69,6 +111,7 @@ class Login extends StatelessWidget {
 
       title: 'Rover Agenda',
       logo: const AssetImage('assets/images/rover_agenda_login_icon.png'),
+      userType: LoginUserType.name,
       onLogin: _authUser,
       onSignup: _signupUser,
       loginProviders: <LoginProvider>[

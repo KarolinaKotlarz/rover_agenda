@@ -1,10 +1,13 @@
 /// Package imports
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:async';
 import 'dart:core';
 
 /// Local imports
 import '../../globals.dart' as globals;
+import '../../http_api_client.dart';
 
 /// The class representing the FAQs page
 class FAQs extends StatefulWidget {
@@ -16,12 +19,15 @@ class FAQs extends StatefulWidget {
 
 class _TodosState extends State<FAQs> {
   bool _customTileExpanded = false;
-  late Future FAQsFuture;
+  late Future<List<globals.FAQ>> futureFAQs;
+  late SharedPreferences prefs;
+
+  HttpApiClient _httpApiClientclient = new HttpApiClient();
 
   @override
-  void initState() {
+  void initState()  {
     super.initState();
-    FAQsFuture = globals.FAQs;
+    futureFAQs = _httpApiClientclient.fetchFAQs();
   }
 
   // List<bool> _expanded = List<bool>.filled(globals.Todos, false);
@@ -31,15 +37,33 @@ class _TodosState extends State<FAQs> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('FAQs'),
-      ),
-      body: Container(
-          child: FutureBuilder(
-            future: FAQsFuture,
-            builder:
-              (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-              switch (snapshot.connectionState) {
+        appBar: AppBar(
+          title: const Text('FAQs'),
+        ),
+        body: Container(
+            child: FutureBuilder<List<globals.FAQ>>(
+                future: futureFAQs,
+                builder: (BuildContext context, snapshot) {
+                  if (snapshot.hasData) {
+                    return ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: snapshot.data?.length,
+                        itemBuilder: (context, index) {
+                          var faq = snapshot.data![index];
+                          return ExpansionTile(
+                            title: Text(faq.question),
+                            children: <Widget>[
+                              Text(faq.answer),
+                            ],
+                          );
+                        });
+                  } else if (snapshot.hasError) {
+                    return Text('${snapshot.error}');
+                  }
+
+                  // By default, show a loading spinner.
+                  return const CircularProgressIndicator();
+                  /*switch (snapshot.connectionState) {
                 // This checks the connection state and updates the UI accordingly.
                 case ConnectionState.none:
                   return Text('None');
@@ -64,10 +88,7 @@ class _TodosState extends State<FAQs> {
                   );
                 default:
                   return Text('Default');
-              }
-            }
-          )
-      )
-    );
+              }*/
+                })));
   }
 }

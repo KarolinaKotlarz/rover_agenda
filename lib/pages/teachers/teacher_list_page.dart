@@ -8,6 +8,7 @@ import 'package:url_launcher/url_launcher.dart';
 /// Local imports
 import '../../components/flyout_menu.dart';
 import '../../globals.dart' as globals;
+import '../../globals.dart';
 
 /// The class representing the teachers list page
 class TeacherList extends StatefulWidget {
@@ -24,10 +25,10 @@ class _TeacherListState extends State<TeacherList> {
   bool _isSearching = false;
   String searchQuery = "Search query";
 
-  final duplicateItems = globals.teachers;
+  late List<Teacher> duplicateTeachers;
   var teachers = List.empty(growable: true);
 
-  late Future<globals.Teacher> teacher;
+  late Future<List<Teacher>> futureTeachers;
   HttpApiClient _httpApiClientclient = new HttpApiClient();
 
   Widget _buildSearchField() {
@@ -101,13 +102,13 @@ class _TeacherListState extends State<TeacherList> {
       updateSearchQuery("");
 
       teachers.clear();
-      teachers.addAll(duplicateItems);
+      teachers.addAll(duplicateTeachers);
     });
   }
 
   void filterSearchResults(String query) {
     List<globals.Teacher> dummySearchList = List.empty(growable: true);
-    dummySearchList.addAll(duplicateItems);
+    dummySearchList.addAll(duplicateTeachers);
     if(query.isNotEmpty) {
       List<globals.Teacher> dummyListData = List.empty(growable: true);
       dummySearchList.forEach((item) {
@@ -123,15 +124,20 @@ class _TeacherListState extends State<TeacherList> {
     } else {
       setState(() {
         teachers.clear();
-        teachers.addAll(duplicateItems);
+        teachers.addAll(duplicateTeachers);
       });
     }
   }
 
   @override
   void initState() {
-    teachers.addAll(duplicateItems);
-    Future<globals.Teacher> teacher = _httpApiClientclient.fetchTeachers();
+    futureTeachers = _httpApiClientclient.fetchTeachers();
+    _httpApiClientclient.fetchTeachers().then((List<globals.Teacher> result){
+      setState(() {
+        duplicateTeachers = result;
+        teachers.addAll(duplicateTeachers);
+      });
+    });
     super.initState();
   }
 
@@ -149,66 +155,65 @@ class _TeacherListState extends State<TeacherList> {
         actions: _buildActions(),
       ),
       drawer: const FlyoutMenu(),
-      body: Column(
-        children: [
-          FutureBuilder<globals.Teacher>(
-            future: teacher,
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                return Text(snapshot.data!.email);
-              } else if (snapshot.hasError) {
-                return Text('${snapshot.error}');
-              }
-
-              // By default, show a loading spinner.
-              return const CircularProgressIndicator();
-            },
-          ),
-          Expanded(
-            child: ListView.builder(
-              shrinkWrap: true,
-              itemCount: teachers.length,
-              itemBuilder: (context, index) {
-                var teacher = teachers[index];
-                return ListTile(
-                  leading: CircleAvatar(
-                    backgroundColor: Colors.white,
-                    backgroundImage: AssetImage('assets/images/placeholder_image.png'),
+      body: FutureBuilder<List<globals.Teacher>>(
+        future: futureTeachers,
+        builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          return Column(
+            children: [
+              Expanded(
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: teachers.length,
+                  itemBuilder: (context, index) {
+                    var teacher = teachers[index];
+                    return ListTile(
+                      leading: CircleAvatar(
+                        backgroundColor: Colors.white,
+                        backgroundImage: AssetImage('assets/images/placeholder_image.png'),
+                      ),
+                      title: Text(
+                        teacher.firstName + " " + teacher.lastName,
+                      ),
+                      subtitle: Text(teacher.email),
+                      trailing: Container(
+                        child: IconButton(
+                          onPressed: () {
+                            /// Calls method that opens the default email app
+                            _launchEmail(
+                                emailTo: teacher.email);
+                            Navigator.pop(context);
+                          },
+                          icon: const Icon(
+                            Icons.email_outlined,
+                            color: Colors.red,
+                          ),
+                          iconSize: 30,
+                        ),
+                        decoration: const BoxDecoration(
+                          borderRadius: const BorderRadius.all(const Radius.circular(30.0)),
+                        ),
+                      ),
+                      onTap: () {
+                        /// TODO: Teacher pop-up
+                      },
+                    );
+                  }
                   ),
-                  title: Text(
-                    teacher.firstName + " " + teacher.lastName,
-                  ),
-                  subtitle: Text(teacher.email),
-                  trailing: /*Icon(Icons.email_outlined, color: Colors.red, size: 40,)*/ Container(
-                    child: IconButton(
-                      onPressed: () {
-                        /// Calls method that opens the default email app
-                        _launchEmail(
-                            emailTo: teacher.email);
-                        Navigator.pop(context);
-                    },
-                    icon: const Icon(
-                      Icons.email_outlined,
-                      color: Colors.red,
-                    ),
-                    iconSize: 30,
-                  ),
-                  decoration: const BoxDecoration(
-                    borderRadius: const BorderRadius.all(const Radius.circular(30.0)),
-                  ),
-                ),
-                onTap: () {
-                    /// TODO: Teacher pop-up
-                },
-                );
-              }
-            ),
-          ),
-        ],
-      ),
+              ),
+            ]
+          );
+        } else if (snapshot.hasError) {
+          return Text('${snapshot.error}');
+        }
+        // By default, show a loading spinner.
+        return Center(child: CircularProgressIndicator(),);
+        },
+      )
     );
-
   }
+
+
   /// Opens the default email app and passes the composed email to it
   Future _launchEmail(
       {required emailTo}) async {
