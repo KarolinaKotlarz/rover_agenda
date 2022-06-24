@@ -8,6 +8,7 @@ import 'package:url_launcher/url_launcher.dart';
 /// Local imports
 import '../../components/flyout_menu.dart';
 import '../../globals.dart' as globals;
+import '../../globals.dart';
 
 /// The class representing the teachers list page
 class TeacherList extends StatefulWidget {
@@ -130,14 +131,20 @@ class _TeacherListState extends State<TeacherList> {
 
   @override
   void initState() {
-    teachers.addAll(duplicateItems);
-    Future<globals.Teacher> teacher = _httpApiClientclient.fetchTeachers();
+    futureTeachers = _httpApiClientclient.fetchTeachers();
+    //teachers.addAll(duplicateItems);
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return FutureBuilder<List<globals.Teacher>>(
+      future: futureTeachers,
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          //duplicateItems.clear();
+          //duplicateItems.addAll(snapshot.requireData);
+          return Scaffold(
       appBar: AppBar(
         leading: _isSearching ?  BackButton() : Builder(builder: (context) => // Ensure Scaffold is in context
           IconButton(
@@ -150,12 +157,50 @@ class _TeacherListState extends State<TeacherList> {
       ),
       drawer: const FlyoutMenu(),
       body: Column(
-        children: [
-          FutureBuilder<globals.Teacher>(
-            future: teacher,
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                return Text(snapshot.data!.email);
+              children: [
+                 Expanded(
+                    child: ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: teachers.length,
+                        itemBuilder: (context, index) {
+                          var teacher = teachers[index];
+                          return ListTile(
+                            leading: CircleAvatar(
+                              backgroundColor: Colors.white,
+                              backgroundImage: AssetImage('assets/images/placeholder_image.png'),
+                            ),
+                            title: Text(
+                              teacher.firstName + " " + teacher.lastName,
+                            ),
+                            subtitle: Text(teacher.email),
+                            trailing: /*Icon(Icons.email_outlined, color: Colors.red, size: 40,)*/ Container(
+                              child: IconButton(
+                                onPressed: () {
+                                  /// Calls method that opens the default email app
+                                  _launchEmail(
+                                      emailTo: teacher.email);
+                                  Navigator.pop(context);
+                                },
+                                icon: const Icon(
+                                  Icons.email_outlined,
+                                  color: Colors.red,
+                                ),
+                                iconSize: 30,
+                              ),
+                              decoration: const BoxDecoration(
+                                borderRadius: const BorderRadius.all(const Radius.circular(30.0)),
+                              ),
+                            ),
+                            onTap: () {
+                              /// TODO: Teacher pop-up
+                            },
+                          );
+                        }
+                    ),
+                  ),
+                ]
+      )
+              );
               } else if (snapshot.hasError) {
                 return Text('${snapshot.error}');
               }
@@ -163,8 +208,8 @@ class _TeacherListState extends State<TeacherList> {
               // By default, show a loading spinner.
               return const CircularProgressIndicator();
             },
-          ),
-          Expanded(
+
+          /*Expanded(
             child: ListView.builder(
               shrinkWrap: true,
               itemCount: teachers.length,
@@ -179,7 +224,7 @@ class _TeacherListState extends State<TeacherList> {
                     teacher.firstName + " " + teacher.lastName,
                   ),
                   subtitle: Text(teacher.email),
-                  trailing: /*Icon(Icons.email_outlined, color: Colors.red, size: 40,)*/ Container(
+                  trailing: Container(
                     child: IconButton(
                       onPressed: () {
                         /// Calls method that opens the default email app
@@ -203,12 +248,13 @@ class _TeacherListState extends State<TeacherList> {
                 );
               }
             ),
-          ),
-        ],
-      ),
-    );
+          ),*/
+
+      );
 
   }
+
+
   /// Opens the default email app and passes the composed email to it
   Future _launchEmail(
       {required emailTo}) async {
