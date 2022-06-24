@@ -204,14 +204,45 @@ List<Extracurricular> _getExtracurriculars() {
 }
 
 /// Class definitions
+
+class User {
+  User({
+    required this.id,
+    required this.username,
+    required this.token
+  });
+
+  String id;
+  String username;
+  String token;
+
+  factory User.fromJson(Map<String, dynamic> json) {
+    return User(
+      id: json['id'],
+      username: json['username'],
+      token: json['token'],
+    );
+  }
+}
+
 class FAQ {
   FAQ({
+    id,
     required this.question,
     required this.answer,
   });
 
+  String id = '';
   String question;
   String answer;
+
+  factory FAQ.fromJson(Map<String, dynamic> json) {
+    return FAQ(
+      id: json['id'],
+      question: json['question'],
+      answer: json['answer'],
+    );
+  }
 }
 
 class Todo {
@@ -283,6 +314,17 @@ class Extracurricular {
   Teacher teacher;
   String meetingDays;
   String description;
+/*
+  factory Extracurricular.fromJson(Map<String, dynamic> json) {
+    return Teacher(
+      id: json['id'],
+      name: json['firstName'],
+      description: json['lastName'],
+      fullName: json['fullName'],
+      suffix: json['suffix'],
+      email: json['email'],
+    );
+  }*/
 }
 
 
