@@ -176,13 +176,14 @@ class HttpApiClient {
     }
   }
 
-/*
+
   Future<List<Extracurricular>> fetchExtracurriculars() async {
     List<Extracurricular> _extracurricularsList = List.empty(growable: true);
     prefs = await SharedPreferences.getInstance();
     String token = prefs.getString('token') ?? '';
+
     final response = await http.get(
-      Uri.parse('$mainUrl/api/teachers/all'),
+      Uri.parse('$mainUrl/api/extracurriculars/all'),
       headers: {
         'Authorization': 'Bearer $token',
       },
@@ -193,6 +194,8 @@ class HttpApiClient {
       /// then parse the JSON.
       var res = new Map<String, dynamic>.from(json.decode(response.body));
 
+      debugPrint(res['result'].toString());
+
       _extracurricularsList = (res['result'] as List<dynamic>).map((d) => Extracurricular.fromJson(d)).toList();
 
       return _extracurricularsList;
@@ -202,5 +205,4 @@ class HttpApiClient {
       throw Exception(response.statusCode);
     }
   }
-*/
 }

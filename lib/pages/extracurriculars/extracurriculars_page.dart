@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 /// Local imports
 import '../../components/flyout_menu.dart';
 import '../../globals.dart';
+import '../../http_api_client.dart';
 import '../../pages/teachers/email_form_page.dart';
 import '../../globals.dart' as globals;
 
@@ -29,8 +30,11 @@ class _ExtracurricularsState extends State<Extracurriculars> {
   bool _isSearching = false;
   String searchQuery = "Search query";
 
-  final duplicateItems = globals.extracurriculars;
+  late List<Extracurricular> duplicateExtracurriculars;
   var extracurriculars = List.empty(growable: true);
+
+  late Future<List<Extracurricular>> futureExtracurriculars;
+  HttpApiClient _httpApiClientclient = new HttpApiClient();
 
   Widget _buildSearchField() {
     return TextField(
@@ -103,13 +107,13 @@ class _ExtracurricularsState extends State<Extracurriculars> {
       updateSearchQuery("");
 
       extracurriculars.clear();
-      extracurriculars.addAll(duplicateItems);
+      extracurriculars.addAll(duplicateExtracurriculars);
     });
   }
 
   void filterSearchResults(String query) {
     List<globals.Extracurricular> dummySearchList = List.empty(growable: true);
-    dummySearchList.addAll(duplicateItems);
+    dummySearchList.addAll(duplicateExtracurriculars);
     if(query.isNotEmpty) {
       List<globals.Extracurricular> dummyListData = List.empty(growable: true);
       dummySearchList.forEach((item) {
@@ -125,14 +129,20 @@ class _ExtracurricularsState extends State<Extracurriculars> {
     } else {
       setState(() {
         extracurriculars.clear();
-        extracurriculars.addAll(duplicateItems);
+        extracurriculars.addAll(duplicateExtracurriculars);
       });
     }
   }
 
   @override
   void initState() {
-    extracurriculars.addAll(duplicateItems);
+    futureExtracurriculars = _httpApiClientclient.fetchExtracurriculars();
+    _httpApiClientclient.fetchExtracurriculars().then((List<Extracurricular> result){
+      setState(() {
+        duplicateExtracurriculars = result;
+        extracurriculars.addAll(duplicateExtracurriculars);
+      });
+    });
     super.initState();
   }
 
@@ -150,42 +160,54 @@ class _ExtracurricularsState extends State<Extracurriculars> {
         actions: _buildActions(),
       ),
       drawer: const FlyoutMenu(),
-      body: Column(
-        children: [
-          Expanded(
-            child: ListView.builder(
-            shrinkWrap: true,
-            itemCount: extracurriculars.length,
-            itemBuilder: (context, index) {
-              var e = extracurriculars[index];
-              /// Defines the widget that displays each extracurricular
-              return OpenContainer<bool>(
-                transitionType: _transitionType,
-                openBuilder: (BuildContext _, VoidCallback openContainer) {
-                  return _DetailsPage(extracurricular: e);
-                },
-                tappable: false,
-                closedShape: const RoundedRectangleBorder(),
-                closedElevation: 0.0,
-                closedBuilder: (BuildContext _, VoidCallback openContainer) {
-                  return ListTile(
-                    leading: CircleAvatar(
-                      backgroundColor: Colors.white,
-                      backgroundImage: AssetImage(
-                          'assets/images/placeholder_image.png'),
-                    ),
-                    onTap: openContainer,
-                    title: Text(e.name),
-                    subtitle: Text('Adviser: ' + e.teacher.firstName + ' ' +
-                        e.teacher.lastName),
-                  );
-                },
-              );
-            }
-          ),
-        ),
-      ],
-    ));
+      body: FutureBuilder<List<Extracurricular>>(
+        future: futureExtracurriculars,
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return Column(
+              children: [
+                Expanded(
+                  child: ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: extracurriculars.length,
+                  itemBuilder: (context, index) {
+                    var e = extracurriculars[index];
+                    /// Defines the widget that displays each extracurricular
+                    return OpenContainer<bool>(
+                      transitionType: _transitionType,
+                      openBuilder: (BuildContext _, VoidCallback openContainer) {
+                        return _DetailsPage(extracurricular: e);
+                      },
+                      tappable: false,
+                      closedShape: const RoundedRectangleBorder(),
+                      closedElevation: 0.0,
+                      closedBuilder: (BuildContext _, VoidCallback openContainer) {
+                        return ListTile(
+                          leading: CircleAvatar(
+                            backgroundColor: Colors.white,
+                            backgroundImage: AssetImage(
+                                'assets/images/placeholder_image.png'),
+                          ),
+                          onTap: openContainer,
+                          title: Text(e.name),
+                          subtitle: Text('Adviser: ' + e.teacher.firstName + ' ' +
+                              e.teacher.lastName),
+                        );
+                      },
+                    );
+                  }
+                  ),
+                ),
+              ],
+            );
+          } else if (snapshot.hasError) {
+            return Text('${snapshot.error}');
+          }
+          // By default, show a loading spinner.
+          return Center(child: CircularProgressIndicator(),);
+        },
+      )
+    );
   }
 }
 
