@@ -122,13 +122,13 @@ class HttpApiClient {
     }
   }
 
-  Future<List<FAQ>> fetchLunchMenuItems() async {
-    List<FAQ> _FAQsList = List.empty(growable: true);
+  Future<List<LunchMenuItem>> fetchLunchMenuItems() async {
+    List<LunchMenuItem> _lunchMenuItemsList = List.empty(growable: true);
     prefs = await SharedPreferences.getInstance();
     String token = prefs.getString('token') ?? '';
 
     final response = await http.get(
-      Uri.parse('$mainUrl/api/teachers/all'),
+      Uri.parse('$mainUrl/api/lunchmenuitems/all'),
       headers: {
         'Authorization': 'Bearer $token',
       },
@@ -139,9 +139,11 @@ class HttpApiClient {
       /// then parse the JSON.
       var res = new Map<String, dynamic>.from(json.decode(response.body));
 
-      _FAQsList = (res['result'] as List<dynamic>).map((d) => FAQ.fromJson(d)).toList();
+      debugPrint(response.body);
 
-      return _FAQsList;
+      _lunchMenuItemsList = (res['result'] as List<dynamic>).map((d) => LunchMenuItem.fromJson(d)).toList();
+
+      return _lunchMenuItemsList;
     } else {
       // If the server did not return a 200 OK response,
       // then throw an exception.
@@ -175,7 +177,6 @@ class HttpApiClient {
       throw Exception(response.statusCode);
     }
   }
-
 
   Future<List<Extracurricular>> fetchExtracurriculars() async {
     List<Extracurricular> _extracurricularsList = List.empty(growable: true);

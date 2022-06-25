@@ -14,10 +14,10 @@ class FAQs extends StatefulWidget {
   const FAQs({Key? key}) : super(key: key);
 
   @override
-  State<FAQs> createState() => _TodosState();
+  State<FAQs> createState() => _FAQsState();
 }
 
-class _TodosState extends State<FAQs> {
+class _FAQsState extends State<FAQs> {
   bool _customTileExpanded = false;
   late Future<List<globals.FAQ>> futureFAQs;
   late SharedPreferences prefs;

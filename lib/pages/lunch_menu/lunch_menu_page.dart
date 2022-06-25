@@ -7,10 +7,25 @@ import 'package:syncfusion_flutter_calendar/calendar.dart';
 /// Local imports
 import '../../components/flyout_menu.dart';
 import '../../globals.dart' as globals;
+import '../../globals.dart';
+import '../../http_api_client.dart';
 
 /// The class representing the lunch menu page
-class LunchMenu extends StatelessWidget {
-  const LunchMenu({Key? key}) : super(key: key);
+class LunchMenu extends StatefulWidget {
+  LunchMenu({Key? key}) : super(key: key);
+
+  @override
+  State<LunchMenu> createState() => _LunchMenuState();
+}
+
+  class _LunchMenuState extends State<LunchMenu> {
+    HttpApiClient _httpApiClientclient = new HttpApiClient();
+    late Future<List<globals.LunchMenuItem>> futureLunchMenuItems;
+
+    @override
+    void initState() {
+      futureLunchMenuItems = _httpApiClientclient.fetchLunchMenuItems();
+    }
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +34,11 @@ class LunchMenu extends StatelessWidget {
         title: const Text('Lunch Menu'),
       ),
       drawer: const FlyoutMenu(), // Imports the flyout menu
-      body: SfCalendar(
+      body: FutureBuilder<List<globals.LunchMenuItem>>(
+    future: futureLunchMenuItems,
+    builder: (context, snapshot) {
+    if (snapshot.hasData) {
+    return SfCalendar(
       /// The parameters of the calendar
         showDatePickerButton: true,
         view: CalendarView.day,
@@ -33,7 +52,7 @@ class LunchMenu extends StatelessWidget {
         onTap: (CalendarTapDetails details) => showDialog<String>(
           context: context,
           builder: (BuildContext context) => AlertDialog(
-            title:  Text('test'),
+            title:  Text(snapshot.requireData[0].itemName),
             content: Text(""),
             actions: <Widget>[
               TextButton(
@@ -47,12 +66,19 @@ class LunchMenu extends StatelessWidget {
             ],
           ),
         ),
-        dataSource: _LunchDataSource(globals.lunches), /// Gets the lunches from the globals file
-      ),
-
+        dataSource: _getCalendarDataSource(snapshot.requireData) /*_LunchDataSource(duplicateLunches),*/ /// Gets the lunches from the globals file
+      );
+      } else if (snapshot.hasError) {
+      return Text('${snapshot.error}');
+      }
+      // By default, show a loading spinner.
+      return Center(child: CircularProgressIndicator(),);
+    },
+      )
     );
   }
 }
+
 
 
 
@@ -62,3 +88,65 @@ class _LunchDataSource extends CalendarDataSource {
     appointments = source;
   }
 }
+
+CalendarDataSource _getCalendarDataSource(List<LunchMenuItem> lunches) {
+  List<Appointment> meetings = <Appointment>[];
+  for(int i = 0; i < lunches.length; i++)
+    {
+      meetings.add(Appointment(
+          startTime: lunches[i].startTime,
+          endTime: lunches[i].endTime,
+          subject: lunches[i].itemName,
+          color: Color.fromARGB(200, 2, 40, 1)
+      ));
+    }
+/*  meetings.add(globals.LunchMenuItem(
+      itemName: 'meeting',
+      startTime: DateTime(2022, 6, 24, 3),
+      endTime: DateTime(2022, 6, 24, 4),
+      color: Colors.green,));*/
+
+  return _LunchDataSource(meetings);
+}
+
+/*
+class _LunchDataSource extends CalendarDataSource {
+  _LunchDataSource(List<globals.LunchMenuItem> source){
+    appointments = source;
+  }
+
+  @override
+  DateTime getStartTime(int index) {
+    return appointments![index].startTime;
+  }
+
+  @override
+  DateTime getEndTime(int index) {
+    return appointments![index].endTime;
+  }
+
+  @override
+  bool isAllDay(int index) {
+    return false;
+  }
+
+  @override
+  String getSubject(int index) {
+    return appointments![index].itemName;
+  }
+
+  @override
+  String getStartTimeZone(int index) {
+    return 'US/Eastern';
+  }
+
+  @override
+  String getEndTimeZone(int index) {
+    return 'US/Eastern';
+  }
+
+  @override
+  Color getColor(int index) {
+    return appointments![index].color;
+  }
+}*/

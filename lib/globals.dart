@@ -1,6 +1,7 @@
 
 /// Package imports
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 import 'dart:math';
 
@@ -159,6 +160,31 @@ List<Appointment> _getSchoolEvents() {
     color: Colors.lightBlue,));
 
   return e;
+}
+
+class LunchMenuItem {
+  LunchMenuItem({
+    id,
+    required this.startTime,
+    required this.endTime,
+    required this.itemName,
+    color
+  });
+
+  String id = '';
+  DateTime startTime;
+  DateTime endTime;
+  String itemName;
+  Color color = Colors.black;
+
+  factory LunchMenuItem.fromJson(Map<String, dynamic> json) {
+    return LunchMenuItem(
+      id: json['id'],
+      startTime: DateFormat("yyyy-MM-ddTHH:mm:ss").parse((json['startTime'])),
+      endTime: DateFormat("yyyy-MM-ddTHH:mm:ss").parse((json['endTime'])),
+      itemName: json['name'],
+    );
+  }
 }
 
 /// Gets the extracurriculars
