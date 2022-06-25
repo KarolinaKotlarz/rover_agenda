@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_login/flutter_login.dart';
 import 'package:flutter_signin_button/button_view.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:rover_agenda/http_api_client.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -23,6 +24,11 @@ class Login extends StatelessWidget {
    Login({Key? key}) : super(key: key);
 
   final HttpApiClient _httpApiClient = HttpApiClient();
+   GoogleSignIn _googleSignIn = GoogleSignIn(
+     scopes: [
+       'email',
+     ],
+   );
 
 
 
@@ -131,9 +137,11 @@ class Login extends StatelessWidget {
           button: Buttons.GoogleDark,
           label: "Sign in with Google",
           callback: () async {
-            debugPrint('start linkedin sign in');
-            await Future.delayed(loginTime);
-            debugPrint('stop linkedin sign in');
+            try {
+              await _googleSignIn.signIn();
+            } catch (error) {
+              return error.toString();
+            }
             return null;
           },
         ),
