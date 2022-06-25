@@ -51,4 +51,4 @@ Further instructions can be found within the documentation for Rover Agenda.
 
 Rover Agenda is an app designed by Karolina Kotlarz, Vincent Lauro, and Emma Li.
 
-Further information can be found in the Rover Agenda Documentation: [link]
+Further information can be found in the Rover Agenda Documentation: https://github.com/KarolinaKotlarz/rover_agenda/wiki/Documentation
