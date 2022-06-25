@@ -91,13 +91,17 @@ class _LunchDataSource extends CalendarDataSource {
 
 CalendarDataSource _getCalendarDataSource(List<LunchMenuItem> lunches) {
   List<Appointment> meetings = <Appointment>[];
+  List<Color> colors = <Color>[];
+
+  colors.add(Color.fromARGB(200, 2, 40, 1));
+
   for(int i = 0; i < lunches.length; i++)
     {
       meetings.add(Appointment(
           startTime: lunches[i].startTime,
           endTime: lunches[i].endTime,
           subject: lunches[i].itemName,
-          color: Color.fromARGB(200, 2, 40, 1)
+          color: colors[i],
       ));
     }
 /*  meetings.add(globals.LunchMenuItem(
