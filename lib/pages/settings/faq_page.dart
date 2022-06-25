@@ -53,7 +53,7 @@ class _TodosState extends State<FAQs> {
                           return ExpansionTile(
                             title: Text(faq.question),
                             children: <Widget>[
-                              Text(faq.answer),
+                              Padding(padding: EdgeInsets.all(15), child: Text(faq.answer)),
                             ],
                           );
                         });
