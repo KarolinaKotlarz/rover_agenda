@@ -187,6 +187,34 @@ class LunchMenuItem {
   }
 }
 
+class Block {
+  Block({
+    id,
+    required this.startTime,
+    required this.endTime,
+    required this.subject,
+    required this.teacher,
+    color
+  });
+
+  String id = '';
+  DateTime startTime;
+  DateTime endTime;
+  String subject;
+  Teacher teacher;
+  Color color = Colors.black;
+
+  factory Block.fromJson(Map<String, dynamic> json) {
+    return Block(
+      id: json['id'],
+      startTime: DateFormat("yyyy-MM-ddTHH:mm:ss").parse((json['startTime'])),
+      endTime: DateFormat("yyyy-MM-ddTHH:mm:ss").parse((json['endTime'])),
+      teacher: Teacher.fromJson(json['teacher']),
+      subject: json['name'],
+    );
+  }
+}
+
 /// Gets the extracurriculars
 List<Extracurricular> _getExtracurriculars() {
   List<Extracurricular> e = <Extracurricular>[];

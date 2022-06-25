@@ -151,13 +151,13 @@ class HttpApiClient {
     }
   }
 
-  Future<List<FAQ>> fetchClasses(String userId) async {
-    List<FAQ> _FAQsList = List.empty(growable: true);
+  Future<List<Block>> fetchClasses() async {
+    List<Block> _blocksList = List.empty(growable: true);
     prefs = await SharedPreferences.getInstance();
     String token = prefs.getString('token') ?? '';
 
     final response = await http.get(
-      Uri.parse('$mainUrl/api/teachers/all'),
+      Uri.parse('$mainUrl/api/classes/all'),
       headers: {
         'Authorization': 'Bearer $token',
       },
@@ -168,12 +168,16 @@ class HttpApiClient {
       /// then parse the JSON.
       var res = new Map<String, dynamic>.from(json.decode(response.body));
 
-      _FAQsList = (res['result'] as List<dynamic>).map((d) => FAQ.fromJson(d)).toList();
+      _blocksList = (res['result'] as List<dynamic>).map((d) => Block.fromJson(d)).toList();
 
-      return _FAQsList;
+      debugPrint(response.body);
+
+      debugPrint(_blocksList[0].id);
+
+      return _blocksList;
     } else {
-      // If the server did not return a 200 OK response,
-      // then throw an exception.
+      /// If the server did not return a 200 OK response,
+      /// then throw an exception.
       throw Exception(response.statusCode);
     }
   }

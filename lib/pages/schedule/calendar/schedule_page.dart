@@ -11,7 +11,9 @@ import 'package:intl/intl.dart';
 
 /// Calendar import
 import 'package:syncfusion_flutter_calendar/calendar.dart';
+import 'package:syncfusion_flutter_calendar/calendar.dart';
 
+import '../../../http_api_client.dart';
 /// Local imports
 import '../model/sample_view.dart';
 import 'appointment_editor.dart';
@@ -60,6 +62,9 @@ class ScheduleCalendarState extends SampleViewState {
   late List<DateTime> _visibleDates;
   CalendarView _view = CalendarView.workWeek;
 
+  HttpApiClient _httpApiClientclient = new HttpApiClient();
+  late Future<List<globals.Block>> futureClasses;
+
   Appointment? _selectedAppointment;
   bool _isAllDay = false;
   String _subject = '';
@@ -68,11 +73,29 @@ class ScheduleCalendarState extends SampleViewState {
   @override
   void initState() {
     calendarController.view = _view;
-    _dataSource = _AppointmentDataSource(_getRecursiveAppointments());
+    futureClasses = _httpApiClientclient.fetchClasses();
+
+    _httpApiClientclient.fetchClasses().then((List<globals.Block> result){
+      setState(() {
+        _dataSource = _AppointmentDataSource(_getRecursiveAppointments(result));
+      });
+    });
+
     super.initState();
   }
 
+  Future<List<globals.Block>> _getFutureClasses() {
+    HttpApiClient _httpApiClientclient = new HttpApiClient();
+    return _httpApiClientclient.fetchClasses();
+  }
+
   void _onCalendarTapped(CalendarTapDetails calendarTapDetails) {
+
+    _httpApiClientclient.fetchClasses().then((List<globals.Block> result){
+      setState(() {
+        _dataSource = _AppointmentDataSource(_getRecursiveAppointments(result));
+      });
+    });
     /// Condition added to open the editor, when the calendar elements tapped
     /// other than the header.
     if (calendarTapDetails.targetElement == CalendarElement.header ||
@@ -129,6 +152,8 @@ class ScheduleCalendarState extends SampleViewState {
 
                 _dataSource.appointments.add(appointment[0]);
 
+                ///TODO: fix this
+
                 SchedulerBinding.instance
                     ?.addPostFrameCallback((Duration duration) {
                   _dataSource.notifyListeners(
@@ -144,78 +169,99 @@ class ScheduleCalendarState extends SampleViewState {
                     /// To remove the created appointment when the pop-up closed
                     /// without saving the appointment.
                     _dataSource.appointments.removeAt(
+
+                      ///TODO: send this
                         _dataSource.appointments.indexOf(newAppointment));
-                    _dataSource.notifyListeners(CalendarDataSourceAction.remove,
+                    _dataSource.notifyListeners(
+                        CalendarDataSourceAction.remove,
                         <Appointment>[newAppointment]);
                   }
                   return true;
                 },
-                child: Center(
-                    child: SizedBox(
-                        width: _isAppointmentTapped ? 400 : 500,
-                        height: _isAppointmentTapped
-                            ? (_selectedAppointment!.location == null ||
-                                    _selectedAppointment!.location!.isEmpty
-                                ? 150
-                                : 200)
-                            : 400,
-                        child: Theme(
-                            data: ThemeData(
-                              primarySwatch: Colors.red,
-                            ),
-                            child: Card(
-                              margin: EdgeInsets.zero,
-                              color: model.cardThemeColor,
-                              shape: const RoundedRectangleBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(4))),
-                              child: _isAppointmentTapped
-                                  ? displayAppointmentDetails(
-                                      context,
-                                      targetElement,
-                                      selectedDate,
-                                      model,
-                                      _selectedAppointment!,
-                                      _colorCollection,
-                                      _colorNames,
-                                      _dataSource,
-                                      _timeZoneCollection,
-                                      _visibleDates)
-                                  : PopUpAppointmentEditor(
-                                      model,
-                                      newAppointment,
-                                      appointment,
-                                      _dataSource,
-                                      _colorCollection,
-                                      _colorNames,
-                                      _selectedAppointment!,
-                                      _timeZoneCollection,
-                                      _visibleDates),
-                            )))),
+                child: FutureBuilder<List<globals.Block>>(
+                  future: futureClasses,
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      return Center(
+                          child: SizedBox(
+                              width: _isAppointmentTapped ? 400 : 500,
+                              height: _isAppointmentTapped
+                                  ? (_selectedAppointment!.location == null ||
+                                  _selectedAppointment!.location!.isEmpty
+                                  ? 150
+                                  : 200)
+                                  : 400,
+                              child: Theme(
+                                  data: ThemeData(
+                                    primarySwatch: Colors.red,
+                                  ),
+                                  child: Card(
+                                    margin: EdgeInsets.zero,
+                                    color: model.cardThemeColor,
+                                    shape: const RoundedRectangleBorder(
+                                        borderRadius:
+                                        BorderRadius.all(Radius.circular(4))),
+                                    child: _isAppointmentTapped
+                                        ? displayAppointmentDetails(
+                                        context,
+                                        targetElement,
+                                        selectedDate,
+                                        model,
+                                        _selectedAppointment!,
+                                        _colorCollection,
+                                        _colorNames,
+                                        _dataSource,
+                                        _timeZoneCollection,
+                                        _visibleDates)
+                                        : PopUpAppointmentEditor(
+                                        model,
+                                        newAppointment,
+                                        appointment,
+                                        _dataSource,
+                                        _colorCollection,
+                                        _colorNames,
+                                        _selectedAppointment!,
+                                        _timeZoneCollection,
+                                        _visibleDates),
+                                  ))));
+                    }
+                    else if (snapshot.hasError) {
+                      return Text('${snapshot.error}');
+                    }
+                    else {
+                      // By default, show a loading spinner.
+                      return Center(child: CircularProgressIndicator(),);
+                    }
+                  },
+                ),
               );
             });
-      } else {
-        /// Navigates to the appointment editor page on mobile
-        Navigator.push<Widget>(
-          context,
-          MaterialPageRoute<Widget>(
-              builder: (BuildContext context) => AppointmentEditor(
-                  model,
-                  _selectedAppointment,
-                  targetElement,
-                  selectedDate,
-                  _colorCollection,
-                  _colorNames,
-                  _dataSource,
-                  _timeZoneCollection)),
-        );
       }
+             else {
+              /// Navigates to the appointment editor page on mobile
+              Navigator.push<Widget>(
+              context,
+              MaterialPageRoute<Widget>(
+              builder: (BuildContext context) => AppointmentEditor(
+              model,
+              _selectedAppointment,
+              targetElement,
+              selectedDate,
+              _colorCollection,
+              _colorNames,
+              _dataSource,
+              //_AppointmentDataSource(_getRecursiveAppointments(snapshot.requireData)),
+              _timeZoneCollection)),
+              );
+
+
+              }
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    final Widget _calendar = Theme(
+    /*final Widget _calendar = Theme(
 
         /// The key set here to maintain the state, when we change
         /// the parent of the widget
@@ -227,7 +273,7 @@ class ScheduleCalendarState extends SampleViewState {
           primarySwatch: Colors.red,
         ).colorScheme.copyWith(secondary: model.backgroundColor)),
         child: _getScheduleCalendar(calendarController, _dataSource,
-            _onViewChanged, scheduleViewBuilder, _onCalendarTapped));
+            _onViewChanged, scheduleViewBuilder, _onCalendarTapped));*/
 
     final double _screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
@@ -236,9 +282,9 @@ class ScheduleCalendarState extends SampleViewState {
           IconButton(
             icon: Icon(Icons.share),
             onPressed: () {
-              String textToShare = 'My Schedule:\n\n';
+              /*String textToShare = 'My Schedule:\n\n';
 
-              List<Appointment> _classes = _getRecursiveAppointments();
+              List<Appointment> _classes = _dataSource.appointments;
 
               _classes.forEach((c) {
                 String startTime = DateFormat("h:mm").format(c.startTime);
@@ -248,34 +294,69 @@ class ScheduleCalendarState extends SampleViewState {
                 textToShare += '($startTime - $endTime)\t$subject\n';
               });
 
-              Share.share(textToShare);
+              Share.share(textToShare);*/
             },
           ),
         ],
         title: const Text('My Schedule'),
       ),
       drawer: const FlyoutMenu(),
-      body: Row(children: <Widget>[
+      body: FutureBuilder<List<globals.Block>>(
+    future: futureClasses,
+    builder: (context, snapshot) {
+    if (snapshot.hasData) {
+      return Row(children: <Widget>[
         Expanded(
           child: calendarController.view == CalendarView.month &&
-                  model.isWebFullView &&
-                  _screenHeight < 800
+              model.isWebFullView &&
+              _screenHeight < 800
               ? Scrollbar(
-                  isAlwaysShown: true,
-                  controller: controller,
-                  child: ListView(
-                    controller: controller,
-                    children: <Widget>[
-                      Container(
-                        color: model.cardThemeColor,
-                        height: 600,
-                        child: _calendar,
-                      )
-                    ],
-                  ))
-              : Container(color: model.cardThemeColor, child: _calendar),
+              isAlwaysShown: true,
+              controller: controller,
+              child: ListView(
+                controller: controller,
+                children: <Widget>[
+                  Container(
+                    color: model.cardThemeColor,
+                    height: 600,
+                    child: Theme(
+
+                      /// The key set here to maintain the state, when we change
+                      /// the parent of the widget
+                        key: _globalKey,
+                        data: ThemeData(
+                          primarySwatch: Colors.red,
+                        ).copyWith(
+                            colorScheme: ThemeData(
+                              primarySwatch: Colors.red,
+                            ).colorScheme.copyWith(secondary: model.backgroundColor)),
+                        child: _getScheduleCalendar(calendarController, _AppointmentDataSource(_getRecursiveAppointments(snapshot.requireData)),
+                            _onViewChanged, scheduleViewBuilder, _onCalendarTapped)),
+                  )
+                ],
+              ))
+              : Container(color: model.cardThemeColor, child: Theme(
+
+            /// The key set here to maintain the state, when we change
+            /// the parent of the widget
+              key: _globalKey,
+              data: ThemeData(
+                primarySwatch: Colors.red,
+              ).copyWith(
+                  colorScheme: ThemeData(
+                    primarySwatch: Colors.red,
+                  ).colorScheme.copyWith(secondary: model.backgroundColor)),
+              child: _getScheduleCalendar(calendarController, _AppointmentDataSource(_getRecursiveAppointments(snapshot.requireData)),
+                  _onViewChanged, scheduleViewBuilder, _onCalendarTapped))),
         )
-      ]),
+      ]);
+      } else if (snapshot.hasError) {
+      return Text('${snapshot.error}');
+      }
+      // By default, show a loading spinner.
+      return Center(child: CircularProgressIndicator(),);
+    },
+      )
     );
   }
 
@@ -302,7 +383,7 @@ class ScheduleCalendarState extends SampleViewState {
 
   /// Creates the data source with the appointments by adding required
   /// information on it.
-  List<Appointment> _getRecursiveAppointments() {
+  List<Appointment> _getRecursiveAppointments(List<globals.Block> classes) {
     _colorNames.add('Navy Blue');
     _colorNames.add('Dark Blue');
     _colorNames.add('Sea Blue');
@@ -427,7 +508,18 @@ class ScheduleCalendarState extends SampleViewState {
     final DateTime semester2start = globals.semesterTwoStart;
     final DateTime end = globals.semesterTwoStart;
 
-    /// Defines and adds each default block to the list
+    for(int i = 0; i < classes.length; i++)
+      {
+        appointments.add(Appointment(
+            startTime: classes[i].startTime,
+            endTime: classes[i].endTime,
+            subject: classes[i].subject,
+            color: Color.fromARGB(200, 2, 40, 1)
+        ));
+      }
+    //debugPrint(appointments[0].subject);
+
+/*    /// Defines and adds each default block to the list
     final DateTime b1StartTime = DateTime(semester2start.year,
         semester2start.month, semester2start.day, 7, 20, 0);
     final DateTime b1EndTime = DateTime(semester2start.year,
@@ -526,7 +618,7 @@ class ScheduleCalendarState extends SampleViewState {
         recurrenceRule:
             SfCalendar.generateRRule(b5Recurrence, b5StartTime, b5EndTime));
 
-    appointments.add(blockFive);
+    appointments.add(blockFive);*/
 
     return appointments;
   }
