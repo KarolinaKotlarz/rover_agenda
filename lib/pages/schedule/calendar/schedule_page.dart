@@ -178,11 +178,11 @@ class ScheduleCalendarState extends SampleViewState {
                   }
                   return true;
                 },
-                child: FutureBuilder<List<globals.Block>>(
+                child: /*FutureBuilder<List<globals.Block>>(
                   future: futureClasses,
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
-                      return Center(
+                      return */Center(
                           child: SizedBox(
                               width: _isAppointmentTapped ? 400 : 500,
                               height: _isAppointmentTapped
@@ -223,9 +223,9 @@ class ScheduleCalendarState extends SampleViewState {
                                         _selectedAppointment!,
                                         _timeZoneCollection,
                                         _visibleDates),
-                                  ))));
-                    }
-                    else if (snapshot.hasError) {
+                                  )))));
+              }
+          /*else if (snapshot.hasError) {
                       return Text('${snapshot.error}');
                     }
                     else {
@@ -234,9 +234,9 @@ class ScheduleCalendarState extends SampleViewState {
                     }
                   },
                 ),
-              );
-            });
-      }
+              );*/
+        );   }
+
              else {
               /// Navigates to the appointment editor page on mobile
               Navigator.push<Widget>(
