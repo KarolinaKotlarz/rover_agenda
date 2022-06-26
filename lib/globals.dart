@@ -24,6 +24,18 @@ List<Image> _getTeacherImages() {
 List<Image> _getClubImages() {
   List<Image> _clubImages = <Image>[];
 
+  _clubImages.add(Image(image: AssetImage('assets/icons/PersonA.png')));
+  _clubImages.add(Image(image: AssetImage('assets/icons/PersonA.png')));
+  _clubImages.add(Image(image: AssetImage('assets/icons/PersonA.png')));
+  _clubImages.add(Image(image: AssetImage('assets/icons/PersonA.png')));
+  _clubImages.add(Image(image: AssetImage('assets/icons/PersonA.png')));
+  _clubImages.add(Image(image: AssetImage('assets/icons/PersonA.png')));
+  _clubImages.add(Image(image: AssetImage('assets/icons/PersonA.png')));
+  _clubImages.add(Image(image: AssetImage('assets/icons/PersonA.png')));
+  _clubImages.add(Image(image: AssetImage('assets/icons/PersonA.png')));
+
+
+
   return _clubImages;
 }
 //List<Teacher> teachers = _getTeachers();
