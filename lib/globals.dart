@@ -194,6 +194,32 @@ class LunchMenuItem {
   }
 }
 
+class SchoolEvent {
+  SchoolEvent({
+    id,
+    required this.startTime,
+    required this.endTime,
+    required this.subject,
+    required this.description
+  });
+
+  String id = '';
+  DateTime startTime;
+  DateTime endTime;
+  String subject;
+  String description;
+
+  factory SchoolEvent.fromJson(Map<String, dynamic> json) {
+    return SchoolEvent(
+      id: json['id'],
+      startTime: DateFormat("yyyy-MM-ddTHH:mm:ss").parse((json['startTime'])),
+      endTime: DateFormat("yyyy-MM-ddTHH:mm:ss").parse((json['endTime'])),
+      subject: json['name'],
+      description: json['description']
+    );
+  }
+}
+
 class Block {
   Block({
     id,

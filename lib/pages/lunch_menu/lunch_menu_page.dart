@@ -24,6 +24,7 @@ class LunchMenu extends StatefulWidget {
 
     @override
     void initState() {
+      super.initState();
       futureLunchMenuItems = _httpApiClientclient.fetchLunchMenuItems();
     }
 

@@ -95,13 +95,13 @@ class HttpApiClient {
     }
   }
 
-  Future<List<FAQ>> fetchSchoolEvents() async {
-    List<FAQ> _FAQsList = List.empty(growable: true);
+  Future<List<SchoolEvent>> fetchSchoolEvents() async {
+    List<SchoolEvent> _schoolEventsList = List.empty(growable: true);
     prefs = await SharedPreferences.getInstance();
     String token = prefs.getString('token') ?? '';
 
     final response = await http.get(
-      Uri.parse('$mainUrl/api/teachers/all'),
+      Uri.parse('$mainUrl/api/schoolevents/all'),
       headers: {
         'Authorization': 'Bearer $token',
       },
@@ -112,9 +112,9 @@ class HttpApiClient {
       /// then parse the JSON.
       var res = new Map<String, dynamic>.from(json.decode(response.body));
 
-      _FAQsList = (res['result'] as List<dynamic>).map((d) => FAQ.fromJson(d)).toList();
+      _schoolEventsList = (res['result'] as List<dynamic>).map((d) => SchoolEvent.fromJson(d)).toList();
 
-      return _FAQsList;
+      return _schoolEventsList;
     } else {
       // If the server did not return a 200 OK response,
       // then throw an exception.
@@ -139,7 +139,7 @@ class HttpApiClient {
       /// then parse the JSON.
       var res = new Map<String, dynamic>.from(json.decode(response.body));
 
-      debugPrint(response.body);
+      //debugPrint(response.body);
 
       _lunchMenuItemsList = (res['result'] as List<dynamic>).map((d) => LunchMenuItem.fromJson(d)).toList();
 

@@ -8,14 +8,25 @@ import 'package:syncfusion_flutter_calendar/calendar.dart';
 /// Local imports
 import '../../components/flyout_menu.dart';
 import '../../globals.dart' as globals;
+import '../../http_api_client.dart';
 
 /// The class representing the school calendar page
-class SchoolCalendar extends StatelessWidget {
-  const SchoolCalendar({Key? key}) : super(key: key);
+class SchoolCalendar extends StatefulWidget {
+  SchoolCalendar({Key? key}) : super(key: key);
 
-  /// Starts Instabug
+  @override
+  State<SchoolCalendar> createState() => _SchoolCalendarState();
+}
+
+class _SchoolCalendarState extends State<SchoolCalendar> {
+
+  HttpApiClient _httpApiClientclient = new HttpApiClient();
+  late Future<List<globals.SchoolEvent>> futureSchoolEvents;
+
+  @override
   void initState() {
-    Instabug.start('76ed198e8e1d4438e3ff5b8b152d6e60', [InvocationEvent.shake]);
+    super.initState();
+    futureSchoolEvents = _httpApiClientclient.fetchSchoolEvents();
   }
 
   @override
@@ -25,7 +36,11 @@ class SchoolCalendar extends StatelessWidget {
         title: const Text('School Calendar'),
       ),
       drawer: const FlyoutMenu(),
-      body: SfCalendar(
+      body: FutureBuilder<List<globals.SchoolEvent>>(
+    future: futureSchoolEvents,
+    builder: (context, snapshot) {
+    if (snapshot.hasData) {
+    return SfCalendar(
         /// The parameters of the calendar
         showDatePickerButton: true,
         view: CalendarView.month,
@@ -42,8 +57,15 @@ class SchoolCalendar extends StatelessWidget {
           appointmentDisplayMode: MonthAppointmentDisplayMode.appointment,
           showAgenda: true,
         ),
-        dataSource: _SchoolCalendarDataSource(globals.schoolEvents), /// Gets the school events from the globals file
-      ),
+        dataSource: _getCalendarDataSource(snapshot.requireData), /// Gets the school events from the globals file
+      );
+      } else if (snapshot.hasError) {
+      return Text('${snapshot.error}');
+      }
+      // By default, show a loading spinner.
+      return Center(child: CircularProgressIndicator(),);
+    },
+      )
     );
   }
 }
@@ -53,4 +75,49 @@ class _SchoolCalendarDataSource extends CalendarDataSource {
   _SchoolCalendarDataSource(List<Appointment> source) {
     appointments = source;
   }
+}
+
+
+CalendarDataSource _getCalendarDataSource(List<globals.SchoolEvent> schoolEvents) {
+  List<Appointment> meetings = <Appointment>[];
+  List<Color> colors = <Color>[];
+
+  colors.add(Color(0xFF08454A));
+  colors.add(Color(0xFFEC7926));
+  colors.add(Color(0xFF0E8072));
+  colors.add(Color(0xFFFFAD05));
+  colors.add(Color(0xFF4FB06C));
+  colors.add(Color(0xFFFFD835));
+  colors.add(Color(0xFF08454A));
+  colors.add(Color(0xFFEC7926));
+  colors.add(Color(0xFF0E8072));
+  colors.add(Color(0xFFFFAD05));
+  colors.add(Color(0xFF4FB06C));
+  colors.add(Color(0xFFFFD835));
+  colors.add(Color(0xFF08454A));
+  colors.add(Color(0xFFEC7926));
+  colors.add(Color(0xFF0E8072));
+  colors.add(Color(0xFFFFAD05));
+  colors.add(Color(0xFF4FB06C));
+  colors.add(Color(0xFFFFD835));
+  colors.add(Color(0xFF08454A));
+  colors.add(Color(0xFFEC7926));
+  colors.add(Color(0xFF0E8072));
+  colors.add(Color(0xFFFFAD05));
+  colors.add(Color(0xFF4FB06C));
+  colors.add(Color(0xFFFFD835));
+
+
+  for(int i = 0; i < schoolEvents.length; i++)
+  {
+    meetings.add(Appointment(
+      startTime: schoolEvents[i].startTime,
+      endTime: schoolEvents[i].endTime,
+      subject: schoolEvents[i].subject,
+      color: colors[i],
+      //recurrenceRule: 'FREQ=DAILY',
+    ));
+  }
+
+  return _SchoolCalendarDataSource(meetings);
 }
