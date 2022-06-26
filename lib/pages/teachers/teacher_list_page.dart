@@ -175,7 +175,8 @@ class _TeacherListState extends State<TeacherList> {
                       title: Text(
                         teacher.firstName + " " + teacher.lastName,
                       ),
-                      subtitle: Text(teacher.email),
+                      subtitle: Text('${teacher.department}\n${teacher.email}'),
+                      isThreeLine: true,
                       trailing: Container(
                         child: IconButton(
                           onPressed: () {

@@ -9,8 +9,15 @@ import 'dart:math';
 /// Lists of data
 List<Appointment> schoolEvents = _getSchoolEvents();
 List<Appointment> lunches = _getLunchDataSource();
-List<Teacher> teachers = _getTeachers();
-List<Extracurricular> extracurriculars = _getExtracurriculars();
+List<Image> teacherImages = _getTeacherImages();
+
+List<Image> _getTeacherImages() {
+  List<Image> _teacherImages = <Image>[];
+
+  return _teacherImages;
+}
+//List<Teacher> teachers = _getTeachers();
+//List<Extracurricular> extracurriculars = _getExtracurriculars();
 Future<List<FAQ>> FAQs = _getFAQs();
 
 /// API constants
@@ -119,7 +126,7 @@ Future<List<FAQ>> _getFAQs() async {
 
 
 /// Gets the teachers
-List<Teacher> _getTeachers() {
+/*List<Teacher> _getTeachers() {
   List<Teacher> t = <Teacher>[];
 
   t.add(Teacher(
@@ -147,7 +154,7 @@ List<Teacher> _getTeachers() {
 
 
   return t;
-}
+}*/
 
 /// Gets the school events
 List<Appointment> _getSchoolEvents() {
@@ -216,6 +223,7 @@ class Block {
 }
 
 /// Gets the extracurriculars
+/*
 List<Extracurricular> _getExtracurriculars() {
   List<Extracurricular> e = <Extracurricular>[];
   Teacher _teacher1 = Teacher(
@@ -258,6 +266,7 @@ List<Extracurricular> _getExtracurriculars() {
 
   return e;
 }
+*/
 
 /// Class definitions
 
@@ -307,7 +316,8 @@ class Teacher {
     required this.firstName,
     required this.lastName,
     required this.fullName,
-    required this.suffix,
+    required this.prefix,
+    required this.department,
     required this.email,
   });
 
@@ -315,12 +325,22 @@ class Teacher {
   String firstName;
   String lastName;
   String fullName;
-  String suffix;
+  String prefix;
+  String department;
   String email;
 
   String getFullName() {
     return firstName + ' ' + lastName;
   }
+
+ /* "id": "238217b3-42c3-4283-b67c-3cc117b6585b",
+  "firstName": "Bethann",
+  "lastName": "Folcher",
+  "fullName": "Bethann Folcher",
+  "email": "folcherb@eastonsd.org",
+  "prefix": "Mrs.",
+  "department": "History",
+  "suffix": "History"*/
 
   factory Teacher.fromJson(Map<String, dynamic> json) {
     return Teacher(
@@ -328,7 +348,8 @@ class Teacher {
       firstName: json['firstName'],
       lastName: json['lastName'],
       fullName: json['fullName'],
-      suffix: json['suffix'],
+      prefix: json['prefix'],
+      department: json['department'],
       email: json['email'],
     );
   }
