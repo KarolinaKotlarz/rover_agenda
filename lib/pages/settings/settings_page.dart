@@ -3,6 +3,7 @@ import 'package:flutter_settings_ui/flutter_settings_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:instabug_flutter/BugReporting.dart';
 import 'package:instabug_flutter/Instabug.dart';
+import 'package:rover_agenda/globals.dart' as globals;
 import 'package:rover_agenda/pages/settings/profile_page.dart';
 
 /// Local imports
@@ -14,11 +15,6 @@ import '../../components/flyout_menu.dart';
 /// The class representing the settings page
 class SettingsPage extends StatelessWidget {
   const SettingsPage({Key? key}) : super(key: key);
-
-  /// Starts Instabug
-  void initState() {
-    Instabug.start('76ed198e8e1d4438e3ff5b8b152d6e60', [InvocationEvent.shake, InvocationEvent.none]);
-  }
 
   @override
   Widget build(BuildContext context) {
