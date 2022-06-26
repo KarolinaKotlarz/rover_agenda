@@ -134,6 +134,7 @@ class _TeacherListState extends State<TeacherList> {
     futureTeachers = _httpApiClientclient.fetchTeachers();
     _httpApiClientclient.fetchTeachers().then((List<globals.Teacher> result){
       setState(() {
+        /// match images here
         duplicateTeachers = result;
         teachers.addAll(duplicateTeachers);
       });
