@@ -83,29 +83,32 @@ CalendarDataSource _getCalendarDataSource(List<globals.SchoolEvent> schoolEvents
   List<Color> colors = <Color>[];
 
   colors.add(Color(0xFF08454A));
-  colors.add(Color(0xFFEC7926));
   colors.add(Color(0xFF0E8072));
-  colors.add(Color(0xFFFFAD05));
   colors.add(Color(0xFF4FB06C));
   colors.add(Color(0xFFFFD835));
+  colors.add(Color(0xFFFFAD05));
+  colors.add(Color(0xFFEC7926));
+  colors.add(Color(0xFF23B5D3));
+  colors.add(Color(0xFF006E90));
+  colors.add(Color(0xFF2C2C54));
+  colors.add(Color(0xFF006E90));
+  colors.add(Color(0xFF23B5D3));
+  colors.add(Color(0xFF4FB06C));
+  colors.add(Color(0xFFFFD835));
+  colors.add(Color(0xFFFFAD05));
+  colors.add(Color(0xFFEC7926));
+  colors.add(Color(0xFF23B5D3));
+  colors.add(Color(0xFF006E90));
+  colors.add(Color(0xFF2C2C54));
   colors.add(Color(0xFF08454A));
-  colors.add(Color(0xFFEC7926));
   colors.add(Color(0xFF0E8072));
-  colors.add(Color(0xFFFFAD05));
   colors.add(Color(0xFF4FB06C));
   colors.add(Color(0xFFFFD835));
-  colors.add(Color(0xFF08454A));
-  colors.add(Color(0xFFEC7926));
-  colors.add(Color(0xFF0E8072));
   colors.add(Color(0xFFFFAD05));
-  colors.add(Color(0xFF4FB06C));
-  colors.add(Color(0xFFFFD835));
-  colors.add(Color(0xFF08454A));
   colors.add(Color(0xFFEC7926));
-  colors.add(Color(0xFF0E8072));
-  colors.add(Color(0xFFFFAD05));
-  colors.add(Color(0xFF4FB06C));
-  colors.add(Color(0xFFFFD835));
+  colors.add(Color(0xFF23B5D3));
+  colors.add(Color(0xFF006E90));
+  colors.add(Color(0xFF2C2C54));
 
 
   for(int i = 0; i < schoolEvents.length; i++)
