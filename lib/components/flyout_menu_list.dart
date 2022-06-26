@@ -110,17 +110,5 @@ List<ListTile> getFlyoutMenuItems(BuildContext context) {
       ),
     },
   ));
-
-  items.add(ListTile(
-    leading: const Icon(Icons.exit_to_app),
-    title: const Text('Log Out to Onboarding'),
-    onTap: () => {
-      Navigator.of(context).pop(),
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => Onboarding()),
-      ),
-    },
-  ));
   return items;
 }
