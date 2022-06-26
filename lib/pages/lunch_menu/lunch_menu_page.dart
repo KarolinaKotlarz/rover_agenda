@@ -93,7 +93,12 @@ CalendarDataSource _getCalendarDataSource(List<LunchMenuItem> lunches) {
   List<Appointment> meetings = <Appointment>[];
   List<Color> colors = <Color>[];
 
-  colors.add(Color.fromARGB(200, 2, 40, 1));
+  colors.add(Color(0xFF08454A));
+  colors.add(Color(0xFFEC7926));
+  colors.add(Color(0xFF0E8072));
+  colors.add(Color(0xFFFFAD05));
+  colors.add(Color(0xFF4FB06C));
+  colors.add(Color(0xFFFFD835));
 
   for(int i = 0; i < lunches.length; i++)
     {
