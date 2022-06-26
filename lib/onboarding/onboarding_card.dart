@@ -45,7 +45,7 @@ class OnboardingCard extends StatelessWidget {
             data.title.toUpperCase(),
             style: TextStyle(
               color: data.titleColor,
-              fontSize: 20,
+              fontSize: 18,
               fontWeight: FontWeight.bold,
               letterSpacing: 1,
             ),
@@ -59,7 +59,7 @@ class OnboardingCard extends StatelessWidget {
               fontSize: 16,
             ),
             textAlign: TextAlign.center,
-            maxLines: 2,
+            maxLines: 4,
           ),
           const Spacer(flex: 10)
         ],

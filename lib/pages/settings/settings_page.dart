@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:instabug_flutter/BugReporting.dart';
 import 'package:instabug_flutter/Instabug.dart';
 import 'package:rover_agenda/globals.dart' as globals;
+import 'package:rover_agenda/onboarding/onboarding_page.dart';
 import 'package:rover_agenda/pages/settings/profile_page.dart';
 
 /// Local imports
@@ -37,7 +38,7 @@ class SettingsPage extends StatelessWidget {
                 onPressed: (BuildContext context) {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const ProfilePage()),
+                    MaterialPageRoute(builder: (context) => Onboarding()),
                   );
                 },
               ),
