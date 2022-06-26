@@ -5,15 +5,15 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:instabug_flutter/BugReporting.dart';
+import 'package:instabug_flutter/Instabug.dart';
 import 'package:rover_agenda/components/flyout_menu.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:intl/intl.dart';
 
 /// Calendar import
 import 'package:syncfusion_flutter_calendar/calendar.dart';
-import 'package:syncfusion_flutter_calendar/calendar.dart';
 
-import '../../../http_api_client.dart';
 /// Local imports
 import '../model/sample_view.dart';
 import 'appointment_editor.dart';
@@ -62,40 +62,24 @@ class ScheduleCalendarState extends SampleViewState {
   late List<DateTime> _visibleDates;
   CalendarView _view = CalendarView.workWeek;
 
-  HttpApiClient _httpApiClientclient = new HttpApiClient();
-  late Future<List<globals.Block>> futureClasses;
-
   Appointment? _selectedAppointment;
   bool _isAllDay = false;
   String _subject = '';
   int _selectedColorIndex = 0;
 
+  /// Starts Instabug
   @override
   void initState() {
+    Instabug.start('76ed198e8e1d4438e3ff5b8b152d6e60', [InvocationEvent.shake, InvocationEvent.none]);
+    BugReporting.setShakingThresholdForAndroid(200);
+    Instabug.setPrimaryColor(globals.roverTheme.primaryColor);
+
     calendarController.view = _view;
-    futureClasses = _httpApiClientclient.fetchClasses();
-
-    _httpApiClientclient.fetchClasses().then((List<globals.Block> result){
-      setState(() {
-        _dataSource = _AppointmentDataSource(_getRecursiveAppointments(result));
-      });
-    });
-
+    _dataSource = _AppointmentDataSource(_getRecursiveAppointments());
     super.initState();
   }
 
-  Future<List<globals.Block>> _getFutureClasses() {
-    HttpApiClient _httpApiClientclient = new HttpApiClient();
-    return _httpApiClientclient.fetchClasses();
-  }
-
   void _onCalendarTapped(CalendarTapDetails calendarTapDetails) {
-
-    _httpApiClientclient.fetchClasses().then((List<globals.Block> result){
-      setState(() {
-        _dataSource = _AppointmentDataSource(_getRecursiveAppointments(result));
-      });
-    });
     /// Condition added to open the editor, when the calendar elements tapped
     /// other than the header.
     if (calendarTapDetails.targetElement == CalendarElement.header ||
@@ -152,8 +136,6 @@ class ScheduleCalendarState extends SampleViewState {
 
                 _dataSource.appointments.add(appointment[0]);
 
-                ///TODO: fix this
-
                 SchedulerBinding.instance
                     ?.addPostFrameCallback((Duration duration) {
                   _dataSource.notifyListeners(
@@ -169,111 +151,90 @@ class ScheduleCalendarState extends SampleViewState {
                     /// To remove the created appointment when the pop-up closed
                     /// without saving the appointment.
                     _dataSource.appointments.removeAt(
-
-                      ///TODO: send this
                         _dataSource.appointments.indexOf(newAppointment));
-                    _dataSource.notifyListeners(
-                        CalendarDataSourceAction.remove,
+                    _dataSource.notifyListeners(CalendarDataSourceAction.remove,
                         <Appointment>[newAppointment]);
                   }
                   return true;
                 },
-                child: FutureBuilder<List<globals.Block>>(
-                  future: futureClasses,
-                  builder: (context, snapshot) {
-                    if (snapshot.hasData) {
-                      return Center(
-                          child: SizedBox(
-                              width: _isAppointmentTapped ? 400 : 500,
-                              height: _isAppointmentTapped
-                                  ? (_selectedAppointment!.location == null ||
-                                  _selectedAppointment!.location!.isEmpty
-                                  ? 150
-                                  : 200)
-                                  : 400,
-                              child: Theme(
-                                  data: ThemeData(
-                                    primarySwatch: Colors.red,
-                                  ),
-                                  child: Card(
-                                    margin: EdgeInsets.zero,
-                                    color: model.cardThemeColor,
-                                    shape: const RoundedRectangleBorder(
-                                        borderRadius:
-                                        BorderRadius.all(Radius.circular(4))),
-                                    child: _isAppointmentTapped
-                                        ? displayAppointmentDetails(
-                                        context,
-                                        targetElement,
-                                        selectedDate,
-                                        model,
-                                        _selectedAppointment!,
-                                        _colorCollection,
-                                        _colorNames,
-                                        _dataSource,
-                                        _timeZoneCollection,
-                                        _visibleDates)
-                                        : PopUpAppointmentEditor(
-                                        model,
-                                        newAppointment,
-                                        appointment,
-                                        _dataSource,
-                                        _colorCollection,
-                                        _colorNames,
-                                        _selectedAppointment!,
-                                        _timeZoneCollection,
-                                        _visibleDates),
-                                  ))));
-                    }
-                    else if (snapshot.hasError) {
-                      return Text('${snapshot.error}');
-                    }
-                    else {
-                      // By default, show a loading spinner.
-                      return Center(child: CircularProgressIndicator(),);
-                    }
-                  },
-                ),
+                child: Center(
+                    child: SizedBox(
+                        width: _isAppointmentTapped ? 400 : 500,
+                        height: _isAppointmentTapped
+                            ? (_selectedAppointment!.location == null ||
+                            _selectedAppointment!.location!.isEmpty
+                            ? 150
+                            : 200)
+                            : 400,
+                        child: Theme(
+                            data: ThemeData(
+                              primarySwatch: Colors.red,
+                            ),
+                            child: Card(
+                              margin: EdgeInsets.zero,
+                              color: model.cardThemeColor,
+                              shape: const RoundedRectangleBorder(
+                                  borderRadius:
+                                  BorderRadius.all(Radius.circular(4))),
+                              child: _isAppointmentTapped
+                                  ? displayAppointmentDetails(
+                                  context,
+                                  targetElement,
+                                  selectedDate,
+                                  model,
+                                  _selectedAppointment!,
+                                  _colorCollection,
+                                  _colorNames,
+                                  _dataSource,
+                                  _timeZoneCollection,
+                                  _visibleDates)
+                                  : PopUpAppointmentEditor(
+                                  model,
+                                  newAppointment,
+                                  appointment,
+                                  _dataSource,
+                                  _colorCollection,
+                                  _colorNames,
+                                  _selectedAppointment!,
+                                  _timeZoneCollection,
+                                  _visibleDates),
+                            )))),
               );
             });
-      }
-             else {
-              /// Navigates to the appointment editor page on mobile
-              Navigator.push<Widget>(
-              context,
-              MaterialPageRoute<Widget>(
+      } else {
+        /// Navigates to the appointment editor page on mobile
+        Navigator.push<Widget>(
+          context,
+          MaterialPageRoute<Widget>(
               builder: (BuildContext context) => AppointmentEditor(
-              model,
-              _selectedAppointment,
-              targetElement,
-              selectedDate,
-              _colorCollection,
-              _colorNames,
-              _dataSource,
-              //_AppointmentDataSource(_getRecursiveAppointments(snapshot.requireData)),
-              _timeZoneCollection)),
-              );
-
-
-              }
+                  model,
+                  _selectedAppointment,
+                  targetElement,
+                  selectedDate,
+                  _colorCollection,
+                  _colorNames,
+                  _dataSource,
+                  _timeZoneCollection)),
+        );
+      }
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    /*final Widget _calendar = Theme(
+    final Widget _calendar = Theme(
 
-        /// The key set here to maintain the state, when we change
-        /// the parent of the widget
+      /// The key set here to maintain the state, when we change
+      /// the parent of the widget
         key: _globalKey,
         data: ThemeData(
           primarySwatch: Colors.red,
         ).copyWith(
             colorScheme: ThemeData(
-          primarySwatch: Colors.red,
-        ).colorScheme.copyWith(secondary: model.backgroundColor)),
+              primarySwatch: Colors.red,
+            ).colorScheme.copyWith(secondary: model.backgroundColor)),
         child: _getScheduleCalendar(calendarController, _dataSource,
-            _onViewChanged, scheduleViewBuilder, _onCalendarTapped));*/
+            _onViewChanged, scheduleViewBuilder, _onCalendarTapped));
 
     final double _screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
@@ -282,9 +243,9 @@ class ScheduleCalendarState extends SampleViewState {
           IconButton(
             icon: Icon(Icons.share),
             onPressed: () {
-              /*String textToShare = 'My Schedule:\n\n';
+              String textToShare = 'My Schedule:\n\n';
 
-              List<Appointment> _classes = _dataSource.appointments;
+              List<Appointment> _classes = _getRecursiveAppointments();
 
               _classes.forEach((c) {
                 String startTime = DateFormat("h:mm").format(c.startTime);
@@ -294,18 +255,14 @@ class ScheduleCalendarState extends SampleViewState {
                 textToShare += '($startTime - $endTime)\t$subject\n';
               });
 
-              Share.share(textToShare);*/
+              Share.share(textToShare);
             },
           ),
         ],
         title: const Text('My Schedule'),
       ),
       drawer: const FlyoutMenu(),
-      body: FutureBuilder<List<globals.Block>>(
-    future: futureClasses,
-    builder: (context, snapshot) {
-    if (snapshot.hasData) {
-      return Row(children: <Widget>[
+      body: Row(children: <Widget>[
         Expanded(
           child: calendarController.view == CalendarView.month &&
               model.isWebFullView &&
@@ -319,44 +276,13 @@ class ScheduleCalendarState extends SampleViewState {
                   Container(
                     color: model.cardThemeColor,
                     height: 600,
-                    child: Theme(
-
-                      /// The key set here to maintain the state, when we change
-                      /// the parent of the widget
-                        key: _globalKey,
-                        data: ThemeData(
-                          primarySwatch: Colors.red,
-                        ).copyWith(
-                            colorScheme: ThemeData(
-                              primarySwatch: Colors.red,
-                            ).colorScheme.copyWith(secondary: model.backgroundColor)),
-                        child: _getScheduleCalendar(calendarController, _AppointmentDataSource(_getRecursiveAppointments(snapshot.requireData)),
-                            _onViewChanged, scheduleViewBuilder, _onCalendarTapped)),
+                    child: _calendar,
                   )
                 ],
               ))
-              : Container(color: model.cardThemeColor, child: Theme(
-
-            /// The key set here to maintain the state, when we change
-            /// the parent of the widget
-              key: _globalKey,
-              data: ThemeData(
-                primarySwatch: Colors.red,
-              ).copyWith(
-                  colorScheme: ThemeData(
-                    primarySwatch: Colors.red,
-                  ).colorScheme.copyWith(secondary: model.backgroundColor)),
-              child: _getScheduleCalendar(calendarController, _AppointmentDataSource(_getRecursiveAppointments(snapshot.requireData)),
-                  _onViewChanged, scheduleViewBuilder, _onCalendarTapped))),
+              : Container(color: model.cardThemeColor, child: _calendar),
         )
-      ]);
-      } else if (snapshot.hasError) {
-      return Text('${snapshot.error}');
-      }
-      // By default, show a loading spinner.
-      return Center(child: CircularProgressIndicator(),);
-    },
-      )
+      ]),
     );
   }
 
@@ -383,7 +309,7 @@ class ScheduleCalendarState extends SampleViewState {
 
   /// Creates the data source with the appointments by adding required
   /// information on it.
-  List<Appointment> _getRecursiveAppointments(List<globals.Block> classes) {
+  List<Appointment> _getRecursiveAppointments() {
     _colorNames.add('Navy Blue');
     _colorNames.add('Dark Blue');
     _colorNames.add('Sea Blue');
@@ -508,18 +434,7 @@ class ScheduleCalendarState extends SampleViewState {
     final DateTime semester2start = globals.semesterTwoStart;
     final DateTime end = globals.semesterTwoStart;
 
-    for(int i = 0; i < classes.length; i++)
-      {
-        appointments.add(Appointment(
-            startTime: classes[i].startTime,
-            endTime: classes[i].endTime,
-            subject: classes[i].subject,
-            color: Color.fromARGB(200, 2, 40, 1)
-        ));
-      }
-    //debugPrint(appointments[0].subject);
-
-/*    /// Defines and adds each default block to the list
+    /// Defines and adds each default block to the list
     final DateTime b1StartTime = DateTime(semester2start.year,
         semester2start.month, semester2start.day, 7, 20, 0);
     final DateTime b1EndTime = DateTime(semester2start.year,
@@ -536,7 +451,7 @@ class ScheduleCalendarState extends SampleViewState {
         color: _colorCollection[0],
         subject: 'Block One',
         recurrenceRule:
-            SfCalendar.generateRRule(b1Recurrence, b1StartTime, b1EndTime));
+        SfCalendar.generateRRule(b1Recurrence, b1StartTime, b1EndTime));
 
     appointments.add(blockOne);
 
@@ -556,7 +471,7 @@ class ScheduleCalendarState extends SampleViewState {
         color: _colorCollection[1],
         subject: 'Block Two',
         recurrenceRule:
-            SfCalendar.generateRRule(b2Recurrence, b2StartTime, b2EndTime));
+        SfCalendar.generateRRule(b2Recurrence, b2StartTime, b2EndTime));
 
     appointments.add(blockTwo);
 
@@ -576,7 +491,7 @@ class ScheduleCalendarState extends SampleViewState {
         color: _colorCollection[2],
         subject: 'Block Three',
         recurrenceRule:
-            SfCalendar.generateRRule(b3Recurrence, b3StartTime, b3EndTime));
+        SfCalendar.generateRRule(b3Recurrence, b3StartTime, b3EndTime));
 
     appointments.add(blockThree);
 
@@ -596,7 +511,7 @@ class ScheduleCalendarState extends SampleViewState {
         color: _colorCollection[3],
         subject: 'Block Four',
         recurrenceRule:
-            SfCalendar.generateRRule(b4Recurrence, b4StartTime, b4EndTime));
+        SfCalendar.generateRRule(b4Recurrence, b4StartTime, b4EndTime));
 
     appointments.add(blockFour);
 
@@ -616,21 +531,21 @@ class ScheduleCalendarState extends SampleViewState {
         color: _colorCollection[4],
         subject: 'Block Five',
         recurrenceRule:
-            SfCalendar.generateRRule(b5Recurrence, b5StartTime, b5EndTime));
+        SfCalendar.generateRRule(b5Recurrence, b5StartTime, b5EndTime));
 
-    appointments.add(blockFive);*/
+    appointments.add(blockFive);
 
     return appointments;
   }
 
   /// Returns the calendar widget based on the properties passed
   SfCalendar _getScheduleCalendar(
-    [CalendarController? calendarController,
-    CalendarDataSource? calendarDataSource,
-    dynamic onViewChanged,
-    dynamic scheduleViewBuilder,
-    dynamic calendarTapCallback]) {
-      return SfCalendar(
+      [CalendarController? calendarController,
+        CalendarDataSource? calendarDataSource,
+        dynamic onViewChanged,
+        dynamic scheduleViewBuilder,
+        dynamic calendarTapCallback]) {
+    return SfCalendar(
         showNavigationArrow: model.isWebFullView,
         controller: calendarController,
         allowedViews: _allowedViews,
@@ -640,8 +555,8 @@ class ScheduleCalendarState extends SampleViewState {
         onViewChanged: onViewChanged,
         dataSource: calendarDataSource,
         monthViewSettings: const MonthViewSettings(
-          appointmentDisplayMode: MonthAppointmentDisplayMode.appointment,
-          appointmentDisplayCount: 4),
+            appointmentDisplayMode: MonthAppointmentDisplayMode.appointment,
+            appointmentDisplayCount: 4),
         onTap: calendarTapCallback,
         appointmentBuilder: (BuildContext context, CalendarAppointmentDetails details)
         {
@@ -672,11 +587,11 @@ class ScheduleCalendarState extends SampleViewState {
                         overflow: TextOverflow.ellipsis,
                       ),
                       Expanded(
-                        child: Container(
-                          padding: const EdgeInsets.all(0.0),
-                          alignment: Alignment.bottomRight,
-                          child: Icon(Icons.edit_sharp, size: 15, color: Colors.white,),
-                        )
+                          child: Container(
+                            padding: const EdgeInsets.all(0.0),
+                            alignment: Alignment.bottomRight,
+                            child: Icon(Icons.edit_sharp, size: 15, color: Colors.white,),
+                          )
                       )
                     ],
                   ),
