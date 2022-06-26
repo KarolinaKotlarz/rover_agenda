@@ -238,10 +238,12 @@ class _DetailsPage extends StatelessWidget {
         children: <Widget>[
           /// Decorative section of the details page
           Container(
-            color: Colors.black38,
             height: 250,
-            child: Image.asset(
-                'assets/images/placeholder_image.png',
+            decoration: BoxDecoration(
+              image: DecorationImage(
+              fit: BoxFit.fitWidth,
+                image: AssetImage('assets/icons/PersonA.jpg'),
+              ),
             ),
           ),
           Padding(
