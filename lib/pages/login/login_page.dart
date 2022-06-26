@@ -32,6 +32,7 @@ class Login extends StatelessWidget {
 
 
 
+
   /// Sets login time for debugging
   Duration get loginTime => const Duration(milliseconds: 2250);
 
@@ -138,11 +139,20 @@ class Login extends StatelessWidget {
           label: "Sign in with Google",
           callback: () async {
             try {
-              await _googleSignIn.signIn();
+              if(await _googleSignIn.isSignedIn())
+                {
+                  await _googleSignIn.disconnect();
+                  await _googleSignIn.signIn();
+                }
+              else {
+                await _googleSignIn.signIn();
+              }
             } catch (error) {
               return error.toString();
             }
-            return null;
+            //_authUser(LoginData(name: 'username', password: 'Password123!'));
+
+            return 'Login Stopped';
           },
         ),
         LoginProvider(
