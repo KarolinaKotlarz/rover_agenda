@@ -16,6 +16,8 @@ List<Image> clubImages = _getClubImages();
 List<Image> _getTeacherImages() {
   List<Image> _teacherImages = <Image>[];
 
+  _teacherImages.add(Image(image: AssetImage('assets/icons/PersonA.png')));
+
   return _teacherImages;
 }
 
@@ -353,6 +355,7 @@ class Teacher {
     required this.prefix,
     required this.department,
     required this.email,
+    required this.imagePath
   });
 
   String id;
@@ -362,19 +365,12 @@ class Teacher {
   String prefix;
   String department;
   String email;
+  String imagePath;
+  //Image image = Image(image: AssetImage('images/icons/PersonF'));
 
   String getFullName() {
     return firstName + ' ' + lastName;
   }
-
- /* "id": "238217b3-42c3-4283-b67c-3cc117b6585b",
-  "firstName": "Bethann",
-  "lastName": "Folcher",
-  "fullName": "Bethann Folcher",
-  "email": "folcherb@eastonsd.org",
-  "prefix": "Mrs.",
-  "department": "History",
-  "suffix": "History"*/
 
   factory Teacher.fromJson(Map<String, dynamic> json) {
     return Teacher(
@@ -384,6 +380,7 @@ class Teacher {
       fullName: json['fullName'],
       prefix: json['prefix'],
       department: json['department'],
+      imagePath: json['suffix'],
       email: json['email'],
     );
   }

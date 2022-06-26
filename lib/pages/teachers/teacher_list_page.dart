@@ -134,8 +134,13 @@ class _TeacherListState extends State<TeacherList> {
     futureTeachers = _httpApiClientclient.fetchTeachers();
     _httpApiClientclient.fetchTeachers().then((List<globals.Teacher> result){
       setState(() {
-        /// match images here
+        List<Image> imgs = globals.teacherImages;
         duplicateTeachers = result;
+        for(int i = 0; i < duplicateTeachers.length; i++)
+          {
+            duplicateTeachers[i].imagePath = 'assets/icons/PersonA.jpg';
+          }
+
         teachers.addAll(duplicateTeachers);
       });
     });
@@ -171,7 +176,7 @@ class _TeacherListState extends State<TeacherList> {
                     return ListTile(
                       leading: CircleAvatar(
                         backgroundColor: Colors.white,
-                        backgroundImage: AssetImage('assets/images/placeholder_image.png'),
+                        backgroundImage: AssetImage(teacher.imagePath),
                       ),
                       title: Text(
                         teacher.firstName + " " + teacher.lastName,
