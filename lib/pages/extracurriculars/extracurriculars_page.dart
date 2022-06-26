@@ -5,6 +5,7 @@
 /// Package imports
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 /// Local imports
 import '../../components/flyout_menu.dart';
@@ -227,11 +228,8 @@ class _DetailsPage extends StatelessWidget {
           IconButton(
             icon: const Icon(Icons.email_outlined),
             onPressed: () {
-              /// Opens EmailFormPage
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => EmailFormPage(teacher: extracurricular.teacher)),
-              );
+              _launchEmail(
+                  emailTo: extracurricular.teacher.email);
             },
           ),
         ],
@@ -260,7 +258,7 @@ class _DetailsPage extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 10),
-                Text('Advisor: ' +
+                Text('Adviser: ' +
                     extracurricular.teacher.firstName + ' ' + extracurricular.teacher.lastName,
                   style: Theme.of(context).textTheme.bodyText2!.copyWith(
                     color: Colors.black54,
@@ -277,6 +275,14 @@ class _DetailsPage extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 10),
+                Text('Meeting place: Room ' +
+                    extracurricular.room,
+                  style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                    color: Colors.black54,
+                    height: 1.5,
+                    fontSize: 16.0,
+                  ),
+                ),
                 Text('Meeting dates: ' +
                     extracurricular.meetingDays,
                   style: Theme.of(context).textTheme.bodyText2!.copyWith(
@@ -300,5 +306,13 @@ class _DetailsPage extends StatelessWidget {
         ],
       ),
     );
+
+  }
+  /// Opens the default email app and passes the composed email to it
+  Future _launchEmail(
+      {required emailTo}) async {
+    final url =
+        'mailto:$emailTo?subject=${Uri.encodeFull('')}&body=${Uri.encodeFull('')}';
+    await launch(url);
   }
 }

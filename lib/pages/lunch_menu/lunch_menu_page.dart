@@ -103,10 +103,11 @@ CalendarDataSource _getCalendarDataSource(List<LunchMenuItem> lunches) {
   for(int i = 0; i < lunches.length; i++)
     {
       meetings.add(Appointment(
-          startTime: lunches[i].startTime,
-          endTime: lunches[i].endTime,
-          subject: lunches[i].itemName,
-          color: colors[i],
+        startTime: lunches[i].startTime,
+        endTime: lunches[i].endTime,
+        subject: lunches[i].itemName,
+        color: colors[i],
+        recurrenceRule: 'FREQ=DAILY',
       ));
     }
 /*  meetings.add(globals.LunchMenuItem(

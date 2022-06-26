@@ -183,7 +183,6 @@ class _TeacherListState extends State<TeacherList> {
                             /// Calls method that opens the default email app
                             _launchEmail(
                                 emailTo: teacher.email);
-                            Navigator.pop(context);
                           },
                           icon: const Icon(
                             Icons.email_outlined,
