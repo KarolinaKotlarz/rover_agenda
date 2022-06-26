@@ -6,6 +6,7 @@ import 'package:instabug_flutter/Instabug.dart';
 import 'package:rover_agenda/globals.dart' as globals;
 import 'package:rover_agenda/onboarding/onboarding_page.dart';
 import 'package:rover_agenda/pages/settings/profile_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 /// Local imports
 import 'faq_page.dart';
@@ -35,7 +36,10 @@ class SettingsPage extends StatelessWidget {
               SettingsTile(
                 title: 'Edit Profile',
                 leading: const Icon(Icons.person_outline_sharp),
-                onPressed: (BuildContext context) {
+                onPressed: (BuildContext context) async {
+                  final prefs = await SharedPreferences.getInstance();
+                  prefs.setBool('showOnboarding', true);
+                  prefs.setBool('showLogin', true);
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => Onboarding()),

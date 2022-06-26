@@ -143,9 +143,11 @@ class Login extends StatelessWidget {
                 {
                   await _googleSignIn.disconnect();
                   await _googleSignIn.signIn();
+                  return null;
                 }
               else {
                 await _googleSignIn.signIn();
+                return null;
               }
             } catch (error) {
               return error.toString();
@@ -166,11 +168,14 @@ class Login extends StatelessWidget {
           },
         ),
       ],
-      onSubmitAnimationCompleted: () {
+      onSubmitAnimationCompleted: () async {
         /// Opens the schedule page
         Navigator.of(context).pushReplacement(MaterialPageRoute(
           builder: (context) => const SchedulePage(Key('')),
         ));
+
+        final prefs = await SharedPreferences.getInstance();
+        prefs.setBool('showLogin', false);
       },
       onRecoverPassword: _recoverPassword,
       messages: LoginMessages(

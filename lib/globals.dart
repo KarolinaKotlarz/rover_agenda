@@ -10,11 +10,19 @@ import 'dart:math';
 List<Appointment> schoolEvents = _getSchoolEvents();
 List<Appointment> lunches = _getLunchDataSource();
 List<Image> teacherImages = _getTeacherImages();
+List<Image> clubImages = _getClubImages();
+
 
 List<Image> _getTeacherImages() {
   List<Image> _teacherImages = <Image>[];
 
   return _teacherImages;
+}
+
+List<Image> _getClubImages() {
+  List<Image> _clubImages = <Image>[];
+
+  return _clubImages;
 }
 //List<Teacher> teachers = _getTeachers();
 //List<Extracurricular> extracurriculars = _getExtracurriculars();

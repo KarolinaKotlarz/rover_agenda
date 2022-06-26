@@ -106,7 +106,7 @@ class _OnboardingState extends State<Onboarding>{
           );
 
           final prefs = await SharedPreferences.getInstance();
-          prefs.setBool('showHome', true);
+          prefs.setBool('showOnboarding', false);
         },
         child: Text(buttonText.toUpperCase()),
       ),

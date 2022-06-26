@@ -6,6 +6,7 @@ import 'package:rover_agenda/pages/login/login_page.dart';
 import 'package:rover_agenda/pages/lunch_menu/lunch_menu_page.dart';
 import 'package:rover_agenda/pages/settings/settings_page.dart';
 import 'package:rover_agenda/pages/schedule/calendar/schedule_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../pages/schedule/calendar/schedule_page.dart';
 import '../pages/school_calendar/school_calendar.dart';
@@ -102,12 +103,15 @@ List<ListTile> getFlyoutMenuItems(BuildContext context) {
   items.add(ListTile(
     leading: const Icon(Icons.exit_to_app),
     title: const Text('Log Out'),
-    onTap: () => {
-      Navigator.of(context).pop(),
+    onTap: () async {
+      final prefs = await SharedPreferences.getInstance();
+      prefs.setBool('showLogin', true);
+
+      Navigator.of(context).pop();
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => Login()),
-      ),
+      );
     },
   ));
   return items;
