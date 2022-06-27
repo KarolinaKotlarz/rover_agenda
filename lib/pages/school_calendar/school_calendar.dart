@@ -118,7 +118,6 @@ CalendarDataSource _getCalendarDataSource(List<globals.SchoolEvent> schoolEvents
       endTime: schoolEvents[i].endTime,
       subject: schoolEvents[i].subject,
       color: colors[i],
-      //recurrenceRule: 'FREQ=DAILY',
     ));
   }
 
