@@ -13,8 +13,6 @@ List<String> clubImages = _getClubImages();
 List<Image> _getTeacherImages() {
   List<Image> _teacherImages = <Image>[];
 
-  //_teacherImages.add(Image(image: AssetImage('assets/icons/PersonA.png')));
-
   return _teacherImages;
 }
 

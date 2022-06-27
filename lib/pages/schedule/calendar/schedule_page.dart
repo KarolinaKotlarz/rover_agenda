@@ -313,8 +313,11 @@ class ScheduleCalendarState extends SampleViewState {
     _colorNames.add('Navy Blue');
     _colorNames.add('Dark Blue');
     _colorNames.add('Sea Blue');
-    _colorNames.add('Light Blue');
-    _colorNames.add('Amethyst Blue');
+    _colorNames.add('Bright Orange');
+    _colorNames.add('Golden Yellow');
+    _colorNames.add('Forest Green');
+    _colorNames.add('Spruce Green');
+    _colorNames.add('Light Green');
 
     _timeZoneCollection.add('Default Time');
     _timeZoneCollection.add('AUS Central Standard Time');
