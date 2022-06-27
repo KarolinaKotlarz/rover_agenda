@@ -426,110 +426,157 @@ class ScheduleCalendarState extends SampleViewState {
     _colorCollection.add(const Color(0xFF097099));
     _colorCollection.add(const Color(0xFF01A1EF));
     _colorCollection.add(const Color(0xFF3D4FB5));
+    _colorCollection.add(const Color(0xFF08454A));
+    _colorCollection.add(const Color(0xFF0E8072));
+    _colorCollection.add(const Color(0xFF4FB06C));
 
     final List<Appointment> appointments = <Appointment>[];
     final Random random = Random();
 
     /// Defines the start and end of semesters
-    final DateTime semester2start = globals.semesterTwoStart;
-    final DateTime end = globals.semesterTwoStart;
+    final DateTime semester2startA = globals.semesterTwoStart;
+    final DateTime semester2startB = globals.semesterTwoEnd;
 
     /// Defines and adds each default block to the list
-    final DateTime b1StartTime = DateTime(semester2start.year,
-        semester2start.month, semester2start.day, 7, 20, 0);
-    final DateTime b1EndTime = DateTime(semester2start.year,
-        semester2start.month, semester2start.day, 8, 38, 0);
+    final DateTime b1StartTime = DateTime(semester2startA.year,
+        semester2startA.month, semester2startA.day, 7, 20, 0);
+    final DateTime b1EndTime = DateTime(semester2startA.year,
+        semester2startA.month, semester2startA.day, 8, 38, 0);
     final RecurrenceProperties b1Recurrence = RecurrenceProperties(
         startDate: b1StartTime,
         recurrenceType: RecurrenceType.daily,
+        interval: 2,
         recurrenceRange: RecurrenceRange.count,
-        recurrenceCount: 90);
+        recurrenceCount: 900);
 
     final Appointment blockOne = Appointment(
         startTime: b1StartTime,
         endTime: b1EndTime,
         color: _colorCollection[0],
-        subject: 'Block One',
+        subject: 'AP US History\nMr. Uhler\nD202',
         recurrenceRule:
         SfCalendar.generateRRule(b1Recurrence, b1StartTime, b1EndTime));
 
     appointments.add(blockOne);
 
-    final DateTime b2StartTime = DateTime(semester2start.year,
-        semester2start.month, semester2start.day, 8, 53, 0);
-    final DateTime b2EndTime = DateTime(semester2start.year,
-        semester2start.month, semester2start.day, 10, 11, 0);
+    final DateTime b1StartTimeB = DateTime(semester2startB.year,
+        semester2startB.month, semester2startB.day, 7, 20, 0);
+    final DateTime b1EndTimeB = DateTime(semester2startB.year,
+        semester2startB.month, semester2startB.day, 8, 38, 0);
+    final RecurrenceProperties b1RecurrenceB = RecurrenceProperties(
+        startDate: b1StartTimeB,
+        recurrenceType: RecurrenceType.daily,
+        interval: 2,
+        recurrenceRange: RecurrenceRange.count,
+        recurrenceCount: 900);
+
+    final Appointment blockOneB = Appointment(
+        startTime: b1StartTimeB,
+        endTime: b1EndTimeB,
+        color: _colorCollection[6],
+        subject: 'AP US History\nMr. Uhler\nD202',
+        recurrenceRule:
+        SfCalendar.generateRRule(b1RecurrenceB, b1StartTimeB, b1EndTimeB));
+
+    appointments.add(blockOneB);
+
+    final DateTime b2StartTime = DateTime(semester2startA.year,
+        semester2startA.month, semester2startA.day, 8, 53, 0);
+    final DateTime b2EndTime = DateTime(semester2startA.year,
+        semester2startA.month, semester2startA.day, 10, 11, 0);
     final RecurrenceProperties b2Recurrence = RecurrenceProperties(
         startDate: b2StartTime,
         recurrenceType: RecurrenceType.daily,
         recurrenceRange: RecurrenceRange.count,
-        recurrenceCount: 90);
+        recurrenceCount: 900);
 
     final Appointment blockTwo = Appointment(
         startTime: b2StartTime,
         endTime: b2EndTime,
         color: _colorCollection[1],
-        subject: 'Block Two',
+        subject: 'Algebra 2\nMrs. Charnley\nE111',
         recurrenceRule:
         SfCalendar.generateRRule(b2Recurrence, b2StartTime, b2EndTime));
 
     appointments.add(blockTwo);
 
-    final DateTime b3StartTime = DateTime(semester2start.year,
-        semester2start.month, semester2start.day, 10, 16, 0);
-    final DateTime b3EndTime = DateTime(semester2start.year,
-        semester2start.month, semester2start.day, 11, 34, 0);
+    final DateTime b3StartTime = DateTime(semester2startA.year,
+        semester2startA.month, semester2startA.day, 10, 16, 0);
+    final DateTime b3EndTime = DateTime(semester2startA.year,
+        semester2startA.month, semester2startA.day, 10, 55, 0);
     final RecurrenceProperties b3Recurrence = RecurrenceProperties(
         startDate: b3StartTime,
         recurrenceType: RecurrenceType.daily,
         recurrenceRange: RecurrenceRange.count,
-        recurrenceCount: 90);
+        recurrenceCount: 900);
 
     final Appointment blockThree = Appointment(
         startTime: b3StartTime,
         endTime: b3EndTime,
         color: _colorCollection[2],
-        subject: 'Block Three',
+        subject: 'Advisory',
         recurrenceRule:
         SfCalendar.generateRRule(b3Recurrence, b3StartTime, b3EndTime));
 
     appointments.add(blockThree);
 
-    final DateTime b4StartTime = DateTime(semester2start.year,
-        semester2start.month, semester2start.day, 11, 39, 0);
-    final DateTime b4EndTime = DateTime(semester2start.year,
-        semester2start.month, semester2start.day, 12, 57, 0);
+
+    final DateTime b3StartTimeC = DateTime(semester2startA.year,
+        semester2startA.month, semester2startA.day, 10, 55, 0);
+    final DateTime b3EndTimeC = DateTime(semester2startA.year,
+        semester2startA.month, semester2startA.day, 11, 34, 0);
+    final RecurrenceProperties b3RecurrenceC = RecurrenceProperties(
+        startDate: b3StartTimeC,
+        recurrenceType: RecurrenceType.daily,
+        recurrenceRange: RecurrenceRange.count,
+        recurrenceCount: 900);
+
+    final Appointment blockThreeC = Appointment(
+        startTime: b3StartTimeC,
+        endTime: b3EndTimeC,
+        color: _colorCollection[3],
+        subject: 'Lunch',
+        recurrenceRule:
+        SfCalendar.generateRRule(b3RecurrenceC, b3StartTimeC, b3EndTimeC));
+
+    appointments.add(blockThreeC);
+
+
+    final DateTime b4StartTime = DateTime(semester2startA.year,
+        semester2startA.month, semester2startA.day, 11, 39, 0);
+    final DateTime b4EndTime = DateTime(semester2startA.year,
+        semester2startA.month, semester2startA.day, 12, 57, 0);
     final RecurrenceProperties b4Recurrence = RecurrenceProperties(
         startDate: b4StartTime,
         recurrenceType: RecurrenceType.daily,
         recurrenceRange: RecurrenceRange.count,
-        recurrenceCount: 90);
+        recurrenceCount: 900);
 
     final Appointment blockFour = Appointment(
         startTime: b4StartTime,
         endTime: b4EndTime,
-        color: _colorCollection[3],
-        subject: 'Block Four',
+        color: _colorCollection[4],
+        subject: 'CP Biology\nMr. Brown\nK203',
         recurrenceRule:
         SfCalendar.generateRRule(b4Recurrence, b4StartTime, b4EndTime));
 
     appointments.add(blockFour);
 
-    final DateTime b5StartTime = DateTime(semester2start.year,
-        semester2start.month, semester2start.day, 13, 02, 0);
-    final DateTime b5EndTime = DateTime(semester2start.year,
-        semester2start.month, semester2start.day, 14, 20, 0);
+    final DateTime b5StartTime = DateTime(semester2startA.year,
+        semester2startA.month, semester2startA.day, 13, 02, 0);
+    final DateTime b5EndTime = DateTime(semester2startA.year,
+        semester2startA.month, semester2startA.day, 14, 20, 0);
     final RecurrenceProperties b5Recurrence = RecurrenceProperties(
         startDate: b5StartTime,
         recurrenceType: RecurrenceType.daily,
         recurrenceRange: RecurrenceRange.count,
-        recurrenceCount: 90);
+        recurrenceCount: 900);
 
     final Appointment blockFive = Appointment(
         startTime: b5StartTime,
         endTime: b5EndTime,
-        color: _colorCollection[4],
-        subject: 'Block Five',
+        color: _colorCollection[6],
+        subject: 'Hons Eng Lit\nMrs. Mohap\nC212',
         recurrenceRule:
         SfCalendar.generateRRule(b5Recurrence, b5StartTime, b5EndTime));
 
@@ -582,7 +629,7 @@ class ScheduleCalendarState extends SampleViewState {
                           fontSize: 12,
                           fontWeight: FontWeight.w500,
                         ),
-                        maxLines: 2,
+                        maxLines: 5,
                         softWrap: false,
                         overflow: TextOverflow.ellipsis,
                       ),
