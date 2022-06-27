@@ -18,14 +18,6 @@ stored within your unique student account. No longer do you have to have several
 keep track of everything; with Rover Agenda, you can be sure to keep track of everything in your busy
 high school experience.
 
-## Features
-    - Custom Schedule
-    - Weekly Lunch Menu
-    - Teachers List
-    - Built-in Email Form
-    - Extracurricular Information
-    - School Calendar
-
 ## Build Instructions
 
 To run the app, make sure that you have the latest versions of Android Studio, Dart, and Flutter installed.
@@ -35,6 +27,14 @@ on. Click on the Run button, and the app will run.
 If you would like to run Rover Agenda from the command line, you can do so by opening a terminal
 and navigating to the root directory of the app. Run the command '$ flutter run' and wait for the
 app to load.
+
+## Features
+    - Custom Schedule
+    - Weekly Lunch Menu
+    - Teachers List
+    - Built-in Email Form
+    - Extracurricular Information
+    - School Calendar
 
 ## Usage
 
