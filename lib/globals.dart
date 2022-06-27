@@ -7,7 +7,7 @@ import 'dart:math';
 
 /// Lists of data
 List<Image> teacherImages = _getTeacherImages();
-List<Image> clubImages = _getClubImages();
+List<String> clubImages = _getClubImages();
 
 
 List<Image> _getTeacherImages() {
@@ -18,18 +18,15 @@ List<Image> _getTeacherImages() {
   return _teacherImages;
 }
 
-List<Image> _getClubImages() {
-  List<Image> _clubImages = <Image>[];
+List<String> _getClubImages() {
+  List<String> _clubImages = <String>[];
 
-  _clubImages.add(Image(image: AssetImage('assets/icons/PersonA.png')));
-  _clubImages.add(Image(image: AssetImage('assets/icons/PersonA.png')));
-  _clubImages.add(Image(image: AssetImage('assets/icons/PersonA.png')));
-  _clubImages.add(Image(image: AssetImage('assets/icons/PersonA.png')));
-  _clubImages.add(Image(image: AssetImage('assets/icons/PersonA.png')));
-  _clubImages.add(Image(image: AssetImage('assets/icons/PersonA.png')));
-  _clubImages.add(Image(image: AssetImage('assets/icons/PersonA.png')));
-  _clubImages.add(Image(image: AssetImage('assets/icons/PersonA.png')));
-  _clubImages.add(Image(image: AssetImage('assets/icons/PersonA.png')));
+  _clubImages.add('assets/extracurriculars/TabletopClub.jpg');
+  _clubImages.add('assets/extracurriculars/FBLA.jpg');
+  _clubImages.add('assets/extracurriculars/AsianCultureClub.jpg');
+  _clubImages.add('assets/extracurriculars/NAHS.jpg');
+  _clubImages.add('assets/extracurriculars/ChessClub.jpg');
+  _clubImages.add('assets/extracurriculars/CSClub.jpg');
 
 
 
@@ -234,6 +231,7 @@ class Extracurricular {
     required this.teacher,
     required this.meetingDays,
     required this.description,
+    assetImage,
   });
 
   String id = '';
@@ -242,6 +240,7 @@ class Extracurricular {
   Teacher teacher;
   String meetingDays;
   String description;
+  AssetImage assetImage = AssetImage('assets/extracurriculars/FBLA.jpg');
 
   factory Extracurricular.fromJson(Map<String, dynamic> json) {
     return Extracurricular(

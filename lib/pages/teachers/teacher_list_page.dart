@@ -135,10 +135,6 @@ class _TeacherListState extends State<TeacherList> {
     _httpApiClientclient.fetchTeachers().then((List<globals.Teacher> result){
       setState(() {
         duplicateTeachers = result;
-        for(int i = 0; i < duplicateTeachers.length; i++)
-          {
-            duplicateTeachers[i].imagePath = 'assets/icons/PersonA.jpg';
-          }
 
         teachers.addAll(duplicateTeachers);
       });

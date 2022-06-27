@@ -141,6 +141,10 @@ class _ExtracurricularsState extends State<Extracurriculars> {
     _httpApiClientclient.fetchExtracurriculars().then((List<Extracurricular> result){
       setState(() {
         duplicateExtracurriculars = result;
+        for(int i = 0; i < duplicateExtracurriculars.length; i++)
+        {
+          duplicateExtracurriculars[i].assetImage = AssetImage(globals.clubImages[i]);
+        }
         extracurriculars.addAll(duplicateExtracurriculars);
       });
     });
@@ -186,8 +190,7 @@ class _ExtracurricularsState extends State<Extracurriculars> {
                         return ListTile(
                           leading: CircleAvatar(
                             backgroundColor: Colors.white,
-                            backgroundImage: AssetImage(
-                                'assets/images/placeholder_image.png'),
+                            backgroundImage: e.assetImage,
                           ),
                           onTap: openContainer,
                           title: Text(e.name),
@@ -242,7 +245,7 @@ class _DetailsPage extends StatelessWidget {
             decoration: BoxDecoration(
               image: DecorationImage(
               fit: BoxFit.fitWidth,
-                image: AssetImage('assets/icons/PersonA.jpg'),
+                image: extracurricular.assetImage,
               ),
             ),
           ),
