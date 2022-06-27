@@ -1,15 +1,22 @@
 # Rover Agenda - The #1 App for EAHS Students
 
-As a student of Easton Area High School, there are a lot of things for you to keep track of:
-classes, extracurriculars, school events, teachers, and so much more. With all that in mind,
-wouldn't it be so much easier if you could manage all of those things in one place?
+## Addressing the prompt
+This year's prompt for the FBLA Mobile Application Development event was to create an app that would
+allow students to manage their school activities using a variety of features, including:
+- A schedule
+- A lunch menu
+- A teachers list
+- An extracurriculars page
+- A calendar
+- A bug reporting system
 
 That's what our app, Rover Agenda, is here for. This app brings all of your school concerns into
-one easy-to-access place. With an included schedule, teachers list, school calendar, lunch menu,
-and extracurriculars section, you can keep track of everything you need to know. Each part of the
-app is customized to your individual needs, with data stored within your unique student account.
-No longer do you have to have several different apps to keep track of everything; with Rover Agenda,
-you can be sure to keep track of everything in your busy high school experience.
+one easy-to-access place. With a customizable schedule, a lunch menu, a list for emailing teachers,
+a list of extracurriculars, a school event calendar, and a bug reporting system, you can keep track of
+everything you need to know. Each part of the app is customized to your individual needs, with data
+stored within your unique student account. No longer do you have to have several different apps to
+keep track of everything; with Rover Agenda, you can be sure to keep track of everything in your busy
+high school experience.
 
 ## Features
     - Custom Schedule
