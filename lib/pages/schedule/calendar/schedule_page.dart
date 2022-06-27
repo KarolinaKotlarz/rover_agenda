@@ -421,11 +421,11 @@ class ScheduleCalendarState extends SampleViewState {
     _timeZoneCollection.add('West Pacific Standard Time');
     _timeZoneCollection.add('Yakutsk Standard Time');
 
-    _colorCollection.add(const Color(0xFF0F0044));
-    _colorCollection.add(const Color(0xFF0B1FA0));
-    _colorCollection.add(const Color(0xFF097099));
-    _colorCollection.add(const Color(0xFF01A1EF));
-    _colorCollection.add(const Color(0xFF3D4FB5));
+    _colorCollection.add(const Color(0xFF2C2C54));
+    _colorCollection.add(const Color(0xFF006E90));
+    _colorCollection.add(const Color(0xFF23B5D3));
+    _colorCollection.add(const Color(0xFFEC7926));
+    _colorCollection.add(const Color(0xFFFFAD05));
     _colorCollection.add(const Color(0xFF08454A));
     _colorCollection.add(const Color(0xFF0E8072));
     _colorCollection.add(const Color(0xFF4FB06C));
@@ -474,7 +474,7 @@ class ScheduleCalendarState extends SampleViewState {
         startTime: b1StartTimeB,
         endTime: b1EndTimeB,
         color: _colorCollection[6],
-        subject: 'AP US History\nMr. Uhler\nD202',
+        subject: 'Honors Spanish\nMs. Gori\nD202',
         recurrenceRule:
         SfCalendar.generateRRule(b1RecurrenceB, b1StartTimeB, b1EndTimeB));
 
@@ -575,7 +575,7 @@ class ScheduleCalendarState extends SampleViewState {
     final Appointment blockFive = Appointment(
         startTime: b5StartTime,
         endTime: b5EndTime,
-        color: _colorCollection[6],
+        color: _colorCollection[7],
         subject: 'Hons Eng Lit\nMrs. Mohap\nC212',
         recurrenceRule:
         SfCalendar.generateRRule(b5Recurrence, b5StartTime, b5EndTime));
